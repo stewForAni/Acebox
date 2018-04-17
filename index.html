@@ -7,11 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-3.3.1.min.js"></script>
-    <!-- <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script> -->
     <script src="js/bootstrap.min.js"></script>
-    <style>
-    html {
+    <script src="js/jquery.waterwheelCarousel.js"></script>
+    <style type="text/css">
+    body {
         background-color: #202326;
+    }
+
+    #carousel {
+        width: 100%;
+        height: 800px;
+        position: absolute;
+    }
+
+    #carousel img {
+        display: hidden;
+        /* hide images until carousel prepares them */
+        cursor: pointer;
+        /* not needed if you wrap carousel items in links */
+        width: 25%;
+        height: 60%;
     }
     </style>
 </head>
@@ -34,12 +49,25 @@
         </ul>
     </nav>
 
-    <div class="container-fluid" style="background-color: #202326;">
-        <div class="card" style="width: 380px;height: 450px;right: 0%;top:50%;position: absolute;margin-top: -225px;margin-right: 300px">
-            <div class="card-body"></div>
+    <div class="container-fluid" style="background-color: #202326;position: fixed;">
+
+        <div id="carousel" style="z-index:1">
+            <img src="images/login_1.jpg" alt="Image 1" style="  border-radius: 5px;" />
+            <img src="images/login_2.jpg" alt="Image 2" style="  border-radius: 5px;" />
+            <img src="images/login_3.jpg" alt="Image 3" style="  border-radius: 5px;" />
+            <img src="images/login_4.jpg" alt="Image 4" style="  border-radius: 5px;" />
+            <img src="images/login_5.jpg" alt="Image 5" style="  border-radius: 5px;" />
+            <img src="images/login_6.jpg" alt="Image 6" style="  border-radius: 5px;" />
+            <img src="images/login_7.jpg" alt="Image 7" style="  border-radius: 5px;" />
         </div>
+
+      <!--   <div class="card" style="width: 380px;height: 450px;right: 50%;top:50%;position: absolute;margin-top: -225px;z-index: 999">
+            <div class="card-body"></div>
+        </di -->v>
+
     </div>
 
+    <script type="text/javascript" src="js/myjs/login.js"></script>
 </body>
 
 </html>
