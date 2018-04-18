@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>图片展示页</title>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="index-list-content row">
+            <div class="col-sm-3">
+                <img src="images/test/1.jpg" style="width: 100%; height: 75%;">
+                <div>
+                    <div class="text-center">one</div>
+                    <a id="downLoad">下载</a>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <img src="images/test/2.jpg" style="width: 100%; height: 75%;">
+                <p class="text-center">two</p>
+            </div>
+            <div class="col-sm-3">
+                <img src="images/test/3.jpg" style="width: 100%; height: 75%;">
+                <p class="text-center">three</p>
+            </div>
+            <div class="col-sm-3">
+                <img src="images/test/4.jpg" style="width: 100%; height: 75%;">
+                <p class="text-center">four</p>
+            </div>
+            <div class="col-sm-3">
+                <img src="images/test/1.jpg" style="width: 100%; height: 80%;">
+                <p class="text-center">one</p>
+            </div>
+            <div class="col-sm-3">
+                <img src="images/test/2.jpg" style="width: 100%; height: 80%;">
+                <p class="text-center">two</p>
+            </div>
+            <div class="col-sm-3">
+                <img src="images/test/3.jpg" style="width: 100%; height: 80%;">
+                <p class="text-center">three</p>
+            </div>
+            <div class="col-sm-3">
+                <img src="images/test/4.jpg" style="width: 100%; height: 80%;">
+                <p class="text-center">four</p>
+            </div>
+		</div>
+		<div id="img-modal" class="modal fade">
+		  	<div id="img-dialog" class="modal-dialog" style="width: 98%; height: 98%;text-align: center;">
+		    	<div id="img-content" class="modal-content">
+		        	<img id="img-zoom" src="" style="max-height: 100%; max-width: 100%;margin:10px;">
+		    	</div><!-- /.modal-content -->
+		  	</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	</div>
+</body>
+<script type="text/javascript">
+    $(function() {         
+        //点击图片放大
+        $("#img-zoom").click(function(){
+            $('#img-modal').modal("hide");
+        });
+        $("#img-dialog").click(function(){
+            $('#img-modal').modal("hide");
+        });
+        //index-list-content为显示文章内容div的class
+        $(".index-list-content img").each(function(i){
+            var src = $(this).attr("src");
+            $(this).click(function () {
+                $("#img-zoom").attr("src", src);
+                var oImg = $(this);
+                var img = new Image();
+                img.src = $(oImg).attr("src");
+                var realWidth = img.width;//真实的宽度的2倍
+                var realHeight = img.height;//真实的高度的2倍
+                var ww = $(window).width();//当前浏览器可视宽度
+                var hh = $(window).height();//当前浏览器可视宽度
+                $("#img-content").css({"top":0,"left":0,"height":"auto"});
+                $("#img-zoom").css({"height":"auto"});
+                if((realWidth+20)>ww){
+                    $("#img-content").css({"width":"100%"});
+                    $("#img-zoom").css({"width":"99%"});
+                }else{
+                    $("#img-content").css({"width":realWidth+20, "height":realHeight+20});
+                    $("#img-zoom").css({"width":realWidth, "height":realHeight});
+                }
+                if((hh-realHeight-40)>0){
+                    $("#img-content").css({"top":(hh-realHeight-40)/2});
+                }
+                // if((ww-realWidth-20)>0){
+                //     $("#img-content").css({"left":(ww-realWidth-620)/2});
+                // }
+                // console.log("realWidth:"+realWidth+" realHeight:"+realHeight+" ww:"+ww)
+                $('#img-modal').modal();
+            });
+        });
+    });
+</script>
+
+<script> 
+    //判断浏览器类型 
+    function myBrowser(){ 
+        var userAgent = navigator.userAgent; 
+        //取得浏览器的userAgent字符串 
+        var isOpera = userAgent.indexOf("Opera") > -1; 
+        if (isOpera) { 
+            return "Opera" 
+        }; //判断是否Opera浏览器 
+        if (userAgent.indexOf("Firefox") > -1) { 
+            return "FF"; 
+        } //判断是否Firefox浏览器
+        if (userAgent.indexOf("Chrome") > -1){ 
+            return "Chrome"; 
+        } 
+        if (userAgent.indexOf("Safari") > -1) { 
+            return "Safari"; 
+        } //判断是否Safari浏览器 
+        if (userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1 && !isOpera) { 
+            return "IE"; 
+        }; //判断是否IE浏览器 
+        if (userAgent.indexOf("Trident") > -1) { 
+            return "Edge"; 
+        } //判断是否Edge浏览器 
+    } 
+
+    function SaveAs5(imgURL) { 
+        var oPop = window.open(imgURL,"","width=1, height=1, top=5000, left=5000"); 
+        for(; oPop.document.readyState != "complete"; ) { 
+            if (oPop.document.readyState == "complete")break; 
+        } 
+        oPop.document.execCommand("SaveAs"); 
+        oPop.close(); 
+    } 
+
+    function oDownLoad(url) { 
+        myBrowser(); 
+        if (myBrowser()==="IE"||myBrowser()==="Edge"){ 
+            //IE odownLoad.href="#"; 
+            var oImg=document.createElement("img"); 
+            oImg.src=url; 
+            oImg.id="downImg"; 
+            var odown=document.getElementById("down"); 
+            odown.appendChild(oImg); 
+            SaveAs5(document.getElementById('downImg').src) 
+        }else{ 
+            //!IE 
+            odownLoad.href=url; 
+            odownLoad.download=""; 
+        } 
+    } 
+    var odownLoad=document.getElementById("downLoad"); 
+    odownLoad.onclick=function () { 
+        oDownLoad("images/test/1.jpg") 
+    }
+</script>
+
+</html>
