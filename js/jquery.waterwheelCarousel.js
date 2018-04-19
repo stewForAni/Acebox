@@ -266,7 +266,6 @@
       // data.rightItemsCount = Math.ceil((data.totalItems-1) / 2);
       // data.leftItemsCount = Math.floor((data.totalItems-1) / 2);
 
-
       data.rightItemsCount = 3;
       data.leftItemsCount = 3;
 
@@ -281,7 +280,6 @@
       var itemIndex = options.startingItem - 1;
       for (var pos = 1; pos <= data.rightItemsCount; pos++) {
         (itemIndex < data.totalItems - 1) ? itemIndex += 1 : itemIndex = 0;
-
         data.items[itemIndex].css('opacity', 1);
         moveItem(data.items[itemIndex], pos);
       }
@@ -290,10 +288,10 @@
       var itemIndex = options.startingItem - 1;
       for (var pos = -1; pos >= data.leftItemsCount*-1; pos--) {
         (itemIndex > 0) ? itemIndex -= 1 : itemIndex = data.totalItems - 1;
-
         data.items[itemIndex].css('opacity', 1);
         moveItem(data.items[itemIndex], pos);
       }
+
     }
 
     /**
@@ -301,6 +299,7 @@
      * for the item. One the calculations are done, it will store that data in
      * the items data object
      */
+
     function performCalculations($item, newPosition) {
       var newDistanceFromCenter = Math.abs(newPosition);
 
@@ -311,23 +310,26 @@
         var calculations = data.calculations[options.flankingItems + 1];
       }
 
-      var distanceFactor = Math.pow(options.sizeMultiplier, newDistanceFromCenter)
-      var newWidth = distanceFactor * $item.data('original_width');
-      var newHeight = distanceFactor * $item.data('original_height');
-     
+      // var distanceFactor = Math.pow(options.sizeMultiplier, newDistanceFromCenter)
+      // var newWidth = distanceFactor * $item.data('original_width');
+      // var newHeight = distanceFactor * $item.data('original_height');
+
+      var newWidth = $item.data('original_width');
+      var newHeight = $item.data('original_height');
 
       // var widthDifference = Math.abs($item.width() - newWidth);
       // var heightDifference = Math.abs($item.height() - newHeight);
 
-      var newOffset = calculations.offset
+      var newOffset = calculations.offset;
       var newDistance = calculations.distance;
+
       if (newPosition < 0) {
         newDistance *= -1;
       }
 
       if (options.orientation == 'horizontal') {
         var center = data.containerWidth / 2;
-        var newLeft = center + newDistance - (newWidth / 2);
+        var newLeft = center + newDistance - (newWidth / 2)-400;
         var newTop = options.horizon - newOffset - (newHeight / 2);
       } else {
         var center = data.containerHeight / 2;
