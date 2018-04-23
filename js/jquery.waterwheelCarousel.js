@@ -310,12 +310,9 @@
         var calculations = data.calculations[options.flankingItems + 1];
       }
 
-      // var distanceFactor = Math.pow(options.sizeMultiplier, newDistanceFromCenter)
-      // var newWidth = distanceFactor * $item.data('original_width');
-      // var newHeight = distanceFactor * $item.data('original_height');
-
-      var newWidth = $item.data('original_width');
-      var newHeight = $item.data('original_height');
+      var distanceFactor = Math.pow(options.sizeMultiplier, newDistanceFromCenter)
+      var newWidth = distanceFactor * $item.data('original_width');
+      var newHeight = distanceFactor * $item.data('original_height');
 
       // var widthDifference = Math.abs($item.width() - newWidth);
       // var heightDifference = Math.abs($item.height() - newHeight);
@@ -666,7 +663,7 @@
     separationMultiplier:       0.6, // multipled by separation distance to increase/decrease distance for each additional item
     horizonOffset:              0,   // offset each item from the "horizon" by this amount (causes arching)
     horizonOffsetMultiplier:    1,   // multipled by horizon offset to increase/decrease offset for each additional item
-    sizeMultiplier:             0.7, // determines how drastically the size of each item changes
+    sizeMultiplier:             0.9, // determines how drastically the size of each item changes
     opacityMultiplier:          0.8, // determines how drastically the opacity of each item changes
     horizon:                    0,   // how "far in" the horizontal/vertical horizon should be set from the container wall. 0 for auto
     flankingItems:              3,   // the number of items visible on either side of the center                  
