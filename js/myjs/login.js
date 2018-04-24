@@ -1,6 +1,8 @@
 $(document).ready(function() {
-    $("#carousel").waterwheelCarousel({
-  
 
+    $('#login').click(function() {
+        window.location.replace("main.html");
+        return false;
     });
-  });
+
+});

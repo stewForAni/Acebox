@@ -266,7 +266,6 @@
       // data.rightItemsCount = Math.ceil((data.totalItems-1) / 2);
       // data.leftItemsCount = Math.floor((data.totalItems-1) / 2);
 
-
       data.rightItemsCount = 3;
       data.leftItemsCount = 3;
 
@@ -281,7 +280,6 @@
       var itemIndex = options.startingItem - 1;
       for (var pos = 1; pos <= data.rightItemsCount; pos++) {
         (itemIndex < data.totalItems - 1) ? itemIndex += 1 : itemIndex = 0;
-
         data.items[itemIndex].css('opacity', 1);
         moveItem(data.items[itemIndex], pos);
       }
@@ -290,10 +288,10 @@
       var itemIndex = options.startingItem - 1;
       for (var pos = -1; pos >= data.leftItemsCount*-1; pos--) {
         (itemIndex > 0) ? itemIndex -= 1 : itemIndex = data.totalItems - 1;
-
         data.items[itemIndex].css('opacity', 1);
         moveItem(data.items[itemIndex], pos);
       }
+
     }
 
     /**
@@ -301,6 +299,7 @@
      * for the item. One the calculations are done, it will store that data in
      * the items data object
      */
+
     function performCalculations($item, newPosition) {
       var newDistanceFromCenter = Math.abs(newPosition);
 
@@ -314,20 +313,20 @@
       var distanceFactor = Math.pow(options.sizeMultiplier, newDistanceFromCenter)
       var newWidth = distanceFactor * $item.data('original_width');
       var newHeight = distanceFactor * $item.data('original_height');
-     
 
       // var widthDifference = Math.abs($item.width() - newWidth);
       // var heightDifference = Math.abs($item.height() - newHeight);
 
-      var newOffset = calculations.offset
+      var newOffset = calculations.offset;
       var newDistance = calculations.distance;
+
       if (newPosition < 0) {
         newDistance *= -1;
       }
 
       if (options.orientation == 'horizontal') {
         var center = data.containerWidth / 2;
-        var newLeft = center + newDistance - (newWidth / 2);
+        var newLeft = center + newDistance - (newWidth / 2)-400;
         var newTop = options.horizon - newOffset - (newHeight / 2);
       } else {
         var center = data.containerHeight / 2;
@@ -664,7 +663,7 @@
     separationMultiplier:       0.6, // multipled by separation distance to increase/decrease distance for each additional item
     horizonOffset:              0,   // offset each item from the "horizon" by this amount (causes arching)
     horizonOffsetMultiplier:    1,   // multipled by horizon offset to increase/decrease offset for each additional item
-    sizeMultiplier:             0.7, // determines how drastically the size of each item changes
+    sizeMultiplier:             0.9, // determines how drastically the size of each item changes
     opacityMultiplier:          0.8, // determines how drastically the opacity of each item changes
     horizon:                    0,   // how "far in" the horizontal/vertical horizon should be set from the container wall. 0 for auto
     flankingItems:              3,   // the number of items visible on either side of the center                  
