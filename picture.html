@@ -10,6 +10,7 @@
 </head>
 <body>
 	<div class="container">
+        <div id="login">登陆</div>
 		<div class="index-list-content row">
             <div class="col-sm-3">
                 <img src="images/test/1.jpg" style="width: 100%; height: 75%;">
@@ -48,12 +49,19 @@
             </div>
 		</div>
 		<div id="img-modal" class="modal fade">
-		  	<div id="img-dialog" class="modal-dialog" style="width: 98%; height: 98%;text-align: center;">
+		  	<div id="img-dialog" class="modal-dialog" style="margin: 0;">
 		    	<div id="img-content" class="modal-content">
 		        	<img id="img-zoom" src="" style="max-height: 100%; max-width: 100%;margin:10px;">
 		    	</div><!-- /.modal-content -->
 		  	</div><!-- /.modal-dialog -->
 		</div><!-- /.modal -->
+        <div class="float-right">
+            <ul class="pagination pull-right">
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+            </ul>
+        </div>
 	</div>
 </body>
 <script type="text/javascript">
@@ -73,12 +81,15 @@
                 var oImg = $(this);
                 var img = new Image();
                 img.src = $(oImg).attr("src");
-                var realWidth = img.width;//真实的宽度的2倍
-                var realHeight = img.height;//真实的高度的2倍
+                var realWidth = img.width;//真实的宽度
+                var realHeight = img.height;//真实的高度
                 var ww = $(window).width();//当前浏览器可视宽度
-                var hh = $(window).height();//当前浏览器可视宽度
+                var wh = $(window).height();//当前浏览器可视宽度
+                var ll = $("#img-dialog").css('margin-left');
+                // alert(ll);
+                // alert(wh);
                 $("#img-content").css({"top":0,"left":0,"height":"auto"});
-                $("#img-zoom").css({"height":"auto"});
+                // $("#img-zoom").css({"height":"auto"});
                 if((realWidth+20)>ww){
                     $("#img-content").css({"width":"100%"});
                     $("#img-zoom").css({"width":"99%"});
@@ -86,12 +97,12 @@
                     $("#img-content").css({"width":realWidth+20, "height":realHeight+20});
                     $("#img-zoom").css({"width":realWidth, "height":realHeight});
                 }
-                if((hh-realHeight-40)>0){
-                    $("#img-content").css({"top":(hh-realHeight-40)/2});
+                if((wh-realHeight-40)>0){
+                    $("#img-content").css({"top":(wh-realHeight)/2});
                 }
-                // if((ww-realWidth-20)>0){
-                //     $("#img-content").css({"left":(ww-realWidth-620)/2});
-                // }
+                if((ww-realWidth-20)>0){
+                    $("#img-content").css({"left":((ww-realWidth)/2)});
+                }
                 // console.log("realWidth:"+realWidth+" realHeight:"+realHeight+" ww:"+ww)
                 $('#img-modal').modal();
             });
@@ -135,15 +146,16 @@
     } 
 
     function oDownLoad(url) { 
-        myBrowser(); 
+        // myBrowser(); 
         if (myBrowser()==="IE"||myBrowser()==="Edge"){ 
             //IE odownLoad.href="#"; 
-            var oImg=document.createElement("img"); 
-            oImg.src=url; 
+            // var oImg=document.createElement("img");
+            var oImg = $('<img></img>'); 
+            oImg.src=url;
             oImg.id="downImg"; 
-            var odown=document.getElementById("down"); 
+            var odown=$("#down"); 
             odown.appendChild(oImg); 
-            SaveAs5(document.getElementById('downImg').src) 
+            SaveAs5($('#downImg').src) 
         }else{ 
             //!IE 
             odownLoad.href=url; 
@@ -154,6 +166,51 @@
     odownLoad.onclick=function () { 
         oDownLoad("images/test/1.jpg") 
     }
+
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function() {
+        // $.get("http://api.acebox.abc360.work/v1/material/lists", function( data ) {
+        //   $("body")
+        //     .append( "Name: " + data.title ) // John
+        //     .append( "Time: " + data.url ); //  2pm
+        // }, "json" );
+        // 
+        // $.ajax({
+        //     url: 'http://api.acebox.abc360.work/v1/material/lists',
+        //     headers: {
+        //         'Content-Type': 'application/json; charset=UTF-8'
+        //     },
+        //     type: "GET",  or type:"GET" or type:"PUT" 
+        //     dataType: "json",
+        //     success: function (result) {
+        //         console.log(result);    
+        //     },
+        //     error: function () {
+        //         console.log("error");
+        //     }
+        // });
+        // 
+        // 
+        $.ajax({
+            crossDomain: true,
+            contentType: "application/json; charset=utf-8",
+            type: "GET",
+            url: "http://api.acebox.abc360.work/v1/material/lists",
+            cache: false,
+            // headers: {
+            //     "Authorization": "Basic " + btoa(USERNAME + ":" + PASSWORD)
+            //   },
+            success: function (result) {
+                // alert("XML File is loaded!");
+                // alert(result);
+                console.log(result);
+            }
+        });
+    });
+
 </script>
 
 </html>
