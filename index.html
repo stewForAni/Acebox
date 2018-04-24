@@ -5,16 +5,16 @@
     <title>acebox</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/mycss/theme.css">
-    <link rel="stylesheet" href="css/mycss/entypo.css">
+    <link rel="stylesheet" href="css/mycss/theme.css" media="all">
+    <link rel="stylesheet" href="css/mycss/entypo.css" media="all">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,400i,500" rel="stylesheet">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <div class="nav-container">
-        <div class="bg-dark navbar-dark" data-sticky="top">
+    <div class="nav-container" style="position: fixed;width: 100%;z-index: 10000">
+        <div class="bg-dark navbar-dark">
             <div class="container">
                 <nav class="navbar navbar-expand-lg">
                     <a class="navbar-brand" href="index.html">
@@ -28,11 +28,9 @@
                             <li class="nav-item">
                                 <a href="index.html" class="nav-link">Course</a>
                             </li>
-
-                             <li class="nav-item">
+                            <li class="nav-item">
                                 <a href="index.html" class="nav-link">User</a>
                             </li>
-                           
                         </ul>
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -67,11 +65,11 @@
                                         <label for="exampleInputUsername">Username</label>
                                         <input type="text" class="form-control form-control-lg" id="exampleInputUsername" aria-describedby="usernameHelp" placeholder="Pick a username">
                                     </div>
-                                    <div class="form-group">
+                                     <!--  <div class="form-group">
                                         <label for="exampleInputEmail">Email address</label>
                                         <input type="email" class="form-control form-control-lg" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter email">
                                         <small id="emailHelp" class="form-text">We'll never share your email with anyone else.</small>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group">
                                         <label for="exampleInputPassword">Password</label>
                                         <input type="password" class="form-control form-control-lg" id="exampleInputPassword" placeholder="Password">
@@ -83,7 +81,7 @@
                                             </label>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-lg btn-success btn-block">Sign up for Acebox</button>
+                                    <button type="submit" class="btn btn-lg btn-success btn-block" id="login">Sign in for Acebox</button>
                                 </form>
                             </div>
                         </div>
@@ -94,213 +92,205 @@
             <!--end of container-->
         </section>
         <!--end of section-->
-       <section>
-                <div class="container">
-
-                    <div class="row justify-content-center text-center section-intro">
-                        <div class="col-12 col-md-9 col-lg-8">
-                            <span class="title-decorative">Welcome Home</span>
-                            <h2 class="display-4">Greatly simplified workflow</h2>
-                            <span class="lead">An opportunity to introduce the major benefits of your product and set the scene for what's to come</span>
-
-                        </div>
-                        <!--end of col-->
+        <section>
+            <div class="container">
+                <div class="row justify-content-center text-center section-intro">
+                    <div class="col-12 col-md-9 col-lg-8">
+                        <span class="title-decorative">Welcome Home</span>
+                        <h2 class="display-4">Greatly simplified workflow</h2>
+                        <span class="lead">An opportunity to introduce the major benefits of your product and set the scene for what's to come</span>
                     </div>
-                    <!--end of row-->
-
-                    <div class="row justify-content-around">
-
-                        <div class="col-md-5 col-7 mb-4">
-                            <div class="tab-content">
-                                <div class="tab-pane fade show active" id="content-1" role="tabpanel" arialabelledby="content-1-tab">
-                                    <img alt="Image" class="img-fluid w-100" src="images/login.svg" />
-                                </div>
-                                <div class="tab-pane fade" id="content-2" role="tabpanel" arialabelledby="content-2-tab">
-                                    <img alt="Image" class="img-fluid w-100" src="images/work.svg" />
-                                </div>
-                                <div class="tab-pane fade" id="content-3" role="tabpanel" arialabelledby="content-3-tab">
-                                    <img alt="Image" class="img-fluid w-100" src="images/meet.svg" />
-                                </div>
+                    <!--end of col-->
+                </div>
+                <!--end of row-->
+                <div class="row justify-content-around">
+                    <div class="col-md-5 col-7 mb-4">
+                        <div class="tab-content">
+                            <div class="tab-pane fade show active" id="content-1" role="tabpanel" arialabelledby="content-1-tab">
+                                <img alt="Image" class="img-fluid w-100" src="images/login.svg" />
+                            </div>
+                            <div class="tab-pane fade" id="content-2" role="tabpanel" arialabelledby="content-2-tab">
+                                <img alt="Image" class="img-fluid w-100" src="images/work.svg" />
+                            </div>
+                            <div class="tab-pane fade" id="content-3" role="tabpanel" arialabelledby="content-3-tab">
+                                <img alt="Image" class="img-fluid w-100" src="images/meet.svg" />
                             </div>
                         </div>
-                        <!--end of col-->
-                        <div class="col-lg-5 col-md-8 mb-4">
-                            <ul class="nav nav-cards" role="tablist">
-                                <li>
-                                    <div class="card active" data-toggle="tab" href="#content-1" role="tab" aria-controls="content-1" aria-selected="true">
-                                        <div class="card-body">
-                                            <div class="media align-items-center">
-                                                <div class="step-circle mr-4">1</div>
-                                                <div class="media-body">
-                                                    <h5>Create an account</h5>
-                                                    <span>
+                    </div>
+                    <!--end of col-->
+                    <div class="col-lg-5 col-md-8 mb-4">
+                        <ul class="nav nav-cards" role="tablist">
+                            <li>
+                                <div class="card active" data-toggle="tab" href="#content-1" role="tab" aria-controls="content-1" aria-selected="true">
+                                    <div class="card-body">
+                                        <div class="media align-items-center">
+                                            <div class="step-circle mr-4">1</div>
+                                            <div class="media-body">
+                                                <h5>Create an account</h5>
+                                                <span>
                                                         It’s even easier than it sounds, you just need an email address
                                                     </span>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="card" data-toggle="tab" href="#content-2" role="tab" aria-controls="content-2" aria-selected="false">
-                                        <div class="card-body">
-                                            <div class="media align-items-center">
-                                                <div class="step-circle mr-4">2</div>
-                                                <div class="media-body">
-                                                    <h5>Start a project</h5>
-                                                    <span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="card" data-toggle="tab" href="#content-2" role="tab" aria-controls="content-2" aria-selected="false">
+                                    <div class="card-body">
+                                        <div class="media align-items-center">
+                                            <div class="step-circle mr-4">2</div>
+                                            <div class="media-body">
+                                                <h5>Start a project</h5>
+                                                <span>
                                                         With tons of tutorials and examples, this part is even easier than the last
                                                     </span>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
-                                <li>
-                                    <div class="card" data-toggle="tab" href="#content-3" role="tab" aria-controls="content-3" aria-selected="false">
-                                        <div class="card-body">
-                                            <div class="media align-items-center">
-                                                <div class="step-circle mr-4">3</div>
-                                                <div class="media-body">
-                                                    <h5>Deploy and conquer</h5>
-                                                    <span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="card" data-toggle="tab" href="#content-3" role="tab" aria-controls="content-3" aria-selected="false">
+                                    <div class="card-body">
+                                        <div class="media align-items-center">
+                                            <div class="step-circle mr-4">3</div>
+                                            <div class="media-body">
+                                                <h5>Deploy and conquer</h5>
+                                                <span>
                                                         That was easy, right? Now it’s time to deploy that badboy and let the world know
                                                     </span>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <!--end of col-->
-
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    <!--end of row-->
+                    <!--end of col-->
                 </div>
-                <!--end of container-->
-            </section>
-            <!--end of section-->
-
-
-
-            <section class="space-xs text-center bg-gradient text-light">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <i class="mr-1 icon-cake"></i>
-                            <span class="mr-2">Use this handy announcement bar to talk about new features</span>
-                            <a href="#" class="text-white">View changelog &rsaquo;</a>
-                        </div>
-                        <!--end of col-->
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </section>
+        <!--end of section-->
+        <section class="space-xs text-center bg-gradient text-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <i class="mr-1 icon-cake"></i>
+                        <span class="mr-2">Use this handy announcement bar to talk about new features</span>
+                        <a href="#" class="text-white">View changelog &rsaquo;</a>
                     </div>
-                    <!--end of row-->
+                    <!--end of col-->
                 </div>
-                <!--end of container-->
-            </section>
-            <!--end of section-->
-
-            <footer class="bg-gray text-light footer-long">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 col-md-3">
-                            Acebox
-                            <p class="text-muted">
-                                &copy; 2018 Medium Rare
-                                <br />Template available exclusively
-                                <br />at Bootstrap Themes
-                            </p>
-                        </div>
-                        <!--end of col-->
-                        <div class="col-12 col-md-9">
-                            <span class="h5">A robust suite of styled components for Bootstrap 4</span>
-                            <div class="row no-gutters">
-                                <div class="col-6 col-lg-3">
-                                    <h6>Navigate</h6>
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <a href="index.html">Overview</a>
-                                        </li>
-                                        <li>
-                                            <a href="pages-landing.html">Landing Pages</a>
-                                        </li>
-                                        <li>
-                                            <a href="pages-app.html">App Pages</a>
-                                        </li>
-                                        <li>
-                                            <a href="pages-inner.html">Inner Pages</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!--end of col-->
-                                <div class="col-6 col-lg-3">
-                                    <h6>Platform</h6>
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <a href="#">Mac OS &amp; iOS</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Android &amp; Chrome OS</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Windows</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Linux</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!--end of col-->
-                                <div class="col-6 col-lg-3">
-                                    <h6>Community</h6>
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <a href="#">Forum</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Knowledgebase</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Hire an expert</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">FAQ</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Contact</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!--end of col-->
-                                <div class="col-6 col-lg-3">
-                                    <h6>Company</h6>
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <a href="#">About company</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">History</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Team</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Investment</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!--end of col-->
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </section>
+        <!--end of section-->
+        <footer class="bg-gray text-light footer-long">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        Acebox
+                        <p class="text-muted">
+                            &copy; 2018 Medium Rare
+                            <br />Template available exclusively
+                            <br />at Bootstrap Themes
+                        </p>
+                    </div>
+                    <!--end of col-->
+                    <div class="col-12 col-md-9">
+                        <span class="h5">A robust suite of styled components for Bootstrap 4</span>
+                        <div class="row no-gutters">
+                            <div class="col-6 col-lg-3">
+                                <h6>Navigate</h6>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="index.html">Overview</a>
+                                    </li>
+                                    <li>
+                                        <a href="pages-landing.html">Landing Pages</a>
+                                    </li>
+                                    <li>
+                                        <a href="pages-app.html">App Pages</a>
+                                    </li>
+                                    <li>
+                                        <a href="pages-inner.html">Inner Pages</a>
+                                    </li>
+                                </ul>
                             </div>
-                            <!--end of row-->
+                            <!--end of col-->
+                            <div class="col-6 col-lg-3">
+                                <h6>Platform</h6>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">Mac OS &amp; iOS</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Android &amp; Chrome OS</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Windows</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Linux</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--end of col-->
+                            <div class="col-6 col-lg-3">
+                                <h6>Community</h6>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">Forum</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Knowledgebase</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Hire an expert</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">FAQ</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--end of col-->
+                            <div class="col-6 col-lg-3">
+                                <h6>Company</h6>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a href="#">About company</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">History</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Team</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Investment</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!--end of col-->
                         </div>
-                        <!--end of col-->
+                        <!--end of row-->
                     </div>
-                    <!--end of row-->
+                    <!--end of col-->
                 </div>
-                <!--end of container-->
-            </footer>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </footer>
     </div>
     <script type="text/javascript" src="js/myjs/login.js"></script>
+
 </body>
 
 </html>

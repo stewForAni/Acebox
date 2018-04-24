@@ -3107,6 +3107,7 @@ input[type="button"].btn-block {
 
 .card-img-top {
   width: 100%;
+  height: 250px;
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px); }
 
@@ -6682,16 +6683,16 @@ section {
 
 @media (min-width: 992px) {
   .space-lg {
-    padding-top: 7.5rem;
-    padding-bottom: 7.5rem; }
+    padding-top: 9rem;
+    padding-bottom: 9rem; }
   .space-xlg {
     padding-top: 10.5rem;
     padding-bottom: 10.5rem; } }
 
 @media (max-width: 1199.98px) {
   .space-lg {
-    padding-top: 3rem;
-    padding-bottom: 3rem; }
+    padding-top: 5rem;
+    padding-bottom: 5rem; }
   .space-xlg {
     padding-top: 4.5rem;
     padding-bottom: 4.5rem; } }
