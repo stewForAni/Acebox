@@ -5,7 +5,7 @@
     <title>ACEMAIN</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-     <link rel="Bookmark" href="images/a.ico" />
+    <link rel="Bookmark" href="images/a.ico" />
     <link rel="Shortcut Icon" href="images/a.ico" />
     <link rel="stylesheet" href="css/mycss/theme.css">
     <link rel="stylesheet" href="css/mycss/entypo.css">
@@ -15,6 +15,10 @@
 </head>
 
 <body>
+    <script type="text/javascript" src="js/myjs/commoncontent.js"></script>
+    <script type="text/javascript" src="js/myjs/aceApiTool.js"></script>
+    <script type="text/javascript" src="js/myjs/ajaxUtil.js"></script>
+    <script type="text/javascript" src="js/myjs/main.js"></script>
     <div class="nav-container" style="position: fixed;width: 100%;z-index: 10000">
         <div class="bg-dark navbar-dark">
             <div class="container">
@@ -27,25 +31,25 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                         <ul class="navbar-nav">
-                           <li class="nav-item">
+                            <li class="nav-item">
                                 <a href="index.html" class="nav-link">Course</a>
                             </li>
                             <li class="nav-item">
                                 <a href="index.html" class="nav-link">User</a>
                             </li>
-                             <li class="nav-item">
+                            <li class="nav-item">
                                 <a href="index.html" class="nav-link">Resource</a>
                             </li>
                             <li class="nav-item">
                                 <a href="index.html" class="nav-link">module</a>
                             </li>
                         </ul>
-                        <ul class="navbar-nav">
+                        <!--   <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a href="#">Sign up</a>
                                 <span>&nbsp;or&nbsp;</span><a href="#">Sign in</a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </div>
                     <!--end nav collapse-->
                 </nav>
@@ -55,9 +59,6 @@
     </div>
     <section>
         <div class="container">
-
-
-
             <div class="row justify-content-center text-center section-intro">
                 <div class="col-12 col-md-9 col-lg-8">
                     <span class="title-decorative" style="margin-top: 60px">Dear landier , welcome home !</span>
@@ -67,15 +68,9 @@
                 <!--end of col-->
             </div>
             <!--end of row-->
-
-
-
             <div class="row">
-
-
-
                 <div class="col-12 col-sm-6 col-md-4">
-                    <div class="card card-lg" >
+                    <div class="card card-lg">
                         <a href="#"> <img class="card-img-top" src="images/pre1.jpg" alt="Pit Stop"></a>
                         <div class="card-body">
                             <h4 class="card-title">PRE 1</h4>
@@ -102,10 +97,6 @@
                     </div>
                 </div>
                 <!--end of col-->
-
-
-
-
                 <div class="col-12 col-sm-6 col-md-4">
                     <div class="card card-lg">
                         <a href="#">
@@ -166,89 +157,58 @@
                     </div>
                 </div>
                 <!--end of col-->
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="card card-lg">
-                        <a href="#">
-                                    <img class="card-img-top" src="images/wait.jpg" alt="Movend">
-                                </a>
-                        <div class="card-body">
-                            <h4 class="card-title">to be continued</h4>
-                            <p class="card-text">The new level is being made, please look forward to it.</p>
-                            <ul class="list-unstyled list-spacing-sm">
-                                <li>
-                                    <i class="icon-text-document text-muted mr-1"></i>
-                                    <a href="#">......</a>
-                                </li>
-                                <li>
-                                    <i class="icon-text-document text-muted mr-1"></i>
-                                    <a href="#">......</a>
-                                </li>
-                                <li>
-                                    <i class="icon-text-document text-muted mr-1"></i>
-                                    <a href="#">......</a>
-                                </li>
-                                <li>
-                                    <i class="icon-text-document text-muted mr-1"></i>
-                                    <a href="#">......</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--end of col-->
+              
             </div>
             <!--end of row-->
         </div>
         <!--end of container-->
     </section>
     <!--end of section-->
-   
     <footer class="footer-short">
-            <div class="container">
-                <hr>
-                <nav class="row justify-content-between align-items-center">
-                    <div class="col-auto">
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a href="#">
+        <div class="container">
+            <hr>
+            <nav class="row justify-content-between align-items-center">
+                <div class="col-auto">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="#">
                                         Acebox
                                     </a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">Overview</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">Documentation</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">Changelog</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--end of col-->
-                    <div class="col-auto text-sm-right">
-                        <ul class="list-inline">
-                            <li class="list-inline-item">
-                                <a href="#"><i class="socicon-twitter"></i></a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#"><i class="socicon-facebook"></i></a>
-                            </li>
-                        </ul>
-                    </div>
-                    <!--end of col-->
-                </nav>
-                <!--end of row-->
-                <div class="row">
-                    <div class="col">
-                        <small>&copy; 2018 Acebox All Rights Reserved</small>
-                    </div>
-                    <!--end of col-->
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">Overview</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">Documentation</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#">Changelog</a>
+                        </li>
+                    </ul>
                 </div>
-                <!--end of row-->
+                <!--end of col-->
+                <div class="col-auto text-sm-right">
+                    <ul class="list-inline">
+                        <li class="list-inline-item">
+                            <a href="#"><i class="socicon-twitter"></i></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><i class="socicon-facebook"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <!--end of col-->
+            </nav>
+            <!--end of row-->
+            <div class="row">
+                <div class="col">
+                    <small>&copy; 2018 Acebox All Rights Reserved</small>
+                </div>
+                <!--end of col-->
             </div>
-            <!--end of container-->
-        </footer>
+            <!--end of row-->
+        </div>
+        <!--end of container-->
+    </footer>
     </div>
-    <script type="text/javascript" src="js/myjs/main.js"></script>
 </body>
