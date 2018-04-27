@@ -63,7 +63,9 @@
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="main.html">Home</a>
                             </li>
-                            <li class="breadcrumb-item active" aria-current="page">Course</li>
+                            <li class="breadcrumb-item"><a href="course.html">Course</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Add Course</li>
                         </ol>
                     </div>
                     <!--end of col-->
@@ -80,37 +82,50 @@
                     <div class="col-12 col-md-7 card-body bg-secondary">
                         <div class="text-center mb-5">
                             <h1 class="h2 mb-2">Create your Level&Stage</h1>
-                            <span>The Level is composed of multiple Stages</span>
+                            <span>Please read the rules on the right first.</span>
                         </div>
                         <div class="row justify-content-center">
                             <div class="col-12 col-lg-9">
                                 <form>
                                     <div class="form-row form-group">
                                         <div class="col">
-                                            <input class="form-control form-control-lg" type="text" id="company" placeholder="Level Name" />
-                                        </div>
-                                    </div>
-                                   
-                                    <div class="form-row form-group">
-                                        <div class="col">
-                                            <input class="form-control form-control-lg" type="email" id="email" placeholder="Stage Name" />
+                                            <input class="form-control form-control-lg" type="text" id="level_name" placeholder="Level Name" />
                                         </div>
                                     </div>
                                     <div class="form-row form-group">
                                         <div class="col">
-                                            <input class="form-control form-control-lg" type="password" id="password" placeholder="Password" />
-                                            <small>Password must be at least 7 characters</small>
+                                            <input class="form-control form-control-lg" type="text" id="stage_name" placeholder="Stage Name" />
                                         </div>
                                     </div>
                                     <div class="form-row form-group">
                                         <div class="col">
-                                            <button class="btn btn-block btn-success btn-lg" type="submit">Create Account</button>
+                                            <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="course_intro" placeholder="Course Introduction"></textarea>
+                                            <!-- <input class="form-control form-control-lg" type="text" id="course_intro" row="4" placeholder="Course Introduction" /> -->
+                                            <small>Briefly introduce the teaching objectives of this course.</small>
                                         </div>
                                     </div>
-                                    <div class="text-center">
-                                        <span class="text-small text-muted">By clicking 'Create Account' you agree to our <a href="#">Terms</a>, <a href="#">Privacy Policy</a>&nbsp;and <a href="#">Security Policy</a>
-                                            </span>
+                                    <div class="form-row form-group">
+                                        <!--  <div class="col">
+                                            <input class="form-control form-control-lg" type="file" id="course_cpver" style="" />
+                                            <small>Pick a cover that represents the course.</small>
+                                        </div> -->
+                                        <div class="col">
+                                            <label class="custom-file mb-2" for="file2">
+                                                <input type="file" id="file2" class="custom-file-input height-0">
+                                                <span class="btn btn-primary " id="cover_name"><i class="icon-upload-to-cloud">&nbsp;</i>Upload a Cover</span>
+                                            </label>
+                                            <small>Pick a cover that represents the course.</small>
+                                        </div>
                                     </div>
+                                    <div class="form-row form-group">
+                                        <div class="col">
+                                            <button class="btn btn-block btn-success btn-lg">Create Course</button>
+                                        </div>
+                                    </div>
+                                    <small>Before creating, consider the overall structure of the course and read the rule description on the right carefully.</small>
+                                    <!--   <div class="text-center">
+                                        <span class="text-small text-muted">Before creating, consider the overall structure of the course carefully.</span>
+                                    </div> -->
                                 </form>
                             </div>
                         </div>
@@ -119,29 +134,28 @@
                     <div class="col-12 col-md-5 card-body">
                         <div>
                             <div class="mb-5 text-center">
-                                <h3 class="h2 mb-2">Features &amp; Benefits</h3>
-                                <span>All plans come with 14 days free</span>
+                                <h3 class="h2 mb-2">Rule Description</h3>
+                                <span>Welcome the suggestion if unreasonable.</span>
                             </div>
                             <ul class="list-unstyled list-spacing-sm mb-5 ">
                                 <li class="row">
-                                    <div class="col-2 col-md-1"><i class="icon-check h5 text-muted"></i>
+                                    <div class="col-2 col-md-1"><i class="icon-bookmark h5 text-muted"></i>
                                     </div>
-                                    <div class="col-10">Introduce the major benefits of your product and set the scene for what's to come</div>
-                                </li>
-                                <li class="row align-items-center">
-                                    <div class="col-2 col-md-1"><i class="icon-check h5 text-muted"></i>
-                                    </div>
-                                    <div class="col-10">Make a bold new start today</div>
+                                    <div class="col-10">The row of LevelName can only contain one level name.For example: pre1</div>
                                 </li>
                                 <li class="row">
-                                    <div class="col-2 col-md-1"><i class="icon-check h5 text-muted"></i>
-                                    </div>
-                                    <div class="col-10">Describe some key features of this aspect of the product</div>
+                                    <div class="col-2 col-md-1"><i class="icon-bookmark h5 text-muted"></i></div>
+                                    <div class="col-10">A level can contain multiple stages,each stage needs to be separated by " , ".For example: phase1,phase2,phase3</div>
                                 </li>
-                                <li class="row align-items-center">
-                                    <div class="col-2 col-md-1"><i class="icon-check h5 text-muted"></i>
+                                <li class="row">
+                                    <div class="col-2 col-md-1"><i class="icon-bookmark h5 text-muted"></i>
                                     </div>
-                                    <div class="col-10">Make a bold new start today</div>
+                                    <div class="col-10">For best results, use an image at least 600px * 400px in either .jpg or .png format.</div>
+                                </li>
+                                <li class="row">
+                                    <div class="col-2 col-md-1"><i class="icon-bookmark h5 text-muted"></i>
+                                    </div>
+                                    <div class="col-10">If you want to revise any content of this course, please go to the Course page.</div>
                                 </li>
                             </ul>
                             <div class="card card-sm box-shadow text-left">
@@ -162,14 +176,11 @@
                     <!--end of col-->
                 </div>
                 <!--end of row-->
-                
             </div>
             <!--end of container-->
         </section>
         <!--end of section-->
-
-
-         <footer class="footer-short">
+        <footer class="footer-short">
             <div class="container">
                 <hr>
                 <nav class="row justify-content-between align-items-center">

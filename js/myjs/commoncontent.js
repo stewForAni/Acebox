@@ -13,7 +13,7 @@ var sigh_in_content = ' <div class="form-group">' +
     '    </label>' +
     '</div>' +
     '</div>' +
-    '<button  class="btn btn-lg btn-success btn-block" id="login">Sign in for Acebox</button>';
+    '<button  class="btn btn-lg btn-success btn-block" id="login">Login in</button>';
 
 
 
