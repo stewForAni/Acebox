@@ -64,7 +64,7 @@ function checkLogin() {
     var name = $("#username").val();
     var pwd = $("#password").val();
     if (isEmpty(name) || isEmpty(pwd)) {
-    	alert("Account&Password cannot be empty");
+    	alert("Account or Password cannot be empty");
         return false;
     }
     return true;
