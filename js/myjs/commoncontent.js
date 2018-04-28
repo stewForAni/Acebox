@@ -57,7 +57,7 @@ var modal_text1 = "LevelName or StageName or Introduction cannot be empty !";
 var modal_text2 = "File error, must be .jpg or .png !";
 
 function getModalContent(content) {
-    var modalContent = '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+    var modalContent = '<div class="modal fade" id="myWarnModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
         ' <div class="modal-dialog modal-dialog-centered" role="document">' +
         '  <div class="modal-content">' +
         '   <div class="modal-header">' +
@@ -75,6 +75,59 @@ function getModalContent(content) {
         '</div>' +
         '</div>';
     return modalContent;
+}
+
+
+function getProgressModalContent() {
+    var modalContent = '<div class="modal fade" id="myProgressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+        ' <div class="modal-dialog modal-dialog-centered" role="document">' +
+        '  <div class="modal-content">' +
+        '   <div class="modal-header">' +
+        '    <h5 class="modal-title" id="exampleModalLongTitle">Uploading... </h5>' +
+        '   <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+        '    <span aria-hidden="true">&times;</span>' +
+        ' </button>' +
+        '</div>' +
+        '<div class="modal-body">' +
+
+        '<div class="progress">' +
+        '<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>' +
+        '</div>' +
+
+        '</div>' +
+        // '<div class="modal-footer">' +
+        // ' <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
+        // '<button type="button" class="btn btn-primary">Save changes</button>' +
+        // '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
+
+function showModal(id, content) {
+    $('#myWarnModal').remove();
+    $(id).append(getModalContent(content));
+    $("#myWarnModal").modal();
+}
+
+
+
+function showProgressModal(id) {
+    $('#myProgressModal').remove();
+    $(id).append(getProgressModalContent());
+    $("#myProgressModal").modal();
+}
+
+
+function hideProgressModal() {
+
+    var timeout = setTimeout(function() {
+        $('#myProgressModal').remove();
+        $('.modal-backdrop').remove();
+    }, 1000);
+
+
 }
 
 

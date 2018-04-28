@@ -21,18 +21,15 @@
 
   function doUploadFileApi() {
 
-
       if (isEmpty(file) || isEmpty(name) || (name != "jpeg") && (name != "jpg") && (name != "png")) {
-
-
-          $("#add_course_container").append(getModalContent(modal_text2));
-          $("#myModal").modal();
-
+          showModal("#add_course_container", modal_text2);
           return false;
       }
 
       var formData = new FormData();
       formData.append('file', file);
+
+      showProgressModal("#add_course_container");
 
       $.ajax({
           url: ACE_BASE_URL + ACE_FILE_UPLOAD,
@@ -42,9 +39,11 @@
           processData: false,
           contentType: false,
           success: function(result) {
+              doAddCourseApi(result.data.token);
               console.log("2222222");
           },
           error: function(e) {
+              hideProgressModal();
               console.log("333333");
           }
       });
@@ -53,13 +52,45 @@
   }
 
 
+  function doAddCourseApi(token) {
+
+      var level = $("#level_name").val();
+      var stage = $("#stage_name").val();
+      var intro = $("#course_intro").val();
+
+
+      var data = '{"level": {' +
+          '                  "title": "' + level + '",' +
+          '                  "description": "' + intro + '",' +
+          '                  "cover_token": "' + token + '"' +
+          '                  },' +
+          '        "stage": "' + stage + '"' +
+          '      }';
+
+      $.ajax({
+          url: ACE_BASE_URL + ACE_CREATE_COURSE,
+          type: "POST",
+          contentType: "application/json",
+          data: data,
+          success: function(result) {
+              hideProgressModal();
+              console.log("444444");
+          },
+          error: function(e) {
+              hideProgressModal();
+              console.log("555555");
+          }
+      });
+
+
+  }
+
   function checkInput() {
       var level = $("#level_name").val();
       var stage = $("#stage_name").val();
       var intro = $("#course_intro").val();
       if (isEmpty(level) || isEmpty(stage) || isEmpty(intro)) {
-          $("#add_course_container").append(getModalContent(modal_text1));
-          $("#myModal").modal();
+          showModal("#add_course_container", modal_text1);
           return false;
       }
       return true;

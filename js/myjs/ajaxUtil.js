@@ -21,7 +21,7 @@ $.ajax = function(options) {
              * 统一处理的逻辑
              */
             if (data.code_status !== 0) {
-                alert(data.error_msg);
+                alert(data.message);
                 return;
             }
             /**
