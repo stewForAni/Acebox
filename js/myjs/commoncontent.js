@@ -1,3 +1,8 @@
+//
+//common html
+//
+
+
 var sigh_in_content = ' <div class="form-group">' +
     '       <label for="exampleInputUsername">Username</label>' +
     '      <input type="text" class="form-control form-control-lg" id="username" aria-describedby="usernameHelp" placeholder="Enter username">' +
@@ -38,6 +43,39 @@ var sigh_up_content = ' <div class="form-group">' +
     '</div>' +
     '</div>' +
     '<button type="submit" class="btn btn-lg btn-success btn-block" id="register">Sign up for Wingman</button>';
+
+
+
+
+
+//
+//common js function
+//
+
+var modal_text1 = "LevelName or StageName or Introduction cannot be empty !";
+
+var modal_text2 = "File error, must be .jpg or .png !";
+
+function getModalContent(content) {
+    var modalContent = '<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+        ' <div class="modal-dialog modal-dialog-centered" role="document">' +
+        '  <div class="modal-content">' +
+        '   <div class="modal-header">' +
+        '    <h5 class="modal-title" id="exampleModalLongTitle">Oops ! </h5>' +
+        '   <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+        '    <span aria-hidden="true">&times;</span>' +
+        ' </button>' +
+        '</div>' +
+        '<div class="modal-body">' + content + '</div>' +
+        // '<div class="modal-footer">' +
+        // ' <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
+        // '<button type="button" class="btn btn-primary">Save changes</button>' +
+        // '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
 
 
 function isEmpty(obj) {

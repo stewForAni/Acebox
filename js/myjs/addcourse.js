@@ -4,11 +4,11 @@
 
   $(document).ready(function() {
 
-
       $('#create_course').click(function() {
           if (checkInput()) {
               doUploadFileApi();
           }
+
           return false;
       });
 
@@ -23,7 +23,11 @@
 
 
       if (isEmpty(file) || isEmpty(name) || (name != "jpeg") && (name != "jpg") && (name != "png")) {
-          alert("文件错误,必须是png或者jpg文件！");
+
+
+          $("#add_course_container").append(getModalContent(modal_text2));
+          $("#myModal").modal();
+
           return false;
       }
 
@@ -54,7 +58,8 @@
       var stage = $("#stage_name").val();
       var intro = $("#course_intro").val();
       if (isEmpty(level) || isEmpty(stage) || isEmpty(intro)) {
-          alert("LevelName or StageName or Introduction cannot be empty");
+          $("#add_course_container").append(getModalContent(modal_text1));
+          $("#myModal").modal();
           return false;
       }
       return true;
