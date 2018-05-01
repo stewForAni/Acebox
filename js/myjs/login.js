@@ -1,3 +1,6 @@
+
+var containerId = "#main-container";
+
 $(document).ready(function() {
 
     dealSighupandin();
@@ -64,7 +67,7 @@ function checkLogin() {
     var name = $("#username").val();
     var pwd = $("#password").val();
     if (isEmpty(name) || isEmpty(pwd)) {
-    	alert("Account or Password cannot be empty");
+        showModal(containerId, modal_text3);
         return false;
     }
     return true;
