@@ -1,6 +1,6 @@
   var file;
   var name;
-
+  var containerId = "#add_course_container";
 
   $(document).ready(function() {
 
@@ -22,14 +22,14 @@
   function doUploadFileApi() {
 
       if (isEmpty(file) || isEmpty(name) || (name != "jpeg") && (name != "jpg") && (name != "png")) {
-          showModal("#add_course_container", modal_text2);
+          showModal(containerId, modal_text2);
           return false;
       }
 
       var formData = new FormData();
       formData.append('file', file);
 
-      showProgressModal("#add_course_container");
+      showProgressModal(containerId);
 
       $.ajax({
           url: ACE_BASE_URL + ACE_FILE_UPLOAD,
@@ -90,7 +90,7 @@
       var stage = $("#stage_name").val();
       var intro = $("#course_intro").val();
       if (isEmpty(level) || isEmpty(stage) || isEmpty(intro)) {
-          showModal("#add_course_container", modal_text1);
+          showModal(containerId, modal_text1);
           return false;
       }
       return true;

@@ -52,9 +52,11 @@ var sigh_up_content = ' <div class="form-group">' +
 //common js function
 //
 
-var modal_text1 = "LevelName or StageName or Introduction cannot be empty !";
+var modal_text1 = "LevelName or StageName or Introduction cannot be empty ! ";
 
-var modal_text2 = "File error, must be .jpg or .png !";
+var modal_text2 = "File error, must be .jpg or .png ! ";
+
+var modal_text3 = "Account or Password cannot be empty ! ";
 
 function getModalContent(content) {
     var modalContent = '<div class="modal fade" id="myWarnModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
