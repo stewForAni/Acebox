@@ -15,7 +15,9 @@
       $('#cover_name_input').change(function() {
           file = this.files[0];
           name = file.name.substring(file.name.length - 3, file.name.length);
+          $('#file_name').html(file.name);
       });
+
 
   });
 
