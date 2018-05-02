@@ -59,7 +59,7 @@
       var intro = $("#course_intro").val();
 
 
-      var data = '{"level": {' +
+      var d = '{"level": {' +
           '                  "title": "' + level + '",' +
           '                  "description": "' + intro + '",' +
           '                  "cover_token": "' + token + '"' +
@@ -71,7 +71,7 @@
           url: ACE_BASE_URL + ACE_CREATE_COURSE,
           type: "POST",
           contentType: "application/json",
-          data: data,
+          data: d,
           success: function(result) {
               hideProgressModal();
               console.log("444444");
