@@ -47,7 +47,7 @@ function dealCourseLevelData(data) {
             ' <td style="max-width: 300px">' + item.description + '</td>' +
             ' <td>' +
             '    <div class="dropdown">' +
-            '    <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="dropdownMenuButton-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+            '    <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="dropdownMenuButton-' + i + '" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
             '          <i class="icon-cog"></i>' +
             '    </button>' +
             '   <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="dropdownMenuButton">' +
@@ -113,7 +113,7 @@ function dealCoursePhaseData(data) {
             ' <td style="max-width: 300px" id="intro' + i + '">' + item.description + '</td>' +
             ' <td>' +
             '    <div class="dropdown">' +
-            '    <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="dropdownMenuButton-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+            '    <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="dropdownMenuButton-' + i + '" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
             '          <i class="icon-cog"></i>' +
             '    </button>' +
             '   <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="dropdownMenuButton">' +
