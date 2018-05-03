@@ -107,30 +107,139 @@ function getProgressModalContent() {
     return modalContent;
 }
 
+function getAddStageModalContent() {
+    var modalContent = '<div class="modal fade" id="addStageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+        ' <div class="modal-dialog modal-dialog-centered" role="document">' +
+        '  <div class="modal-content">' +
+        '   <div class="modal-header">' +
+        '    <h5 class="modal-title" id="exampleModalLongTitle">Add Stage</h5>' +
+        '   <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+        '    <span aria-hidden="true">&times;</span>' +
+        ' </button>' +
+        '</div>' +
+        '<div class="modal-body">' +
+
+
+
+        '<form>' +
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '      <input class="form-control form-control-lg" type="text" id="stage_name" placeholder="Stage Name" />' +
+        '     <small style="margin-top:10px">A level can contain multiple stages,each stage needs to be separated by " , ".For example: phase1,phase2,phase3</small>' +
+        ' </div>' +
+
+        '</div>' +
+
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '     <button class="btn btn-block btn-success btn-lg" id="create_course">Create Stage</button>' +
+        '</div>' +
+        '</div>' +
+        '<small>Any question, please refer to the rules in the "Add Course Structure".</small>' +
+
+        '</form>' +
+
+
+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
+
+function getAddLessonModalContent() {
+    var modalContent = '<div class="modal fade" id="addLessonModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+        ' <div class="modal-dialog modal-dialog-centered" role="document">' +
+        '  <div class="modal-content">' +
+        '   <div class="modal-header">' +
+        '    <h5 class="modal-title" id="exampleModalLongTitle">Add Lesson</h5>' +
+        '   <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+        '    <span aria-hidden="true">&times;</span>' +
+        ' </button>' +
+        '</div>' +
+        '<div class="modal-body">' +
+
+
+
+        '<form>' +
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '      <input class="form-control form-control-lg" type="text" id="lesson_name" placeholder="Lesson Name" />' +
+        '     <small style="margin-top:10px">A stage can contain multiple lessons,each lesson needs to be separated by " , ".For example: lesson1,lesson2,lesson3</small>' +
+        ' </div>' +
+
+        '</div>' +
+
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '     <button class="btn btn-block btn-success btn-lg" id="create_course">Create Lesson</button>' +
+        '</div>' +
+        '</div>' +
+        '<small>Any question, please refer to the rules in the "Add Course Structure".</small>' +
+
+        '</form>' +
+
+
+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
+
+
+//tip dialog
 function showModal(id, content) {
     $('#myWarnModal').remove();
     $(id).append(getModalContent(content));
     $("#myWarnModal").modal();
 }
 
-
-
+//progress dialog
 function showProgressModal(id) {
     $('#myProgressModal').remove();
     $(id).append(getProgressModalContent());
     $("#myProgressModal").modal();
 }
 
-
+//hide dialog
 function hideProgressModal() {
-
     var timeout = setTimeout(function() {
         $('#myProgressModal').remove();
         $('.modal-backdrop').remove();
     }, 1000);
-
-
 }
+
+
+
+
+
+
+//add stage dialog
+function showAddStageModal(id) {
+    $('#addStageModal').remove();
+    $(id).append(getAddStageModalContent());
+    $("#addStageModal").modal();
+}
+
+//add lesson dialog
+function showAddLessonModal(id) {
+    $('#addLessonModal').remove();
+    $(id).append(getAddLessonModalContent());
+    $("#addLessonModal").modal();
+}
+
+
+
+
+
+
+
+
+
+
 
 
 function isEmpty(obj) {
