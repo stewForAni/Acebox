@@ -242,6 +242,11 @@ function showAddLessonModal(id) {
     $("#addLessonModal").modal();
 }
 
+function hideAddLessonModal() {
+    $('#addLessonModal').remove();
+    $('.modal-backdrop').remove();
+}
+
 
 
 

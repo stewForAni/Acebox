@@ -20,10 +20,11 @@ var ACE_CREATE_COURSE = "course/classification-imports";
 //ace_get_course_level
 var ACE_GET_COURSE_LEVEL_DATA = "course/classifications";
 
-//ace_get_phase
+//ace_get_course_phase
 var ACE_GET_COURSE_PHASE_DATA = "course/classifications";
 
-
+//ace_get_course_lesson
+var ACE_GET_COURSE_LESSON_DATA = "course/classifications";
 
 
 

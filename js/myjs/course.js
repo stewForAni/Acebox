@@ -117,7 +117,7 @@ function dealAddPhase(item) {
 function doAddPhaseApi(item) {
     var stageName = $('#stage_name').val();
     var pid = item.id;
-    var putdata = '{' +
+    var d = '{' +
         '"parent_id":"' + pid + '",' +
         '"child_title":"' + stageName + '"' +
         '}';
@@ -126,7 +126,7 @@ function doAddPhaseApi(item) {
         url: ACE_BASE_URL + ACE_ADD_PHASE,
         type: "POST",
         contentType: "application/json",
-        data: putdata,
+        data: d,
         success: function(result) {
             hideAddStageModal();
             getCourseLevelData();
@@ -165,7 +165,7 @@ function dealCoursePhaseData(data) {
     for (var i = 0; i < l; i++) {
         var item = d[i];
         var content = ' <tr class="bg-white" >' +
-            '   <th scope="row" style="width: 300px" id="phase_block' + i + '">' +
+            '   <th scope="row" style="width: 300px;cursor:pointer;" id="phase_block' + i + '">' +
             '     <div class="media align-items-center">' +
             '        <img id="image' + i + '" alt="Image" src="' + ACE_BASE_IMG_URL + item.file.file_path + '" style="height: 80px;margin-right: 10px;border-radius: 4px" />' +
             '       <div class="media-body">' +
@@ -208,47 +208,75 @@ function dealCoursePhaseData(data) {
         }
 
 
-        (function(d) {
+        (function(item) {
             $("#edit_phase" + i).click(function() {
 
                 return false;
             });
-        })(d);
+        })(item);
 
 
-        (function(d) {
+        (function(item) {
             $("#delete_phase" + i).click(function() {
 
                 return false;
             });
-        })(d);
+        })(item);
 
 
-        (function(d) {
+        (function(item) {
             $("#add_lesson" + i).click(function() {
-                showAddLessonModal(containerId);
+                dealAddLesson(item);
                 return false;
             });
-        })(d);
+        })(item);
 
 
-        (function(d) {
+        (function(item) {
             $("#phase_block" + i).click(function() {
-                getLesson(d.id);
+                getLesson(item.id);
                 return false;
             });
-        })(d);
+        })(item);
     }
 
 
+}
 
+function dealAddLesson(item) {
+    showAddLessonModal(containerId);
+    $('#create_lesson').click(function() {
+        var lessonName = $('#lesson_name').val();
+        if (!isEmpty(lessonName)) {
+            doAddLessonApi(item);
+        }
+        return false;
+    });
+}
 
+function doAddLessonApi(item) {
+    var lessonName = $('#lesson_name').val();
+    var pid = item.id;
+    var d = '{' +
+        '"parent_id":"' + pid + '",' +
+        '"child_title":"' + lessonName + '"' +
+        '}';
 
-
-
-
-
-
+    $.ajax({
+        url: ACE_BASE_URL + ACE_ADD_PHASE,
+        type: "POST",
+        contentType: "application/json",
+        data: d,
+        success: function(result) {
+            hideAddLessonModal();
+            getCourseLevelData();
+            console.log("2222222");
+        },
+        error: function(e) {
+            hideAddLessonModal();
+            console.log("333333");
+        }
+    });
 
 }
 
@@ -263,9 +291,86 @@ function dealCoursePhaseData(data) {
 
 
 
+function getLesson(pid) {
+    $.ajax({
+        url: ACE_BASE_URL + ACE_GET_COURSE_LESSON_DATA + "?pid=" + pid,
+        type: "GET",
+        success: function(result) {
+            dealCourseLessonData(result);
+            console.log("2222222");
+        },
+        error: function(e) {
+            console.log("333333");
+        }
+    });
+}
+
+function dealCourseLessonData(data) {
+    $('#course_level').empty();
+    var l = data.data.items.length;
+    var d = data.data.items;
+
+    for (var i = 0; i < l; i++) {
+        var item = d[i];
+        var content = ' <tr class="bg-white" >' +
+            '   <th scope="row" style="width: 300px" id="phase_block' + i + '">' +
+            '     <div class="media align-items-center">' +
+            '        <img id="image' + i + '" alt="Image" src="' + ACE_BASE_IMG_URL + item.file.file_path + '" style="height: 80px;margin-right: 10px;border-radius: 4px" />' +
+            '       <div class="media-body">' +
+            '          <span class="h6 mb-0">' + item.title + '<span class="badge badge-warning" style="margin-left:10px;">Lesson</span>' +
+            '         </span>' +
+            '    </div>' +
+            '</div>' +
+            '</th>' +
+            ' <td>' + item.id + '</td>' +
+            ' <td>N/A</td>' +
+            ' <td style="max-width: 300px" id="intro' + i + '">' + item.description + '</td>' +
+            ' <td>' +
+            '    <div class="dropdown d-inline-block">' +
+            '    <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="dropdownMenuButton' + i + '" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+            '          <i class="icon-cog"></i>' +
+            '    </button>' +
+            '   <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="dropdownMenuButton' + i + '">' +
+            '     <a class="dropdown-item" href="#" id="edit_lesson' + i + '">Edit Lesson</a>' +
+            '     <a class="dropdown-item" href="#" id="delete_lesson' + i + '">delete Lesson</a>' +
+            '  </div>' +
+            ' </div>' +
+            '  </td>' +
+            '   </tr>' +
+            '   <tr class="table-divider"></tr>';
 
 
-function getLesson() {
+        $('#course_level').append(content);
+
+        if (isEmpty(item.file.file_path)) {
+            console.log("aa");
+            $("#image" + i).attr("src", "images/auto.svg");
+        }
+
+
+        if (isEmpty(item.description)) {
+            console.log("bb");
+            $("#intro" + i).html('Oops ! Please add the introduction');
+        }
+
+
+        (function(item) {
+            $("#edit_lesson" + i).click(function() {
+
+                return false;
+            });
+        })(item);
+
+
+        (function(item) {
+            $("#delete_lesson" + i).click(function() {
+
+                return false;
+            });
+        })(item);
+
+    
+    }
 
 
 }
