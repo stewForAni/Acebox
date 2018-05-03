@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ACEMODULE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="Bookmark" href="images/a.ico" />
+    <link rel="Shortcut Icon" href="images/a.ico" />
+    <link rel="stylesheet" href="css/mycss/theme.css">
+    <link rel="stylesheet" href="css/mycss/entypo.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,400i,500" rel="stylesheet">
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+</head>
+
+<body>
+    <script type="text/javascript" src="js/myjs/commoncontent.js"></script>
+    <script type="text/javascript" src="js/myjs/aceApiTool.js"></script>
+    <script type="text/javascript" src="js/myjs/ajaxUtil.js"></script>
+    <script type="text/javascript" src="js/myjs/module.js"></script>
+    <div class="nav-container" style="position: fixed;width: 100%;z-index: 10000">
+        <div class="bg-dark navbar-dark">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="index.html">
+                             <img src="images/white_logo.png" style="height: 20px;margin-bottom: 7px">
+                        </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="icon-menu h4"></i>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="index.html" class="nav-link">Course</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="index.html" class="nav-link">User</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="index.html" class="nav-link">Resource</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="index.html" class="nav-link">Module</a>
+                            </li>
+                        </ul>
+                        <!--   <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="#">Sign up</a>
+                                <span>&nbsp;or&nbsp;</span><a href="#">Sign in</a>
+                            </li>
+                        </ul> -->
+                    </div>
+                    <!--end nav collapse-->
+                </nav>
+            </div>
+            <!--end of container-->
+        </div>
+        <nav aria-label="breadcrumb" role="navigation" class="bg-primary text-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Module</li>
+                        </ol>
+                    </div>
+                    <!--end of col-->
+                </div>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </nav>
+    </div>
+    <div class="main-container" id="edit_course_container">
+        <section class="bg-dark text-light height-50">
+            <img alt="Image" src="images/module_bg.jpg" class="bg-image opacity-70" />
+            <div class="container align-self-end">
+                <div class="row" >
+                    <div class="col">
+                        <div class="media align-items-center">
+                            <a href="#" class="mr-4">
+                                    <img alt="Image" src="images/landi_logo.jpg" class="avatar avatar-lg avatar-square" style="box-shadow: 1px 1px 2px #888888;border-radius: 3px;" />
+                                </a>
+                            <div class="media-body">
+                                <div class="mb-3">
+                                    <h1 class="h2 mb-2">Course Module</h1>
+                                    <span>Quickly find your course module</span>
+                                </div>
+                                <div>
+                                    <ul class="list-inline text-small d-inline-block">
+                                        <li class="list-inline-item"><i class="icon-link"></i> <a href="https://www.landi.com">https://www.landi.com</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of col-->
+                    <!--end of col-->
+                </div>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </section>
+        <!--end of section-->
+        <section class="flush-with-above space-0">
+            <div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="projects-tab" data-toggle="tab" href="#projects" role="tab" aria-controls="projects" aria-selected="true">Guidance</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="followers-tab" data-toggle="tab" href="#followers" role="tab" aria-controls="followers" aria-selected="false">Interaction</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="false">Competition</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!--end of col-->
+                    </div>
+                    <!--end of row-->
+                </div>
+                <!--end of container-->
+            </div>
+        </section>
+        <section class="pt-2">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="projects" role="tabpanel" aria-labelledby="projects-tab">
+                    <div class="container">
+                        <ul class="row feature-list feature-list-sm">
+                            <li class="col-12 col-md-6 col-lg-4">
+                                <div class="card">
+                                    <a href="#">
+                                            <img class="card-img-top" src="images/pree.jpg" alt="Card image cap">
+                                        </a>
+                                    <div class="card-body">
+                                        <a href="#">
+                                            <h4 class="card-title">Bench</h4>
+                                            <p class="card-text text-body">Accounting for creative people</p>
+                                        </a>
+                                    </div>
+                                    <div class="card-footer card-footer-borderless d-flex justify-content-between">
+                                        <div class="text-small">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item"><i class="icon-heart mr-1"></i> 373</li>
+                                                <li class="list-inline-item"><i class="icon-message mr-1"></i> 62</li>
+                                            </ul>
+                                        </div>
+                                        <div class="dropup">
+                                            <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="BenchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="icon-dots-three-horizontal"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="BenchButton">
+                                                <a class="dropdown-item" href="#">Save</a>
+                                                <a class="dropdown-item" href="#">Share</a>
+                                                <a class="dropdown-item" href="#">Comment</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Report</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--end of col-->
+                        </ul>
+                        <!--end of row-->
+                    </div>
+                    <!--end of container-->
+                </div>
+                <div class="tab-pane fade" id="followers" role="tabpanel" aria-labelledby="followers-tab">
+                    <div class="container">
+                        <ul class="row feature-list feature-list-sm">
+                            <li class="col-12 col-md-6 col-lg-4">
+                                <div class="card">
+                                    <a href="#">
+                                            <img class="card-img-top" src="images/e1.jpg" alt="Card image cap">
+                                        </a>
+                                    <div class="card-body">
+                                        <a href="#">
+                                            <h4 class="card-title">Bench</h4>
+                                            <p class="card-text text-body">Accounting for creative people</p>
+                                        </a>
+                                    </div>
+                                    <div class="card-footer card-footer-borderless d-flex justify-content-between">
+                                        <div class="text-small">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item"><i class="icon-heart mr-1"></i> 373</li>
+                                                <li class="list-inline-item"><i class="icon-message mr-1"></i> 62</li>
+                                            </ul>
+                                        </div>
+                                        <div class="dropup">
+                                            <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="BenchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="icon-dots-three-horizontal"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="BenchButton">
+                                                <a class="dropdown-item" href="#">Save</a>
+                                                <a class="dropdown-item" href="#">Share</a>
+                                                <a class="dropdown-item" href="#">Comment</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Report</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--end of col-->
+                        </ul>
+                        <!--end of row-->
+                    </div>
+                    <!--end of container-->
+                </div>
+
+
+
+
+                <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">
+                    <div class="container">
+                        <ul class="row feature-list feature-list-sm">
+                            <li class="col-12 col-md-6 col-lg-4">
+                                <div class="card">
+                                    <a href="#">
+                                            <img class="card-img-top" src="images/wait.jpg" alt="Card image cap">
+                                        </a>
+                                    <div class="card-body">
+                                        <a href="#">
+                                            <h4 class="card-title">Bench</h4>
+                                            <p class="card-text text-body">Accounting for creative people</p>
+                                        </a>
+                                    </div>
+                                    <div class="card-footer card-footer-borderless d-flex justify-content-between">
+                                        <div class="text-small">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item"><i class="icon-heart mr-1"></i> 373</li>
+                                                <li class="list-inline-item"><i class="icon-message mr-1"></i> 62</li>
+                                            </ul>
+                                        </div>
+                                        <div class="dropup">
+                                            <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="BenchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="icon-dots-three-horizontal"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="BenchButton">
+                                                <a class="dropdown-item" href="#">Save</a>
+                                                <a class="dropdown-item" href="#">Share</a>
+                                                <a class="dropdown-item" href="#">Comment</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Report</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--end of col-->
+                        </ul>
+                        <!--end of row-->
+                    </div>
+                    <!--end of container-->
+                </div>
+            </div>
+        </section>
+        <!--end of section-->
+        <footer class="footer-short">
+            <div class="container">
+                <hr>
+                <nav class="row justify-content-between align-items-center">
+                    <div class="col-auto">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a href="#">
+                                        <img src="images/blue_logo.png" style="height: 20px;margin-bottom: 8px">
+                                    </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">Overview</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">Documentation</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">Changelog</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end of col-->
+                    <div class="col-auto text-sm-right">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a href="#"><i class="socicon-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#"><i class="socicon-facebook"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end of col-->
+                </nav>
+                <!--end of row-->
+                <div class="row">
+                    <div class="col">
+                        <small>&copy; 2018 Acebox All Rights Reserved</small>
+                    </div>
+                    <!--end of col-->
+                </div>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </footer>
+    </div>
+</body>
