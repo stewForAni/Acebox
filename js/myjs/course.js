@@ -68,31 +68,28 @@ function dealCourseLevelData(data) {
 
         $('#course_level').append(content);
 
-
-
-
-        (function(d) {
+        (function(item) {
             $("#edit_level" + i).click(function() {
 
                 return false;
             });
-        })(d);
+        })(item);
 
 
-        (function(d) {
+        (function(item) {
             $("#delete_level" + i).click(function() {
 
                 return false;
             });
-        })(d);
+        })(item);
 
 
-        (function(d) {
+        (function(item) {
             $("#add_phase" + i).click(function() {
-                showAddStageModal(containerId);
+                dealAddPhase(item);
                 return false;
             });
-        })(d);
+        })(item);
 
 
         (function(item) {
@@ -101,7 +98,46 @@ function dealCourseLevelData(data) {
                 return false;
             });
         })(item);
+
     }
+}
+
+
+function dealAddPhase(item) {
+    showAddStageModal(containerId);
+    $('#create_stage').click(function() {
+        var stageName = $('#stage_name').val();
+        if (!isEmpty(stageName)) {
+            doAddPhaseApi(item);
+        }
+        return false;
+    });
+}
+
+function doAddPhaseApi(item) {
+    var stageName = $('#stage_name').val();
+    var pid = item.id;
+    var putdata = '{' +
+        '"parent_id":"' + pid + '",' +
+        '"child_title":"' + stageName + '"' +
+        '}';
+
+    $.ajax({
+        url: ACE_BASE_URL + ACE_ADD_PHASE,
+        type: "POST",
+        contentType: "application/json",
+        data: putdata,
+        success: function(result) {
+            hideAddStageModal();
+            getCourseLevelData();
+            console.log("2222222");
+        },
+        error: function(e) {
+            hideAddStageModal();
+            console.log("333333");
+        }
+    });
+
 }
 
 

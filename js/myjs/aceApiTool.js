@@ -22,3 +22,10 @@ var ACE_GET_COURSE_LEVEL_DATA = "course/classifications";
 
 //ace_get_phase
 var ACE_GET_COURSE_PHASE_DATA = "course/classifications";
+
+
+
+
+
+//ace_add_phase
+var ACE_ADD_PHASE = "course/classification-import-generals";

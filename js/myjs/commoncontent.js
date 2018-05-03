@@ -48,6 +48,39 @@ var sigh_up_content = ' <div class="form-group">' +
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //
 //common js function
 //
@@ -57,6 +90,7 @@ var modal_text1 = "LevelName or StageName or Introduction cannot be empty ! ";
 var modal_text2 = "File error, must be .jpg or .png ! ";
 
 var modal_text3 = "Account or Password cannot be empty ! ";
+
 
 function getModalContent(content) {
     var modalContent = '<div class="modal fade" id="myWarnModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
@@ -69,10 +103,6 @@ function getModalContent(content) {
         ' </button>' +
         '</div>' +
         '<div class="modal-body">' + content + '</div>' +
-        // '<div class="modal-footer">' +
-        // ' <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
-        // '<button type="button" class="btn btn-primary">Save changes</button>' +
-        // '</div>' +
         '</div>' +
         '</div>' +
         '</div>';
@@ -91,16 +121,10 @@ function getProgressModalContent() {
         ' </button>' +
         '</div>' +
         '<div class="modal-body">' +
-
         '<div class="progress">' +
         '<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>' +
         '</div>' +
-
         '</div>' +
-        // '<div class="modal-footer">' +
-        // ' <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>' +
-        // '<button type="button" class="btn btn-primary">Save changes</button>' +
-        // '</div>' +
         '</div>' +
         '</div>' +
         '</div>';
@@ -118,29 +142,20 @@ function getAddStageModalContent() {
         ' </button>' +
         '</div>' +
         '<div class="modal-body">' +
-
-
-
         '<form>' +
         '<div class="form-row form-group">' +
         '   <div class="col">' +
         '      <input class="form-control form-control-lg" type="text" id="stage_name" placeholder="Stage Name" />' +
         '     <small style="margin-top:10px">A level can contain multiple stages,each stage needs to be separated by " , ".For example: phase1,phase2,phase3</small>' +
         ' </div>' +
-
         '</div>' +
-
         '<div class="form-row form-group">' +
         '   <div class="col">' +
-        '     <button class="btn btn-block btn-success btn-lg" id="create_course">Create Stage</button>' +
+        '     <button class="btn btn-block btn-success btn-lg" id="create_stage">Create Stage</button>' +
         '</div>' +
         '</div>' +
         '<small>Any question, please refer to the rules in the "Add Course Structure".</small>' +
-
         '</form>' +
-
-
-
         '</div>' +
         '</div>' +
         '</div>' +
@@ -159,29 +174,20 @@ function getAddLessonModalContent() {
         ' </button>' +
         '</div>' +
         '<div class="modal-body">' +
-
-
-
         '<form>' +
         '<div class="form-row form-group">' +
         '   <div class="col">' +
         '      <input class="form-control form-control-lg" type="text" id="lesson_name" placeholder="Lesson Name" />' +
         '     <small style="margin-top:10px">A stage can contain multiple lessons,each lesson needs to be separated by " , ".For example: lesson1,lesson2,lesson3</small>' +
         ' </div>' +
-
         '</div>' +
-
         '<div class="form-row form-group">' +
         '   <div class="col">' +
-        '     <button class="btn btn-block btn-success btn-lg" id="create_course">Create Lesson</button>' +
+        '     <button class="btn btn-block btn-success btn-lg" id="create_lesson">Create Lesson</button>' +
         '</div>' +
         '</div>' +
         '<small>Any question, please refer to the rules in the "Add Course Structure".</small>' +
-
         '</form>' +
-
-
-
         '</div>' +
         '</div>' +
         '</div>' +
@@ -222,6 +228,11 @@ function showAddStageModal(id) {
     $('#addStageModal').remove();
     $(id).append(getAddStageModalContent());
     $("#addStageModal").modal();
+}
+
+function hideAddStageModal() {
+    $('#addStageModal').remove();
+    $('.modal-backdrop').remove();
 }
 
 //add lesson dialog
