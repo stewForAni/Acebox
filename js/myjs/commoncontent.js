@@ -131,6 +131,28 @@ function getProgressModalContent() {
     return modalContent;
 }
 
+
+function getProgressModalContent2() {
+    var modalContent = '<div class="modal fade" id="myProgressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="padding-bottom: 50px;">' +
+        ' <div class="modal-dialog" role="document">' +
+        '  <div class="modal-content">' +
+        '   <div class="modal-header">' +
+        '    <h5 class="modal-title" id="exampleModalLongTitle">Uploading... </h5>' +
+        '   <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+        '    <span aria-hidden="true">&times;</span>' +
+        ' </button>' +
+        '</div>' +
+        '<div class="modal-body">' +
+        '<div class="progress">' +
+        '<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
+
 function getAddStageModalContent() {
     var modalContent = '<div class="modal fade" id="addStageModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
         ' <div class="modal-dialog modal-dialog-centered" role="document">' +
@@ -196,6 +218,90 @@ function getAddLessonModalContent() {
 }
 
 
+function getEditCourseModalContent(content) {
+    var modalContent = '<div class="modal fade" id="editCourseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+        ' <div class="modal-dialog modal-dialog-centered" role="document">' +
+        '  <div class="modal-content">' +
+        '   <div class="modal-header">' +
+        '    <h5 class="modal-title" id="exampleModalLongTitle">Edit ' + content + '</h5>' +
+        '   <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+        '    <span aria-hidden="true">&times;</span>' +
+        ' </button>' +
+        '</div>' +
+        '<div class="modal-body">' +
+
+
+        '<form>' +
+        ' <div class="form-row form-group">' +
+        '      <div class="col">' +
+        '       <input class="form-control form-control-lg" type="text" id="name" placeholder="' + content + ' Name" />' +
+        '      </div>' +
+        ' </div>' +
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '      <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="intro" placeholder="Add Introduction"></textarea>' +
+        '<small>Briefly introduce the teaching objectives of this ' + content + '.</small>' +
+        '</div>' +
+        '</div>' +
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '      <label class="custom-file mb-2" for="cover_name_input">' +
+        '         <input type="file" id="cover_name_input" class="custom-file-input height-xs">' +
+        '        <span class="btn btn-primary " id="cover_name_span"><i class="icon-upload-to-cloud">&nbsp;</i>Upload a Cover</span>' +
+        '   </label>' +
+        '  <span><a href="#" id="file_name">No file has been selected yet.</a></span>' +
+        '</div>' +
+        '</div>' +
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '      <button class="btn btn-block btn-success btn-lg" id="edit_course">Confirm Edit</button>' +
+        ' </div>' +
+        '</div>' +
+        '<small>Any question, please refer to the rules in the "Add Course Structure".</small>' +
+        '</form>' +
+
+
+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
+
+
+
+
+function getDeleteCourseModalContent(content) {
+    var modalContent = '<div class="modal fade" id="deleteCourseModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+        ' <div class="modal-dialog modal-dialog-centered" role="document">' +
+        '  <div class="modal-content">' +
+        '   <div class="modal-header">' +
+        '    <h5 class="modal-title" id="exampleModalLongTitle">Delete ' + content + '</h5>' +
+        '   <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+        '    <span aria-hidden="true">&times;</span>' +
+        ' </button>' +
+        '</div>' +
+        '<div class="modal-body">' +
+
+        '<div class="modal-body">' +
+        ' <p>' + "Confirm the deletion ? " + '</p>' +
+        ' </div>' +
+        '<div class="modal-footer">' +
+        ' <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>' +
+        '<button type="button" class="btn btn-danger"  id="confirm">Confirm</button>' +
+        '</div>' +
+
+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
+
+
+
 //tip dialog
 function showModal(id, content) {
     $('#myWarnModal').remove();
@@ -203,12 +309,20 @@ function showModal(id, content) {
     $("#myWarnModal").modal();
 }
 
-//progress dialog
+//progress dialog center
 function showProgressModal(id) {
     $('#myProgressModal').remove();
     $(id).append(getProgressModalContent());
     $("#myProgressModal").modal();
 }
+
+//progress dialog top
+function showProgressModal(id, content) {
+    $('#myProgressModal').remove();
+    $(id).append(getProgressModalContent2());
+    $("#myProgressModal").modal();
+}
+
 
 //hide dialog
 function hideProgressModal() {
@@ -223,6 +337,41 @@ function hideProgressModal() {
 
 
 
+
+//edit course
+function showEditCourseModal(id, content) {
+    $('#editCourseModal').remove();
+    $(id).append(getEditCourseModalContent(content));
+    $("#editCourseModal").modal();
+}
+
+//hide edit course
+function hideEditCourseModal() {
+    $('#editCourseModal').remove();
+    $('.modal-backdrop').remove();
+}
+
+
+
+//delete course
+function showDeleteCourseModal(id, content) {
+    $('#deleteCourseModal').remove();
+    $(id).append(getDeleteCourseModalContent(content));
+    $("#deleteCourseModal").modal();
+}
+
+//hide delete course
+function hideDeleteCourseModal() {
+    $('#deleteCourseModal').remove();
+    $('.modal-backdrop').remove();
+}
+
+
+
+
+
+
+
 //add stage dialog
 function showAddStageModal(id) {
     $('#addStageModal').remove();
@@ -230,6 +379,7 @@ function showAddStageModal(id) {
     $("#addStageModal").modal();
 }
 
+//hide dialog
 function hideAddStageModal() {
     $('#addStageModal').remove();
     $('.modal-backdrop').remove();
@@ -242,6 +392,7 @@ function showAddLessonModal(id) {
     $("#addLessonModal").modal();
 }
 
+//hide dialog
 function hideAddLessonModal() {
     $('#addLessonModal').remove();
     $('.modal-backdrop').remove();

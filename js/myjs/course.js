@@ -1,5 +1,6 @@
 var containerId = "#edit_course_container";
-
+var file;
+var fileName;
 
 
 $(document).ready(function() {
@@ -70,7 +71,7 @@ function dealCourseLevelData(data) {
 
         (function(item) {
             $("#edit_level" + i).click(function() {
-
+                dealEdit(item, "Level");
                 return false;
             });
         })(item);
@@ -78,7 +79,7 @@ function dealCourseLevelData(data) {
 
         (function(item) {
             $("#delete_level" + i).click(function() {
-
+                dealDelete(item, "Level");
                 return false;
             });
         })(item);
@@ -103,6 +104,9 @@ function dealCourseLevelData(data) {
 }
 
 
+
+
+
 function dealAddPhase(item) {
     showAddStageModal(containerId);
     $('#create_stage').click(function() {
@@ -123,7 +127,7 @@ function doAddPhaseApi(item) {
         '}';
 
     $.ajax({
-        url: ACE_BASE_URL + ACE_ADD_PHASE,
+        url: ACE_BASE_URL + ACE_ADD_COURSE_PL,
         type: "POST",
         contentType: "application/json",
         data: d,
@@ -210,7 +214,7 @@ function dealCoursePhaseData(data) {
 
         (function(item) {
             $("#edit_phase" + i).click(function() {
-
+                dealEdit(item, "Phase");
                 return false;
             });
         })(item);
@@ -218,7 +222,7 @@ function dealCoursePhaseData(data) {
 
         (function(item) {
             $("#delete_phase" + i).click(function() {
-
+                dealDelete(item, "Phase");
                 return false;
             });
         })(item);
@@ -263,7 +267,7 @@ function doAddLessonApi(item) {
         '}';
 
     $.ajax({
-        url: ACE_BASE_URL + ACE_ADD_PHASE,
+        url: ACE_BASE_URL + ACE_ADD_COURSE_PL,
         type: "POST",
         contentType: "application/json",
         data: d,
@@ -356,7 +360,7 @@ function dealCourseLessonData(data) {
 
         (function(item) {
             $("#edit_lesson" + i).click(function() {
-
+                dealEdit(item, "Lesson");
                 return false;
             });
         })(item);
@@ -364,13 +368,154 @@ function dealCourseLessonData(data) {
 
         (function(item) {
             $("#delete_lesson" + i).click(function() {
-
+                dealDelete(item, "Lesson");
                 return false;
             });
         })(item);
 
-    
+
     }
 
+
+}
+
+
+
+
+
+//delete level,phase,lesson
+
+function dealDelete(item, content) {
+    showDeleteCourseModal(containerId, content);
+
+    $('#confirm').click(function() {
+
+        $.ajax({
+            url: ACE_BASE_URL + ACE_DELETE_COURSE + "/" + item.id,
+            type: "DELETE",
+            success: function(result) {
+                hideDeleteCourseModal();
+                console.log("2222222");
+            },
+            error: function(e) {
+                hideDeleteCourseModal();
+                console.log("333333");
+            }
+        });
+
+
+    });
+
+
+}
+
+
+
+
+
+//edit level,phase,lesson
+
+function dealEdit(item, content) {
+
+    showEditCourseModal(containerId, content);
+
+    $('#edit_course').click(function() {
+
+        var name = $('#name').val();
+        var intro = $('#intro').val();
+
+        if (isEmpty(file) && isEmpty(fileName) && isEmpty(name) && isEmpty(intro)) {
+            return false;
+        } else {
+            doEditApi(item)
+        }
+
+        return false;
+    });
+
+    $('#cover_name_input').change(function() {
+        file = this.files[0];
+        fileName = file.name.substring(file.name.length - 3, file.name.length);
+        $('#file_name').html(file.name);
+    });
+
+}
+
+
+function doEditApi(item) {
+
+    if (isEmpty(file) && isEmpty(fileName)) {
+        doEditCourseApi("", item);
+    } else {
+
+        if (isEmpty(file) || isEmpty(fileName) || (name != "jpeg") && (name != "jpg") && (name != "png")) {
+            showModal(containerId, modal_text2);
+            return false;
+        }
+
+        var formData = new FormData();
+        formData.append('file', file);
+
+        showProgressModal(containerId, "");
+
+        $.ajax({
+            url: ACE_BASE_URL + ACE_FILE_UPLOAD,
+            type: "POST",
+            contentType: "application/form-Data",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(result) {
+                hideProgressModal();
+                doEditCourseApi(result.data.token, item);
+                console.log("2222222");
+            },
+            error: function(e) {
+                hideProgressModal();
+                hideEditCourseModal();
+                console.log("333333");
+            }
+        });
+    }
+}
+
+
+function doEditCourseApi(token, item) {
+
+    var name = $('#name').val();
+    var intro = $('#intro').val();
+
+    if (isEmpty(name)) {
+        name = "";
+    }
+
+    if (isEmpty(intro)) {
+        intro = "";
+    }
+
+    var d = '{' +
+        '"title":"' + name + '",' +
+        '"description":"' + intro + '",' +
+        ' "file": ' +
+        '  {' +
+        '  "token": "' + token + '"' +
+        '}' +
+        '}';
+
+
+    $.ajax({
+        url: ACE_BASE_URL + ACE_EDIT_COURSE + "/" + item.id,
+        type: "PUT",
+        contentType: "application/json",
+        data: d,
+        success: function(result) {
+            hideEditCourseModal();
+            console.log("444444");
+        },
+        error: function(e) {
+            hideEditCourseModal();
+            console.log("555555");
+        }
+    });
 
 }

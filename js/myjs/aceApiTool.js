@@ -28,5 +28,12 @@ var ACE_GET_COURSE_LESSON_DATA = "course/classifications";
 
 
 
-//ace_add_phase
-var ACE_ADD_PHASE = "course/classification-import-generals";
+//ace_add_course:phas，lesson
+var ACE_ADD_COURSE_PL = "course/classification-import-generals";
+
+
+//ace_edit_course:phas，lesson
+var ACE_EDIT_COURSE = "course/classifications";
+
+//ace_delete_course:level,phas，lesson
+var ACE_DELETE_COURSE = "course/classifications";
