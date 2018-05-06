@@ -37,3 +37,8 @@ var ACE_EDIT_COURSE = "course/classifications";
 
 //ace_delete_course:level,phas，lesson
 var ACE_DELETE_COURSE = "course/classifications";
+
+
+
+//ace_main_content
+var ACE_MAIN_CONTENT = "";
