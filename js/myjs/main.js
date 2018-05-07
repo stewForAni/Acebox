@@ -1,14 +1,9 @@
 $(document).ready(function() {
-
-
     getMainContentData();
-
-
 });
 
 
 function getMainContentData() {
-
 
     $.ajax({
         url: ACE_BASE_URL + ACE_MAIN_CONTENT,
@@ -21,7 +16,6 @@ function getMainContentData() {
             console.log("333333");
         }
     });
-
 
 }
 
@@ -62,5 +56,36 @@ function dealMianContentData(data) {
         }
     }
 
+
+
+    var continueContent = '<div class="col-12 col-sm-6 col-md-4">' +
+        '<div class="card card-lg">' +
+        '   <a href="#"> <img class="card-img-top" src="images/wait.jpg" alt="Pit Stop"></a>' +
+        '  <div class="card-body">' +
+        '     <h4 class="card-title">To be continued</h4>' +
+        '    <p class="card-text">The interesting course is about to be finished. Let us stay tuned.</p>' +
+        '   <ul class="list-unstyled list-spacing-sm">' +
+        '      <li>' +
+        '         <i class="icon-text-document text-muted mr-1"></i>' +
+        '        <a href="">To be continued</a>' +
+        '   </li>' +
+        '  <li>' +
+        '     <i class="icon-text-document text-muted mr-1"></i>' +
+        '    <a href="">To be continued</a>' +
+        '</li>' +
+        '<li>' +
+        '   <i class="icon-text-document text-muted mr-1"></i>' +
+        '  <a href="">To be continued</a>' +
+        '</li>' +
+        '<li>' +
+        '   <i class="icon-text-document text-muted mr-1"></i>' +
+        '  <a href="">To be continued</a>' +
+        '</li>' +
+        '</ul>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+
+    $('#main_content').append(continueContent);
 
 }

@@ -40,3 +40,6 @@ var ACE_DELETE_COURSE = "course/classifications";
 
 //ace_main_content
 var ACE_MAIN_CONTENT = "return-all-course-classifications";
+
+//ace_lesson_list
+var ACE_LESSON_LIST = "course/classifications";
