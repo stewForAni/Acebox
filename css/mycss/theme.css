@@ -8265,10 +8265,10 @@ img.zoom-img {
 
 /*# sourceMappingURL=theme.css.map */
 
-   body.modal-open {
-            padding-right: 0 !important;
-            overflow-y: scroll;
-        }
+
+.fancybox-lock-test {
+    overflow-y: hidden !important;
+}
 
 
 
