@@ -43,3 +43,6 @@ var ACE_MAIN_CONTENT = "return-all-course-classifications";
 
 //ace_lesson_list
 var ACE_LESSON_LIST = "course/classifications";
+
+//ace_lesson_log
+var ACE_LESSON_VERSION_LOG = "course/coursewares";
