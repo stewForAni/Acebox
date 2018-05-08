@@ -302,6 +302,76 @@ function getDeleteCourseModalContent(content) {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+function getUploadCourseWareModalContent(content) {
+    var modalContent = '<div class="modal fade" id="uploadCourseWareModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+        ' <div class="modal-dialog modal-dialog-centered" role="document">' +
+        '  <div class="modal-content">' +
+        '   <div class="modal-header">' +
+        '    <h5 class="modal-title" id="exampleModalLongTitle">' + content + '</h5>' +
+        '   <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+        '    <span aria-hidden="true">&times;</span>' +
+        ' </button>' +
+        '</div>' +
+        '<div class="modal-body">' +
+
+
+        '<form>' +
+        ' <div class="form-row form-group">' +
+        '      <div class="col">' +
+        '       <input class="form-control form-control-lg" type="text" id="version" placeholder="Courseware Version" />' +
+        '      </div>' +
+        ' </div>' +
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '      <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="log" placeholder="Operation Log"></textarea>' +
+        '<small>Write changes have been made in this version.</small>' +
+        '</div>' +
+        '</div>' +
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '      <label class="custom-file mb-2" for="courseware_input">' +
+        '         <input type="file" id="courseware_input" class="custom-file-input height-xs">' +
+        '        <span class="btn btn-primary " id="cover_name_span"><i class="icon-upload-to-cloud">&nbsp;</i>Select a courseware</span>' +
+        '   </label>' +
+        '  <span><a href="#" id="file_name">No file has been selected yet.</a></span>' +
+        '</div>' +
+        '</div>' +
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '      <button class="btn btn-block btn-success btn-lg" id="upload_course">Upload</button>' +
+        ' </div>' +
+        '</div>' +
+        '<small>Any question, please refer to the rules in the "Add Course Structure".</small>' +
+        '</form>' +
+
+
+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
+
+
+
+
+
+
+
+
 //tip dialog
 function showModal(id, content) {
     $('#myWarnModal').remove();
@@ -401,6 +471,21 @@ function hideAddLessonModal() {
 
 
 
+
+
+
+//add lesson upload dialog
+function showUploadWareModal(id, content) {
+    $('#uploadCourseWareModal').remove();
+    $(id).append(getUploadCourseWareModalContent(content));
+    $("#uploadCourseWareModal").modal();
+}
+
+//hide lesson upload dialog
+function hideUploadWareModal() {
+    $('#uploadCourseWareModal').remove();
+    $('.modal-backdrop').remove();
+}
 
 
 

@@ -46,3 +46,6 @@ var ACE_LESSON_LIST = "course/classifications";
 
 //ace_lesson_log
 var ACE_LESSON_VERSION_LOG = "course/coursewares";
+
+//ace_upload_courseware
+var ACE_UPLOAD_COURSEWARE = "course/coursewares";
