@@ -1,5 +1,8 @@
-define(['jquery',"http",'scroll','bootstrap'],function($, httpService,scroll){
-	scroll.commonscroll();
+define(function(require, exports,module){
+	require('bootstrap');
+	var $ = require('jquery'),
+		httpService = require('http'),
+		scroll = require('scroll');
 
 	var picture_url = "http://api.acebox.abc360.work/v1/material/lists";
 	var video_url = "";
@@ -10,6 +13,7 @@ define(['jquery',"http",'scroll','bootstrap'],function($, httpService,scroll){
     var video = $("#video").get(0);
 
 	init();
+	scroll.commonscroll();
 
 	function init() {
 		registerEvents();
