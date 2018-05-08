@@ -342,5 +342,32 @@ $(document).ready(function () {
             volumeDec();
         }
     });
+
+    function search() {
+        $.each($('.search-title'),function () {
+            var str1 = $(this).html().toUpperCase();
+            var str2 = $('input').val().toUpperCase();
+            // console.log(str1);
+            // console.log(str2);
+            if((str1 == str2) || ((str1.search(str2) != -1) && (str2))){
+                $(this).css({'background':'yellow'});
+            }else{
+                $(this).css({'background':''});
+            }
+        });
+    }
+    
+    $('.search-button').on('click',function () {
+        console.log(123);
+        search();
+    });
+    $(document).keydown(function () {
+        if(event.keyCode == 13){
+            // 回车
+            search();
+        }
+    });
+
+    
 });
 
