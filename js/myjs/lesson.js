@@ -208,6 +208,9 @@ function dealLessonLogData(data) {
     var log_data = data.data.items;
     var log_length = data.data.items.length;
 
+
+    $("#log_list").html("");
+
     if (log_length == 0) {
 
         $('#no_log').remove();
@@ -228,7 +231,7 @@ function dealLessonLogData(data) {
 
 
 
-    $("#log_list").html("");
+
 
 
     for (var i = 0; i < log_length; i++) {
