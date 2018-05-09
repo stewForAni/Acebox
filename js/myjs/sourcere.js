@@ -1,58 +1,57 @@
 define(function(require, exports,module){
-	require('bootstrap');
-	var $ = require('jquery'),
-		httpService = require('http'),
-		scroll = require('scroll');
+    require('bootstrap');
+    var $ = require('jquery'),
+        httpService = require('http'),
+        scroll = require('scroll');
 
-	var picture_url = "http://api.acebox.abc360.work/v1/material/lists";
-	var video_url = "";
-	var audio_url = "";
-	var animation_url = "";
-	var sourcebar = "";
-	// 视频
+    var picture_url = "http://api.acebox.abc360.work/v1/material/lists";
+    var video_url = "";
+    var audio_url = "";
+    var animation_url = "";
+    var sourcebar = "";
+    // 视频
     var video = $("#video").get(0);
 
-	init();
-	scroll.commonscroll();
+    init();
 
-	function init() {
-		registerEvents();
-		get_source_data(picture_url, $("#picture"), "GET");
-	}
+    function init() {
+        registerEvents();
+        get_source_data(picture_url, $("#picture"), "GET");
+    }
 
-	function registerEvents() {
-		tabEvents();
-	    bodyEvents();
+    function registerEvents() {
+        tabEvents();
+        bodyEvents();
         keyEvents();
-	}
+    }
 
-	function tabEvents(){
-		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-	        var currentElement = $(e.target).attr("href");
-	        if ("#picture" == currentElement) {
-	            sourcebar = "picture";
-	            get_source_data(picture_url, $(currentElement),"GET");
-	        }
+    function tabEvents(){
+        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+            var currentElement = $(e.target).attr("href");
+            if ("#picture" == currentElement) {
+                sourcebar = "picture";
+                get_source_data(picture_url, $(currentElement),"GET");
+            }
 
-	        if ("#video" == currentElement) {
-	            sourcebar = "video";
-	            get_source_data(video_url, $(currentElement), "GET");
-	        }
+            if ("#video" == currentElement) {
+                sourcebar = "video";
+                get_source_data(video_url, $(currentElement), "GET");
+            }
 
-	        if("#audio" == currentElement){
-	            sourcebar = "audio";
-	            get_source_data(audio_url, $(currentElement), "GET");
-	        }
+            if("#audio" == currentElement){
+                sourcebar = "audio";
+                get_source_data(audio_url, $(currentElement), "GET");
+            }
 
-	        if("#animation" == currentElement){
-	            sourcebar = "animation";
-	            get_source_data(animation_url, $(currentElement), "GET");
-	        }
-	    });
-	}
+            if("#animation" == currentElement){
+                sourcebar = "animation";
+                get_source_data(animation_url, $(currentElement), "GET");
+            }
+        });
+    }
 
-	function bodyEvents(){
-		$("body")
+    function bodyEvents(){
+        $("body")
         .on('click', "#img-zoom", function () {
             $('#img-modal').modal("hide");
         })
@@ -101,38 +100,38 @@ define(function(require, exports,module){
             $("#video").attr("src", $(this).parent().prev("img").attr("video"));
         })
         .on('click',"#video",function(){
-        	videoSmart();
+            videoSmart();
         })
         .on('click',".search-button",function(){
-        	search();
+            search();
         });
-	}
+    }
 
-	function keyEvents(){
-		$(document).keydown(function () {
-	        // console.log(event.keyCode);
-	        if(event.keyCode == 32){
-	            // 空格
-	            videoSmart();
-	        }else if(event.keyCode == 37){
-	            // 回退
-	            // console.log(video.currentTime);
-	            recede();
-	        }else if(event.keyCode == 38){
-	            // 上键
-	            volumeInc();
-	        }else if(event.keyCode == 39){
-	            // 右键
-	            onward();
-	        }else if(event.keyCode == 40){
-	            // 下键
-	            volumeDec();
-	        }else if(event.keyCode == 13){
-	            // 回车
-	            search();
-	        }
-	    });
-	}
+    function keyEvents(){
+        $(document).keydown(function () {
+            // console.log(event.keyCode);
+            if(event.keyCode == 32){
+                // 空格
+                videoSmart();
+            }else if(event.keyCode == 37){
+                // 回退
+                // console.log(video.currentTime);
+                recede();
+            }else if(event.keyCode == 38){
+                // 上键
+                volumeInc();
+            }else if(event.keyCode == 39){
+                // 右键
+                onward();
+            }else if(event.keyCode == 40){
+                // 下键
+                volumeDec();
+            }else if(event.keyCode == 13){
+                // 回车
+                search();
+            }
+        });
+    }
 
     function page_data(pagedata){
         var pagination = $(".pagination");
@@ -284,6 +283,7 @@ define(function(require, exports,module){
                     });
                     contentList.append(col);
                     page_data(result.data);
+                    scroll.commonscroll();
                 }
         })
         .fail(function(){
