@@ -333,15 +333,19 @@ function getUploadCourseWareModalContent(content) {
         '<small>Write changes have been made in this version.</small>' +
         '</div>' +
         '</div>' +
+
         '<div class="form-row form-group">' +
         '   <div class="col">' +
-        '      <label class="custom-file mb-2" for="courseware_input">' +
-        '         <input type="file" id="courseware_input" class="custom-file-input height-xs">' +
-        '        <span class="btn btn-primary " id="cover_name_span"><i class="icon-upload-to-cloud">&nbsp;</i>Select a courseware</span>' +
-        '   </label>' +
-        '  <span><a href="#" id="file_name">No file has been selected yet.</a></span>' +
+        '<select class="custom-select mb-2">' +
+        ' <option selected>Open this select menu</option>' +
+        '  <option value="1">One</option>' +
+        '  <option value="2">Two</option>' +
+        '  <option value="3">Three</option>' +
+        '  </select>' +
+        '<small>select a courseware to test.</small>' +
         '</div>' +
         '</div>' +
+
         '<div class="form-row form-group">' +
         '   <div class="col">' +
         '      <button class="btn btn-block btn-success btn-lg" id="upload_course">Upload</button>' +
