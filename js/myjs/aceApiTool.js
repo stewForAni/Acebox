@@ -49,3 +49,5 @@ var ACE_LESSON_VERSION_LOG = "course/coursewares";
 
 //ace_upload_courseware
 var ACE_UPLOAD_COURSEWARE = "course/coursewares";
+
+var ACE_GET_PRODUCER = "user-base-infos";

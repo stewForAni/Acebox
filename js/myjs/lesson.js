@@ -1,13 +1,7 @@
 var id;
 var currentPosition = -1;
 var currentId;
-var lessonArray = new Array();;
-
-
-var file;
-var fileName;
-var name;
-
+var lessonArray = new Array();
 
 
 $(document).ready(function() {
@@ -55,68 +49,21 @@ function showUploadModal() {
 
     $('#upload_course').click(function() {
 
-        var version = $('#version').val();
         var log = $('#log').val();
 
-        if (isEmpty(file) || isEmpty(fileName) || isEmpty(version) || isEmpty(log)) {
+        if (isEmpty(log)) {
             return false;
         } else {
-            doUploadWareApi(version, log)
+            doUploadWareApi(log);
         }
-
         return false;
     });
 
-    $('#courseware_input').change(function() {
-        file = this.files[0];
-        name = file.name;
-        fileName = file.name.substring(file.name.length - 3, file.name.length);
-        $('#file_name').html(file.name);
-    });
 }
 
 
-function doUploadWareApi(version, log) {
-
-    var formData = new FormData();
-    formData.append('file', file);
-
-    showProgressModal("#lesson_main_container", "");
-
-    $.ajax({
-        url: ACE_BASE_URL + ACE_FILE_UPLOAD,
-        type: "POST",
-        contentType: "application/form-Data",
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(result) {
-            hideProgressModal();
-            uploadWareApi(result.data.token, version, log);
-            console.log("2222222");
-        },
-        error: function(e) {
-            hideProgressModal();
-            hideUploadWareModal();
-            console.log("333333");
-        }
-    });
-
-}
-
-
-
-function uploadWareApi(token, version, log) {
-
-    var d = '{' +
-        '"classify_id": "' + currentId + '",' +
-        '"name": "' + name + '",' +
-        '"version": "' + version + '",' +
-        ' "remark": "' + log + '",' +
-        '  "file": {' +
-        '       "token": "' + token + '"' +
-        '}' +
-        '}';
+function doUploadWareApi(log) {
+    var d = '';
 
     $.ajax({
         url: ACE_BASE_URL + ACE_UPLOAD_COURSEWARE,
@@ -132,9 +79,7 @@ function uploadWareApi(token, version, log) {
             console.log("333333");
         }
     });
-
 }
-
 
 
 function dealLessonListContentData(data) {
@@ -231,9 +176,6 @@ function dealLessonLogData(data) {
 
 
 
-
-
-
     for (var i = 0; i < log_length; i++) {
         var data = log_data[i];
         var time = getTime(data.updated_at);
@@ -255,13 +197,13 @@ function dealLessonLogData(data) {
             '<img alt="Image" src="images/changelog_icon.jpg" class="avatar" />' +
             '<div class="media-body">' +
             '<div>' +
-            '<span class="text-muted text-small">' + data.author_id + '</span>' +
-            '<h5 class="h6 mb-1">' + (i + 1) + "." + data.name + " [" + data.remark + "]" + '</h5>' +
+            '<span class="text-muted text-small">' + data.author_name + '</span>' +
+            '<h5 class="h6 mb-1">' + data.name + " [" + data.remark + "]" + '</h5>' +
             '<ul class="list-inline text-small text-muted">' +
-            '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;">Version : ' + data.version + '</li>' +
-            '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;"><i class="icon-eye mr-1"></i>View</li>' +
-            '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;">Status : <span class="badge badge-indicator ' + status + '">&nbsp;</span></li>' +
+            '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer">Version : ' + data.version + '</li>' +
+            '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;">Review Status : <span class="badge badge-indicator ' + status + '">&nbsp;</span></li>' +
             '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;">Updated: ' + time + '</li>' +
+            '<li class="list-inline-item" style="background-color:#FFD700;border-radius : 5px;padding-left:15px;padding-right:15px;cursor:pointer"><i class="icon-dots-three-horizontal"></i></li>' +
             '</ul>' +
             '</div>' +
             '</div>' +
@@ -276,11 +218,11 @@ function dealLessonLogData(data) {
 function getTime(timestamp) {
 
     var date = new Date(timestamp * 1000);
-    var Y = date.getFullYear() + '-';
-    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+    var Y = date.getFullYear() + '/';
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '/';
     var D = date.getDate() + ' ';
     var h = date.getHours() + ':';
-    var m = date.getMinutes() + ':';
-    var s = date.getSeconds();
-    return Y + M + D + h + m + s;
+    var m = date.getMinutes();
+    // var s = date.getSeconds();
+    return Y + M + D + h + m;
 }

@@ -326,13 +326,7 @@ function getUploadCourseWareModalContent(content) {
         '</div>' +
         '<div class="modal-body">' +
 
-
         '<form>' +
-        ' <div class="form-row form-group">' +
-        '      <div class="col">' +
-        '       <input class="form-control form-control-lg" type="text" id="version" placeholder="Courseware Version" />' +
-        '      </div>' +
-        ' </div>' +
         '<div class="form-row form-group">' +
         '   <div class="col">' +
         '      <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="log" placeholder="Operation Log"></textarea>' +
@@ -355,8 +349,6 @@ function getUploadCourseWareModalContent(content) {
         '</div>' +
         '<small>Any question, please refer to the rules in the "Add Course Structure".</small>' +
         '</form>' +
-
-
 
         '</div>' +
         '</div>' +
