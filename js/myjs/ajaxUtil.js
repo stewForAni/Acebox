@@ -10,11 +10,25 @@ $.ajax = function(options) {
      * 保存业务代码中传递的成功回调和失败回调
      */
     var func = {
+        beforeSend: 'function' === typeof options.beforeSend ? options.beforeSend : noop,
         success: 'function' === typeof options.success ? options.success : noop,
         error: 'function' === typeof options.error ? options.error : noop
     }
 
     var _ops = $.extend({}, options, {
+        beforeSend: function(xhr) {
+            console.log("aaaaaa");
+
+            var sigh = getLocalSigh();
+
+            if (!isEmpty(sigh)) {
+                console.log("bbbbbb");
+                xhr.setRequestHeader("Authorization", "Bearer " + sigh);
+            }
+            console.log("cccccc");
+            func.beforeSend(xhr);
+
+        },
         success: function(data, state, xhr) {
             console.log("111111");
             /**
@@ -37,3 +51,19 @@ $.ajax = function(options) {
 
     return ajax.call($, _ops);
 }
+
+
+function getLocalSigh() {
+    if (window.localStorage) {
+        return window.localStorage.getItem("sigh");
+    }
+}
+
+
+
+function isEmpty(obj) {
+    for (var name in obj) {
+        return false;
+    }
+    return true;
+};

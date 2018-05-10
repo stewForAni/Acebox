@@ -1,4 +1,3 @@
-
 var containerId = "#main-container";
 
 $(document).ready(function() {
@@ -53,8 +52,10 @@ function doLoginApi() {
         data: { username: name, password: pwd },
         success: function(result) {
             console.log("2222222");
-            var url = "main.html";
-            window.location.replace(url);
+            if (storageSign(result)) {
+                var url = "main.html";
+                window.location.replace(url);
+            }
         },
         error: function(e) {
             console.log("333333");
@@ -71,5 +72,17 @@ function checkLogin() {
         return false;
     }
     return true;
+}
 
+
+function storageSign(result) {
+    if (window.localStorage) {
+        //localStorage可用
+        var storage = window.localStorage;
+        storage.setItem("sigh", result.token);
+        return true;
+    } else {
+        alert("localStorage unavailable");
+        return false;
+    }
 }
