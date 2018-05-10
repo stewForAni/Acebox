@@ -79,7 +79,7 @@ function storageSign(result) {
     if (window.localStorage) {
         //localStorage可用
         var storage = window.localStorage;
-        storage.setItem("sigh", result.token);
+        storage.setItem("sigh", result.data.auth_token);
         return true;
     } else {
         alert("localStorage unavailable");
