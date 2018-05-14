@@ -337,7 +337,7 @@ function getUploadCourseWareModalContent(content) {
         '<div class="form-row form-group">' +
         '   <div class="col">' +
         '<select class="custom-select mb-2">' +
-        ' <option selected>Open this select menu</option>' +
+        ' <option selected>Select one to submit</option>' +
         '  <option value="1">One</option>' +
         '  <option value="2">Two</option>' +
         '  <option value="3">Three</option>' +
@@ -348,10 +348,9 @@ function getUploadCourseWareModalContent(content) {
 
         '<div class="form-row form-group">' +
         '   <div class="col">' +
-        '      <button class="btn btn-block btn-success btn-lg" id="upload_course">Upload</button>' +
+        '      <button class="btn btn-block btn-success btn-lg" id="upload_course">Submit</button>' +
         ' </div>' +
         '</div>' +
-        '<small>Any question, please refer to the rules in the "Add Course Structure".</small>' +
         '</form>' +
 
         '</div>' +
@@ -361,6 +360,63 @@ function getUploadCourseWareModalContent(content) {
     return modalContent;
 }
 
+
+
+function getChangeStatusModalContent(content) {
+    var modalContent = '<div class="modal fade" id="changeStatusModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+        ' <div class="modal-dialog modal-dialog-centered" role="document">' +
+        '  <div class="modal-content">' +
+        '   <div class="modal-header">' +
+        '    <h5 class="modal-title" id="exampleModalLongTitle">' + content + '</h5>' +
+        '   <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+        '    <span aria-hidden="true">&times;</span>' +
+        ' </button>' +
+        '</div>' +
+        '<div class="modal-body">' +
+
+        '<form>' +
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '      <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="log" placeholder="Write Bugs"></textarea>' +
+        '<small>Write bugs when test fails.</small>' +
+        '</div>' +
+        '</div>' +
+
+        '<div class="custom-control custom-radio">' +
+        '<input id="radio1" name="radio" type="radio" class="custom-control-input">' +
+        '<label class="custom-control-label" for="radio1"><span class="badge badge-indicator badge-success mr-1">&nbsp;</span>Pass Test</label>' +
+        '</div>' +
+
+        '<div class="custom-control custom-radio">' +
+        '<input id="radio2" name="radio" type="radio" class="custom-control-input">' +
+        '<label class="custom-control-label" for="radio2"><span class="badge badge-indicator badge-warning mr-1">&nbsp;</span>Testing</label>' +
+        '</div>' +
+
+        '<div class="custom-control custom-radio">' +
+        '<input id="radio3" name="radio" type="radio" class="custom-control-input">' +
+        '<label class="custom-control-label" for="radio3"><span class="badge badge-indicator badge-danger mr-1">&nbsp;</span>Failed</label>' +
+        '</div>' +
+
+
+        '<div class="custom-control custom-radio">' +
+        '<input id="radio4" name="radio" type="radio" class="custom-control-input">' +
+        '<label class="custom-control-label" for="radio4"><span class="badge badge-indicator badge-secondary mr-1">&nbsp;</span>Untested</label>' +
+        '</div>' +
+
+
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '      <button class="btn btn-block btn-success btn-lg" id="submit_state">Submit</button>' +
+        ' </div>' +
+        '</div>' +
+        '</form>' +
+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
 
 
 
@@ -485,6 +541,19 @@ function hideUploadWareModal() {
 
 
 
+
+//add change status dialog
+function showChangeStatusModal(id, content) {
+    $('#changeStatusModal').remove();
+    $(id).append(getChangeStatusModalContent(content));
+    $("#changeStatusModal").modal();
+}
+
+//hide change status dialog
+function hideChangeStatusModal() {
+    $('#changeStatusModal').remove();
+    $('.modal-backdrop').remove();
+}
 
 
 

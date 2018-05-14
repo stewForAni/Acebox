@@ -45,7 +45,7 @@ function getLessonListContentData() {
 
 function showUploadModal() {
 
-    showUploadWareModal("#lesson_main_container", "Upload Courseware")
+    showUploadWareModal("#lesson_main_container", "Submit courseware");
 
     $('#upload_course').click(function() {
 
@@ -56,6 +56,7 @@ function showUploadModal() {
         } else {
             doUploadWareApi(log);
         }
+
         return false;
     });
 
@@ -150,16 +151,14 @@ function setCurrentPositionColor(position) {
 }
 
 function dealLessonLogData(data) {
+
     var log_data = data.data.items;
     var log_length = data.data.items.length;
-
 
     $("#log_list").html("");
 
     if (log_length == 0) {
-
         $('#no_log').remove();
-
         var no_log_content = '<a class="list-group-item list-group-item-action" id="no_log">' +
             '<div class="media" style="text-align: center;">' +
             '<div class="media-body" >' +
@@ -169,11 +168,9 @@ function dealLessonLogData(data) {
             '</div>' +
             '</div>' +
             '</a>';
-
         $('#log_list').append(no_log_content);
         return;
     }
-
 
 
     for (var i = 0; i < log_length; i++) {
@@ -203,7 +200,7 @@ function dealLessonLogData(data) {
             '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer">Version : ' + data.version + '</li>' +
             '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;">Review Status : <span class="badge badge-indicator ' + status + '">&nbsp;</span></li>' +
             '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;">Updated: ' + time + '</li>' +
-            '<li class="list-inline-item" style="background-color:#FFD700;border-radius : 5px;padding-left:15px;padding-right:15px;cursor:pointer"><i class="icon-dots-three-horizontal"></i></li>' +
+            '<li class="list-inline-item" style="background-color:#FFD700;border-radius : 5px;padding-left:15px;padding-right:15px;cursor:pointer" id="change_status' + i + '"> <i class = "icon-dots-three-horizontal" > </i> </li > ' +
             '</ul>' +
             '</div>' +
             '</div>' +
@@ -211,9 +208,48 @@ function dealLessonLogData(data) {
             '</a>';
 
         $('#log_list').append(log_content);
+
+        (function(data) {
+            $("#change_status" + i).click(function() {
+                changeStatus(data);
+                return false;
+            });
+        })(data);
+
     }
 
 }
+
+
+
+function changeStatus(date) {
+
+    showChangeStatusModal("#lesson_main_container", "Modify State");
+
+    var radios = new Array();
+    var position = -1;
+
+    for (var i = 0; i < 4; i++) {
+        var radio = $("#radio" + (i + 1));
+        radios.push(radio);
+    }
+
+    $("#submit_state").click(function() {
+
+        for (var j = 0; j < radios.length; j++) {
+            if (radios[j].checked) {
+                position = j;
+                alert(position);
+            }
+        }
+
+
+        return false;
+    });
+
+
+}
+
 
 function getTime(timestamp) {
 
