@@ -5,7 +5,7 @@
 var ACE_BASE_URL = "http://dev-stew.landi.com/v1/";
 
 
-var ACE_BASE_IMG_URL = "http://api.acebox.abc360.work/";
+var ACE_BASE_IMG_URL = "http://dev-stew.landi.com/";
 
 
 //ace login
