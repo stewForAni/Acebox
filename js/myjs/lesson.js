@@ -23,7 +23,7 @@ $(document).ready(function() {
 function getLessonListContentData() {
 
     $.ajax({
-        url: ACE_BASE_URL + ACE_LESSON_LIST + "?pid=" + id,
+        url: ACE_BASE_URL + ACE_LESSON_LIST + "?pid=" + id + "&per-page=" + 30,
         type: "GET",
         success: function(result) {
             dealLessonListContentData(result);
@@ -48,15 +48,12 @@ function showUploadModal() {
     showUploadWareModal("#lesson_main_container", "Submit courseware");
 
     $('#upload_course').click(function() {
-
         var log = $('#log').val();
-
         if (isEmpty(log)) {
             return false;
         } else {
             doUploadWareApi(log);
         }
-
         return false;
     });
 
@@ -131,6 +128,8 @@ function showLessonLog(item, position) {
         type: "GET",
         success: function(result) {
             dealLessonLogData(result);
+            $('html,body').animate({ scrollTop: 0 }, 200);
+
             console.log("2222222");
         },
         error: function(e) {
@@ -142,7 +141,7 @@ function showLessonLog(item, position) {
 
 function setCurrentPositionColor(position) {
 
-    $('#lesson_title').html("Lesson" + (position + 1) + " Version Log");
+    $('#lesson_title').html("Lesson" + (position + 1) + " Test Log");
     for (var i = 0; i < lessonArray.length; i++) {
         $(lessonArray[i]).attr("style", "cursor:pointer");
     }
@@ -163,7 +162,7 @@ function dealLessonLogData(data) {
             '<div class="media" style="text-align: center;">' +
             '<div class="media-body" >' +
             '<div>' +
-            '<h5 class="h6 mb-1">No log yet , please upload courseware.</h5>' +
+            '<h5 class="h6 mb-1">No test log yet , please submit a courseware to test.</h5>' +
             '</div>' +
             '</div>' +
             '</div>' +
@@ -237,16 +236,37 @@ function changeStatus(date) {
     $("#submit_state").click(function() {
 
         for (var j = 0; j < radios.length; j++) {
-            if (radios[j].checked) {
+            if (radios[j].is(':checked')) {
                 position = j;
-                alert(position);
+                changeStatusApi();
+                break;
             }
         }
-
-
         return false;
     });
 
+
+}
+
+function changeStatusApi() {
+
+    var d = '{' +
+        '"":"",' +
+        '"":""' +
+        '}';
+
+    $.ajax({
+        url: ACE_BASE_URL + ACE_CHANGE_STATE + "/" + data.id,
+        type: "PUT",
+        contentType: "application/json; charset=UTF-8",
+        data: d,
+        success: function(result) {
+            console.log("2222222");
+        },
+        error: function(e) {
+            console.log("333333");
+        }
+    });
 
 }
 

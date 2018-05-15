@@ -297,7 +297,7 @@ function doAddLessonApi(item) {
 
 function getLesson(pid) {
     $.ajax({
-        url: ACE_BASE_URL + ACE_GET_COURSE_LESSON_DATA + "?pid=" + pid,
+        url: ACE_BASE_URL + ACE_GET_COURSE_LESSON_DATA + "?pid=" + pid + "&per-page=" + 30,
         type: "GET",
         success: function(result) {
             dealCourseLessonData(result);
