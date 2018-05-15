@@ -128,6 +128,7 @@ function showLessonLog(item, position) {
         type: "GET",
         success: function(result) {
             dealLessonLogData(result);
+            
             $('html,body').animate({ scrollTop: 0 }, 200);
 
             console.log("2222222");
