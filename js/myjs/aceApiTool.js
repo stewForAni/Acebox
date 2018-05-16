@@ -47,13 +47,13 @@ var ACE_LESSON_LIST = "course/classifications";
 //ace_lesson_log
 var ACE_LESSON_VERSION_LOG = "course/coursewares";
 
-//ace_upload_courseware
-var ACE_UPLOAD_COURSEWARE = "course/coursewares";
+//ace_submit_test
+var ACE_SUBMIT_TEST = "course/coursewares";
 
 
 
 
-
+var ACE_CHOOSE_COURSEWARE = "course/courseware-file-lists";
 
 var ACE_CHANGE_STATE = "course/coursewares";
 

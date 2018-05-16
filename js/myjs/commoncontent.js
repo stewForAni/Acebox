@@ -336,11 +336,8 @@ function getUploadCourseWareModalContent(content) {
 
         '<div class="form-row form-group">' +
         '   <div class="col">' +
-        '<select class="custom-select mb-2">' +
+        '<select class="custom-select mb-2" id="coursewarelist">' +
         ' <option selected>Select one to submit</option>' +
-        '  <option value="1">One</option>' +
-        '  <option value="2">Two</option>' +
-        '  <option value="3">Three</option>' +
         '  </select>' +
         '<small>select a courseware to test.</small>' +
         '</div>' +
@@ -524,17 +521,15 @@ function hideAddLessonModal() {
 
 
 
-
-
-//add lesson upload dialog
-function showUploadWareModal(id, content) {
+//add submit dialog
+function showSubmitModal(id, content) {
     $('#uploadCourseWareModal').remove();
     $(id).append(getUploadCourseWareModalContent(content));
     $("#uploadCourseWareModal").modal();
 }
 
-//hide lesson upload dialog
-function hideUploadWareModal() {
+//hide submit dialog
+function hideSubmitModal() {
     $('#uploadCourseWareModal').remove();
     $('.modal-backdrop').remove();
 }

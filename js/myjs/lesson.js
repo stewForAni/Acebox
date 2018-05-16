@@ -36,44 +36,85 @@ function getLessonListContentData() {
 
 
     $("#upload_btn").click(function() {
-        showUploadModal();
+        getCoursewareList();
         return false;
     });
 
 }
 
 
-function showUploadModal() {
-
-    showUploadWareModal("#lesson_main_container", "Submit courseware");
-
-    $('#upload_course').click(function() {
-        var log = $('#log').val();
-        if (isEmpty(log)) {
-            return false;
-        } else {
-            doUploadWareApi(log);
-        }
-        return false;
-    });
-
-}
-
-
-function doUploadWareApi(log) {
-    var d = '';
+function getCoursewareList() {
 
     $.ajax({
-        url: ACE_BASE_URL + ACE_UPLOAD_COURSEWARE,
+        url: ACE_BASE_URL + ACE_CHOOSE_COURSEWARE + "?classify_id=" + currentId,
+        type: "GET",
+        success: function(result) {
+            showUploadModal(result);
+            console.log("2222222");
+        },
+        error: function(e) {
+            console.log("333333");
+        }
+    });
+
+}
+
+
+
+function showUploadModal(data) {
+
+    showSubmitModal("#lesson_main_container", "Submit courseware");
+
+    var d = data.data.items;
+    var l = d.length;
+
+    for (var i = 0; i < l; i++) {
+        var time = getTime(d[i].created_at);
+        $('#coursewarelist').append('<option value="' + d[i].token + '">' + d[i].file_name + "(" + time + ")" + '</option>');
+    }
+
+    $('#upload_course').click(function() {
+
+        var log = $('#log').val();
+        var token = $('#coursewarelist').val();
+        var myString = $("#coursewarelist option[value=" + token + "]").text();
+        var arr = myString.split('(');
+        var name = arr[0];
+
+        if (isEmpty(log) || isEmpty(token) || isEmpty(name)) {
+            return false;
+        } else {
+            doSubmitTestApi(log, token, name);
+        }
+        return false;
+
+    });
+
+}
+
+
+function doSubmitTestApi(log, token, name) {
+
+    var d = '{' +
+        '"classify_id":"' + currentId + '",' +
+        '"remark":"' + log + '",' +
+        '"name":"' + name + '",' +
+        '"file":{' +
+        '   "token":"' + token + '"' +
+        '}' +
+        '}';
+
+    $.ajax({
+        url: ACE_BASE_URL + ACE_SUBMIT_TEST,
         type: "POST",
         contentType: "application/json; charset=UTF-8",
         data: d,
         success: function(result) {
-            hideUploadWareModal();
+            hideSubmitModal();
             console.log("2222222");
         },
         error: function(e) {
-            hideUploadWareModal();
+            hideSubmitModal();
             console.log("333333");
         }
     });
@@ -128,7 +169,7 @@ function showLessonLog(item, position) {
         type: "GET",
         success: function(result) {
             dealLessonLogData(result);
-            
+
             $('html,body').animate({ scrollTop: 0 }, 200);
 
             console.log("2222222");
@@ -143,10 +184,13 @@ function showLessonLog(item, position) {
 function setCurrentPositionColor(position) {
 
     $('#lesson_title').html("Lesson" + (position + 1) + " Test Log");
+
     for (var i = 0; i < lessonArray.length; i++) {
         $(lessonArray[i]).attr("style", "cursor:pointer");
     }
+
     $(lessonArray[position]).attr("style", "background-color:#eeeeee");
+
     currentPosition = position;
 }
 
@@ -279,7 +323,7 @@ function getTime(timestamp) {
     var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '/';
     var D = date.getDate() + ' ';
     var h = date.getHours() + ':';
-    var m = date.getMinutes();
+    var m = (date.getMinutes() < 10 ? '0' + (date.getMinutes()) : date.getMinutes());
     // var s = date.getSeconds();
     return Y + M + D + h + m;
 }
