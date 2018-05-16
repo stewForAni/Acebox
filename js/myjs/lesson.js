@@ -18,6 +18,12 @@ $(document).ready(function() {
     id = obj.pid;
     getLessonListContentData();
 
+
+    $("#upload_btn").click(function() {
+        getCoursewareList();
+        return false;
+    });
+
 });
 
 function getLessonListContentData() {
@@ -32,12 +38,6 @@ function getLessonListContentData() {
         error: function(e) {
             console.log("333333");
         }
-    });
-
-
-    $("#upload_btn").click(function() {
-        getCoursewareList();
-        return false;
     });
 
 }
@@ -77,13 +77,19 @@ function showUploadModal(data) {
 
         var log = $('#log').val();
         var token = $('#coursewarelist').val();
-        var myString = $("#coursewarelist option[value=" + token + "]").text();
-        var arr = myString.split('(');
-        var name = arr[0];
 
-        if (isEmpty(log) || isEmpty(token) || isEmpty(name)) {
+        if ("Select one to submit" == token) {
+            return false;
+        }
+
+        var myString = $("#coursewarelist option[value=" + token + "]").text();
+
+
+        if (isEmpty(log) || isEmpty(token) || isEmpty(myString)) {
             return false;
         } else {
+            var arr = myString.split('(');
+            var name = arr[0];
             doSubmitTestApi(log, token, name);
         }
         return false;
@@ -111,6 +117,10 @@ function doSubmitTestApi(log, token, name) {
         data: d,
         success: function(result) {
             hideSubmitModal();
+
+            currentPosition = -1;
+            getLessonListContentData();
+
             console.log("2222222");
         },
         error: function(e) {
