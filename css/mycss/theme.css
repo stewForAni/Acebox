@@ -3715,7 +3715,7 @@ button.close {
   -webkit-appearance: none; }
 
 .modal-open {
-  overflow: scroll; }
+  overflow-y: scroll; }
 
 .modal {
   position: fixed;

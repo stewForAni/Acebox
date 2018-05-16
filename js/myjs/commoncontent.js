@@ -374,7 +374,7 @@ function getChangeStatusModalContent(content) {
         '<form>' +
         '<div class="form-row form-group">' +
         '   <div class="col">' +
-        '      <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="log" placeholder="Write Bugs"></textarea>' +
+        '      <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="change_log" placeholder="Write Bugs"></textarea>' +
         '<small>Write bugs when test fails.</small>' +
         '</div>' +
         '</div>' +
@@ -553,10 +553,17 @@ function hideChangeStatusModal() {
 
 
 
-
+/*判断是否是空*/
 function isEmpty(obj) {
     for (var name in obj) {
         return false;
     }
     return true;
 };
+
+
+
+/*获取1到n的随机数*/
+function randomNum(n){
+    return Math.floor(Math.random()*n+1);
+}

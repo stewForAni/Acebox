@@ -136,6 +136,8 @@ function dealLessonListContentData(data) {
     var lesson_data = data.data.items;
     var lesson_length = data.data.items.length;
 
+    $("#lesson_list").html("");
+
     for (var i = 0; i < lesson_length; i++) {
         var item = lesson_data[i];
         var lesson_list_item = '<a class="list-group-item d-flex justify-content-between" id="lesson_' + i + '" >' +
@@ -175,7 +177,7 @@ function showLessonLog(item, position) {
     setCurrentPositionColor(position);
     currentId = item.id;
     $.ajax({
-        url: ACE_BASE_URL + ACE_LESSON_VERSION_LOG + "?classify_id=" + currentId,
+        url: ACE_BASE_URL + ACE_LESSON_VERSION_LOG + "?classify_id=" + currentId + "&per-page=" + 30,
         type: "GET",
         success: function(result) {
             dealLessonLogData(result);
@@ -243,13 +245,16 @@ function dealLessonLogData(data) {
         }
 
 
+        var index = randomNum(6);
+        console.log(index);
+
         var log_content = '<a class="list-group-item list-group-item-action">' +
             '<div class="media">' +
-            '<img alt="Image" src="images/changelog_icon.jpg" class="avatar" />' +
+            '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar" />' +
             '<div class="media-body">' +
             '<div>' +
             '<span class="text-muted text-small">' + data.author_name + '</span>' +
-            '<h5 class="h6 mb-1">' + data.name + " [" + data.remark + "]" + '</h5>' +
+            '<h5 class="h6 mb-1">' + data.remark + " 【" + data.name + "】" + '</h5>' +
             '<ul class="list-inline text-small text-muted">' +
             '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer">Version : ' + data.version + '</li>' +
             '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;">Review Status : <span class="badge badge-indicator ' + status + '">&nbsp;</span></li>' +
