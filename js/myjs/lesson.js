@@ -293,26 +293,34 @@ function changeStatus(date) {
         radios.push(radio);
     }
 
+
     $("#submit_state").click(function() {
+
+        var changeLog = $('#change_log').val();
+        if (isEmpty(changeLog)) {
+            return false;
+        }
 
         for (var j = 0; j < radios.length; j++) {
             if (radios[j].is(':checked')) {
                 position = j;
-                changeStatusApi();
+                changeStatusApi(data, changeLog, position);
                 break;
             }
         }
+
         return false;
     });
 
 
 }
 
-function changeStatusApi() {
+function changeStatusApi(data, changeLog, position) {
 
     var d = '{' +
-        '"":"",' +
-        '"":""' +
+        '"id":"' + data.id + '",' +
+        '"test_status":"' + position + '",' +
+        '"remark":"' + changeLog + '"' +
         '}';
 
     $.ajax({

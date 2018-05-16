@@ -45,15 +45,14 @@ var ACE_MAIN_CONTENT = "return-all-course-classifications";
 var ACE_LESSON_LIST = "course/classifications";
 
 //ace_lesson_log
-var ACE_LESSON_VERSION_LOG = "course/coursewares";
+var ACE_LESSON_VERSION_LOG = "course/courseware-verifications";
 
 //ace_submit_test
 var ACE_SUBMIT_TEST = "course/coursewares";
 
 
 
-
 var ACE_CHOOSE_COURSEWARE = "course/courseware-file-lists";
 
-var ACE_CHANGE_STATE = "course/coursewares";
+var ACE_CHANGE_STATE = "course/courseware-verifications";
 

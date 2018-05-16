@@ -379,9 +379,10 @@ function getChangeStatusModalContent(content) {
         '</div>' +
         '</div>' +
 
+
         '<div class="custom-control custom-radio">' +
-        '<input id="radio1" name="radio" type="radio" class="custom-control-input">' +
-        '<label class="custom-control-label" for="radio1"><span class="badge badge-indicator badge-success mr-1">&nbsp;</span>Pass Test</label>' +
+        '<input id="radio4" name="radio" type="radio" class="custom-control-input">' +
+        '<label class="custom-control-label" for="radio4"><span class="badge badge-indicator badge-secondary mr-1">&nbsp;</span>Untested</label>' +
         '</div>' +
 
         '<div class="custom-control custom-radio">' +
@@ -389,16 +390,17 @@ function getChangeStatusModalContent(content) {
         '<label class="custom-control-label" for="radio2"><span class="badge badge-indicator badge-warning mr-1">&nbsp;</span>Testing</label>' +
         '</div>' +
 
+
         '<div class="custom-control custom-radio">' +
         '<input id="radio3" name="radio" type="radio" class="custom-control-input">' +
         '<label class="custom-control-label" for="radio3"><span class="badge badge-indicator badge-danger mr-1">&nbsp;</span>Failed</label>' +
         '</div>' +
 
-
         '<div class="custom-control custom-radio">' +
-        '<input id="radio4" name="radio" type="radio" class="custom-control-input">' +
-        '<label class="custom-control-label" for="radio4"><span class="badge badge-indicator badge-secondary mr-1">&nbsp;</span>Untested</label>' +
+        '<input id="radio1" name="radio" type="radio" class="custom-control-input">' +
+        '<label class="custom-control-label" for="radio1"><span class="badge badge-indicator badge-success mr-1">&nbsp;</span>Pass Test</label>' +
         '</div>' +
+
 
 
         '<div class="form-row form-group">' +
@@ -564,6 +566,6 @@ function isEmpty(obj) {
 
 
 /*获取1到n的随机数*/
-function randomNum(n){
-    return Math.floor(Math.random()*n+1);
+function randomNum(n) {
+    return Math.floor(Math.random() * n + 1);
 }
