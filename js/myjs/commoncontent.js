@@ -329,8 +329,8 @@ function getUploadCourseWareModalContent(content) {
         '<form>' +
         '<div class="form-row form-group">' +
         '   <div class="col">' +
-        '      <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="log" placeholder="Operation Log"></textarea>' +
-        '<small>Write changes have been made in this version.</small>' +
+        '      <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="log" placeholder="Write Remarks"></textarea>' +
+        '<small>Write some remarks(must).</small>' +
         '</div>' +
         '</div>' +
 
@@ -374,15 +374,23 @@ function getChangeStatusModalContent(content) {
         '<form>' +
         '<div class="form-row form-group">' +
         '   <div class="col">' +
-        '      <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="change_log" placeholder="Write Bugs"></textarea>' +
+        '      <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="remarks" placeholder="Write Remarks"></textarea>' +
+        '<small>Write some remarks(must).</small>' +
+        '</div>' +
+        '</div>' +
+
+
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '      <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="bugs" placeholder="Write Bugs"></textarea>' +
         '<small>Write bugs when test fails.</small>' +
         '</div>' +
         '</div>' +
 
 
         '<div class="custom-control custom-radio">' +
-        '<input id="radio4" name="radio" type="radio" class="custom-control-input">' +
-        '<label class="custom-control-label" for="radio4"><span class="badge badge-indicator badge-secondary mr-1">&nbsp;</span>Untested</label>' +
+        '<input id="radio1" name="radio" type="radio" class="custom-control-input">' +
+        '<label class="custom-control-label" for="radio1"><span class="badge badge-indicator badge-secondary mr-1">&nbsp;</span>Untested</label>' +
         '</div>' +
 
         '<div class="custom-control custom-radio">' +
@@ -397,8 +405,8 @@ function getChangeStatusModalContent(content) {
         '</div>' +
 
         '<div class="custom-control custom-radio">' +
-        '<input id="radio1" name="radio" type="radio" class="custom-control-input">' +
-        '<label class="custom-control-label" for="radio1"><span class="badge badge-indicator badge-success mr-1">&nbsp;</span>Pass Test</label>' +
+        '<input id="radio4" name="radio" type="radio" class="custom-control-input">' +
+        '<label class="custom-control-label" for="radio4"><span class="badge badge-indicator badge-success mr-1">&nbsp;</span>Pass Test</label>' +
         '</div>' +
 
 

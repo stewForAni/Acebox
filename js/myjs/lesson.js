@@ -181,9 +181,7 @@ function showLessonLog(item, position) {
         type: "GET",
         success: function(result) {
             dealLessonLogData(result);
-
             $('html,body').animate({ scrollTop: 0 }, 200);
-
             console.log("2222222");
         },
         error: function(e) {
@@ -231,7 +229,7 @@ function dealLessonLogData(data) {
 
     for (var i = 0; i < log_length; i++) {
         var data = log_data[i];
-        var time = getTime(data.updated_at);
+        var time = getTime(data.created_at);
         var status;
 
         if (data.test_status == 0) {
@@ -256,6 +254,7 @@ function dealLessonLogData(data) {
             '<span class="text-muted text-small">' + data.author_name + '</span>' +
             '<h5 class="h6 mb-1">' + data.remark + " 【" + data.name + "】" + '</h5>' +
             '<ul class="list-inline text-small text-muted">' +
+            '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer">ID : ' + data.id + '</li>' +
             '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer">Version : ' + data.version + '</li>' +
             '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;">Review Status : <span class="badge badge-indicator ' + status + '">&nbsp;</span></li>' +
             '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;">Updated: ' + time + '</li>' +
@@ -281,7 +280,7 @@ function dealLessonLogData(data) {
 
 
 
-function changeStatus(date) {
+function changeStatus(data) {
 
     showChangeStatusModal("#lesson_main_container", "Modify State");
 
@@ -296,18 +295,27 @@ function changeStatus(date) {
 
     $("#submit_state").click(function() {
 
-        var changeLog = $('#change_log').val();
-        if (isEmpty(changeLog)) {
-            return false;
-        }
+        var remarks = $('#remarks').val();
+        var bugs = $('#bugs').val();
+
 
         for (var j = 0; j < radios.length; j++) {
             if (radios[j].is(':checked')) {
                 position = j;
-                changeStatusApi(data, changeLog, position);
                 break;
             }
         }
+
+
+        if (isEmpty(remarks) || position == -1) {
+            return false;
+        }
+
+        if (isEmpty(bugs)) {
+            bugs = "";
+        }
+
+        changeStatusApi(data, remarks, position, bugs);
 
         return false;
     });
@@ -315,23 +323,28 @@ function changeStatus(date) {
 
 }
 
-function changeStatusApi(data, changeLog, position) {
+function changeStatusApi(data, remarks, position, bugs) {
 
     var d = '{' +
         '"id":"' + data.id + '",' +
         '"test_status":"' + position + '",' +
-        '"remark":"' + changeLog + '"' +
+        '"bug":"' + bugs + '",' +
+        '"remark":"' + remarks + '"' +
         '}';
 
     $.ajax({
-        url: ACE_BASE_URL + ACE_CHANGE_STATE + "/" + data.id,
-        type: "PUT",
+        url: ACE_BASE_URL + ACE_CHANGE_STATE,
+        type: "POST",
         contentType: "application/json; charset=UTF-8",
         data: d,
         success: function(result) {
+            hideChangeStatusModal()
+            currentPosition = -1;
+            getLessonListContentData();
             console.log("2222222");
         },
         error: function(e) {
+            hideChangeStatusModal()
             console.log("333333");
         }
     });
