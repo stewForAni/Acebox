@@ -245,7 +245,7 @@ define(function(require, exports,module){
                             '                    <div class="d-flex justify-content-between mb-2">' +
                             '                        <div>' +
                             '                            <a href="#" class="mb-1">' +
-                            '                                <h4>'+ object.title +'</h4>'
+                            '                                <h4>'+ object.title +'</h4>' +
                             '                            </a>' +
                             '                            <span>动画描述</span>' +
                             '                        </div>' +
