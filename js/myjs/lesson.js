@@ -253,12 +253,12 @@ function dealLessonLogData(data) {
             '<div class="media-body">' +
             '<div>' +
             '<span class="text-muted text-small">' + data.author_name + '</span>' +
-            '<h6 class="h6 mb-1">' + data.remark + " 【" + data.name + "】" + '<li id="have_bug' + i + '" class="list-inline-item" style="background-color:#d9534f;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer;color:white">view bugs</li></h6>' +
+            '<h6 class="h6 mb-1">' + data.remark + " 【" + data.name + "】" + '<li id="have_bug' + i + '" class="list-inline-item" style="background-color:#d9534f;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer;color:white"><i class = "icon-eye" style="color:white" > </i> bugs</li></h6>' +
             '<ul class="list-inline text-small text-muted">' +
             '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;">ID : ' + data.id + '</li>' +
-            '<li class="list-inline-item" style="background-color:#f5f5f5;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer">Version : ' + data.version + '</li>' +
-            '<li class="list-inline-item" style="background-color:#f5f5f5;border-radius : 5px;padding-left:5px;padding-right:5px;">Review Status : <span class="badge badge-indicator ' + status + '">&nbsp;</span></li>' +
-            '<li class="list-inline-item" style="background-color:#f5f5f5;border-radius : 5px;padding-left:5px;padding-right:5px;">Updated: ' + time + '</li>' +
+            '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer" id="version_download' + i + '"><i class = "icon-download" style="color:#4582EC"> </i> Version : ' + data.version + '</li>' +
+            '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;">Review Status : <span class="badge badge-indicator ' + status + '">&nbsp;</span></li>' +
+            '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;">Updated: ' + time + '</li>' +
             '<li class="list-inline-item" style="background-color:#FFD700;border-radius : 5px;padding-left:15px;padding-right:15px;cursor:pointer" id="change_status' + i + '"> <i class = "icon-dots-three-horizontal" > </i> </li > ' +
             '</ul>' +
             '</div>' +
@@ -282,6 +282,14 @@ function dealLessonLogData(data) {
             })(data);
 
         }
+
+
+        (function(data) {
+            $("#version_download" + i).click(function() {
+                window.location.href =  data.download_files[0].file_path;
+                return false;
+            });
+        })(data);
 
 
         (function(data) {
