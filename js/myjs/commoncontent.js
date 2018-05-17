@@ -329,7 +329,7 @@ function getUploadCourseWareModalContent(content) {
         '<form>' +
         '<div class="form-row form-group">' +
         '   <div class="col">' +
-        '      <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="log" placeholder="Write Remarks"></textarea>' +
+        '<input class="form-control form-control-lg" type="text" id="log" placeholder="Write Remarks" />' +
         '<small>Write some remarks(must).</small>' +
         '</div>' +
         '</div>' +
@@ -374,7 +374,7 @@ function getChangeStatusModalContent(content) {
         '<form>' +
         '<div class="form-row form-group">' +
         '   <div class="col">' +
-        '      <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="remarks" placeholder="Write Remarks"></textarea>' +
+        '<input class="form-control form-control-lg" type="text" id="remarks" placeholder="Write Remarks" />' +
         '<small>Write some remarks(must).</small>' +
         '</div>' +
         '</div>' +

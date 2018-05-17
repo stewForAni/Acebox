@@ -16,16 +16,16 @@ $.ajax = function(options) {
     }
 
     var _ops = $.extend({}, options, {
-        beforeSend: function(xhr) {
-            console.log("aaaaaa");
 
-            var sigh = getLocalSigh();
+        beforeSend: function(xhr, data) {
 
-            if (!isEmpty(sigh)) {
-                console.log("bbbbbb");
-                xhr.setRequestHeader("Authorization", "Bearer " + sigh);
+            if (!(data.url.indexOf("logins")!=-1)) {
+                var sigh = getLocalSigh();
+                if (!isEmpty(sigh)) {
+                    xhr.setRequestHeader("Authorization", "Bearer " + sigh);
+                }
             }
-            console.log("cccccc");
+
             func.beforeSend(xhr);
 
         },

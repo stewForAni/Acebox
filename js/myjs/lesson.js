@@ -332,22 +332,27 @@ function changeStatusApi(data, remarks, position, bugs) {
         '"remark":"' + remarks + '"' +
         '}';
 
-    $.ajax({
-        url: ACE_BASE_URL + ACE_CHANGE_STATE,
-        type: "POST",
-        contentType: "application/json; charset=UTF-8",
-        data: d,
-        success: function(result) {
-            hideChangeStatusModal()
-            currentPosition = -1;
-            getLessonListContentData();
-            console.log("2222222");
-        },
-        error: function(e) {
-            hideChangeStatusModal()
-            console.log("333333");
-        }
-    });
+
+
+        console.log(d);
+
+
+    // $.ajax({
+    //     url: ACE_BASE_URL + ACE_CHANGE_STATE,
+    //     type: "POST",
+    //     contentType: "application/json; charset=UTF-8",
+    //     data: d,
+    //     success: function(result) {
+    //         hideChangeStatusModal()
+    //         currentPosition = -1;
+    //         getLessonListContentData();
+    //         console.log("2222222");
+    //     },
+    //     error: function(e) {
+    //         hideChangeStatusModal()
+    //         console.log("333333");
+    //     }
+    // });
 
 }
 
