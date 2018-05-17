@@ -2,6 +2,7 @@ var id;
 var currentPosition = -1;
 var currentId;
 var lessonArray = new Array();
+var containerId = "#lesson_main_container";
 
 
 $(document).ready(function() {
@@ -63,7 +64,7 @@ function getCoursewareList() {
 
 function showUploadModal(data) {
 
-    showSubmitModal("#lesson_main_container", "Submit courseware");
+    showSubmitModal(containerId, "Submit courseware");
 
     var d = data.data.items;
     var l = d.length;
@@ -252,12 +253,12 @@ function dealLessonLogData(data) {
             '<div class="media-body">' +
             '<div>' +
             '<span class="text-muted text-small">' + data.author_name + '</span>' +
-            '<h5 class="h6 mb-1">' + data.remark + " 【" + data.name + "】" + '</h5>' +
+            '<h6 class="h6 mb-1">' + data.remark + " 【" + data.name + "】" + '<li id="have_bug' + i + '" class="list-inline-item" style="background-color:#d9534f;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer;color:white">view bugs</li></h6>' +
             '<ul class="list-inline text-small text-muted">' +
-            '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer">ID : ' + data.id + '</li>' +
-            '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer">Version : ' + data.version + '</li>' +
-            '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;">Review Status : <span class="badge badge-indicator ' + status + '">&nbsp;</span></li>' +
-            '<li class="list-inline-item" style="background-color:#E6EAED;border-radius : 5px;padding-left:5px;padding-right:5px;">Updated: ' + time + '</li>' +
+            '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;">ID : ' + data.id + '</li>' +
+            '<li class="list-inline-item" style="background-color:#f5f5f5;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer">Version : ' + data.version + '</li>' +
+            '<li class="list-inline-item" style="background-color:#f5f5f5;border-radius : 5px;padding-left:5px;padding-right:5px;">Review Status : <span class="badge badge-indicator ' + status + '">&nbsp;</span></li>' +
+            '<li class="list-inline-item" style="background-color:#f5f5f5;border-radius : 5px;padding-left:5px;padding-right:5px;">Updated: ' + time + '</li>' +
             '<li class="list-inline-item" style="background-color:#FFD700;border-radius : 5px;padding-left:15px;padding-right:15px;cursor:pointer" id="change_status' + i + '"> <i class = "icon-dots-three-horizontal" > </i> </li > ' +
             '</ul>' +
             '</div>' +
@@ -265,7 +266,23 @@ function dealLessonLogData(data) {
             '</div>' +
             '</a>';
 
+
+
         $('#log_list').append(log_content);
+
+
+        if (isEmpty(data.bug)) {
+            $('#have_bug' + i).hide();
+        } else {
+            (function(data) {
+                $('#have_bug' + i).click(function() {
+                    showViewBugsModal(containerId, AddSeperator(data.bug));
+                    return false;
+                });
+            })(data);
+
+        }
+
 
         (function(data) {
             $("#change_status" + i).click(function() {
@@ -282,7 +299,7 @@ function dealLessonLogData(data) {
 
 function changeStatus(data) {
 
-    showChangeStatusModal("#lesson_main_container", "Modify State");
+    showChangeStatusModal(containerId, "Modify State");
 
     var radios = new Array();
     var position = -1;
@@ -325,6 +342,13 @@ function changeStatus(data) {
 
 function changeStatusApi(data, remarks, position, bugs) {
 
+
+    if (bugs.indexOf("\n") >= 0) {
+        bugs = ReplaceSeperator(bugs);
+    }
+
+
+
     var d = '{' +
         '"id":"' + data.id + '",' +
         '"test_status":"' + position + '",' +
@@ -334,25 +358,22 @@ function changeStatusApi(data, remarks, position, bugs) {
 
 
 
-        console.log(d);
-
-
-    // $.ajax({
-    //     url: ACE_BASE_URL + ACE_CHANGE_STATE,
-    //     type: "POST",
-    //     contentType: "application/json; charset=UTF-8",
-    //     data: d,
-    //     success: function(result) {
-    //         hideChangeStatusModal()
-    //         currentPosition = -1;
-    //         getLessonListContentData();
-    //         console.log("2222222");
-    //     },
-    //     error: function(e) {
-    //         hideChangeStatusModal()
-    //         console.log("333333");
-    //     }
-    // });
+    $.ajax({
+        url: ACE_BASE_URL + ACE_CHANGE_STATE,
+        type: "POST",
+        contentType: "application/json; charset=UTF-8",
+        data: d,
+        success: function(result) {
+            hideChangeStatusModal()
+            currentPosition = -1;
+            getLessonListContentData();
+            console.log("2222222");
+        },
+        error: function(e) {
+            hideChangeStatusModal()
+            console.log("333333");
+        }
+    });
 
 }
 

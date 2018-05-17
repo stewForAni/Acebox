@@ -428,6 +428,31 @@ function getChangeStatusModalContent(content) {
 
 
 
+function getViewBugsModalContent(content) {
+    var modalContent = '<div class="modal fade" id="viewBugsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+        ' <div class="modal-dialog modal-dialog-centered" role="document">' +
+        '  <div class="modal-content">' +
+        '   <div class="modal-header">' +
+        '    <h5 class="modal-title" id="exampleModalLongTitle">View Bugs</h5>' +
+        '   <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+        '    <span aria-hidden="true">&times;</span>' +
+        ' </button>' +
+        '</div>' +
+        '<div class="modal-body">' + content + '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
+
+
+function showViewBugsModal(id, content) {
+    $('#viewBugsModal').remove();
+    $(id).append(getViewBugsModalContent(content));
+    $("#viewBugsModal").modal();
+}
+
+
 
 
 
@@ -576,4 +601,37 @@ function isEmpty(obj) {
 /*获取1到n的随机数*/
 function randomNum(n) {
     return Math.floor(Math.random() * n + 1);
+}
+
+
+
+//用中文分号替换英文分号、中英文逗号或者回车
+function ReplaceSeperator(data) {
+    var i;
+    var result = "";
+    var c;
+    for (i = 0; i < data.length; i++) {
+        c = data.substr(i, 1);
+        if (c == "\n")
+            result = result + "$";
+        else if (c != "\r")
+            result = result + c;
+    }
+    return result;
+}
+
+
+
+function AddSeperator(data) {
+    var i;
+    var result = "";
+    var c;
+    for (i = 0; i < data.length; i++) {
+        c = data.substr(i, 1);
+        if (c == "$")
+            result = result + "<br/>";
+        else if (c != "\r")
+            result = result + c;
+    }
+    return result;
 }
