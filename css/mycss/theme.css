@@ -7949,7 +7949,7 @@ pre[class*="language-"] {
     line-height: 6rem; }
 
 .active .step-circle {
-  background: #4582EC; }
+  background: #02b875; }
 
 [data-toggle="tab"].card .step-circle {
   transition: background-color .35s ease, transform .2s ease; }
