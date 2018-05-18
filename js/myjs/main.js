@@ -56,35 +56,6 @@ function dealMianContentData(data) {
     }
 
 
-
-    var continueContent = '<div class="col-12 col-sm-6 col-md-4">' +
-        '<div class="card card-lg">' +
-        ' <img class="card-img-top" src="images/wait.jpg" alt="Pit Stop">' +
-        '  <div class="card-body">' +
-        '     <h4 class="card-title">To be continued</h4>' +
-        '    <p class="card-text">More course series Stay tuned and check out our great new courses here!</p>' +
-        '   <ul class="list-unstyled list-spacing-sm">' +
-        '      <li>' +
-        '         <i class="icon-text-document text-muted mr-1"></i>' +
-        '        <a href="#">On the way</a>' +
-        '   </li>' +
-        '  <li>' +
-        '     <i class="icon-text-document text-muted mr-1"></i>' +
-        '    <a href="#">On the way</a>' +
-        '</li>' +
-        '<li>' +
-        '   <i class="icon-text-document text-muted mr-1"></i>' +
-        '  <a href="#">On the way</a>' +
-        '</li>' +
-        '<li>' +
-        '   <i class="icon-text-document text-muted mr-1"></i>' +
-        '  <a href="#">On the way</a>' +
-        '</li>' +
-        '</ul>' +
-        '</div>' +
-        '</div>' +
-        '</div>';
-
     $('#main_content').append(continueContent);
 
 }
