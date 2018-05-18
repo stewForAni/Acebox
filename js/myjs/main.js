@@ -24,7 +24,6 @@ function dealMianContentData(data) {
     var level_length = data.data.length;
     var level_data = data.data;
 
-
     for (var i = 0; i < level_length; i++) {
         var item = level_data[i];
         var level_content = '<div class="col-12 col-sm-6 col-md-4">' +
@@ -67,19 +66,19 @@ function dealMianContentData(data) {
         '   <ul class="list-unstyled list-spacing-sm">' +
         '      <li>' +
         '         <i class="icon-text-document text-muted mr-1"></i>' +
-        '        <a href="">On the way</a>' +
+        '        <a href="#">On the way</a>' +
         '   </li>' +
         '  <li>' +
         '     <i class="icon-text-document text-muted mr-1"></i>' +
-        '    <a href="">On the way</a>' +
+        '    <a href="#">On the way</a>' +
         '</li>' +
         '<li>' +
         '   <i class="icon-text-document text-muted mr-1"></i>' +
-        '  <a href="">On the way</a>' +
+        '  <a href="#">On the way</a>' +
         '</li>' +
         '<li>' +
         '   <i class="icon-text-document text-muted mr-1"></i>' +
-        '  <a href="">On the way</a>' +
+        '  <a href="#">On the way</a>' +
         '</li>' +
         '</ul>' +
         '</div>' +
