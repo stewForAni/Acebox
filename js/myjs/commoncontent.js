@@ -13,7 +13,7 @@ var sigh_in_content = ' <div class="form-group">' +
     ' </div>' +
     '<div class="mb-3">' +
     '   <div class="custom-control custom-checkbox">' +
-    '      <input type="checkbox" class="custom-control-input" value="agree" name="agree-terms" id="check-agree">' +
+    '      <input type="checkbox" class="custom-control-input" value="agree" name="remember_me" id="check-agree">' +
     '     <label class="custom-control-label text-small" for="check-agree">Remember my password.</a>' +
     '    </label>' +
     '</div>' +
