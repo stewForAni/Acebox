@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>source test1</title>
+    <title>RESOURCE</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/mycss/theme.css" media="all">
@@ -11,7 +11,7 @@
     <script src="js/require.js"></script>
     <script type="text/javascript">
         requirejs(['./js/myjs/config'], function (common) {
-            requirejs(['./myjs/sourcere']);
+            requirejs(['./myjs/resource']);
         });
     </script>
 </head>
@@ -172,9 +172,30 @@
                             <div class="card card-sm">
                                 <ul class="list-group list-group-flush">
 
+
+
+                                    <li class="list-group-item">
+                                        测试音频1
+                                        <audio src="https://chimee.org/vod/1.mp4" controls>
+                                            此浏览器不支持video标签
+                                        </audio>
+                                    </li>
+                                    <li class="list-group-item">
+                                        测试音频2
+                                        <audio src="../video/1.mp4" controls>
+                                            此浏览器不支持video标签
+                                        </audio>
+                                    </li>
+
+
+                                    
                                 </ul>
                             </div>
                         </div>
+                    </div>
+                    <div class="float-right">
+                        <ul class="pagination pull-right">
+                        </ul>
                     </div>
                 </div>
                 <!--end of container-->
@@ -189,6 +210,10 @@
                                 </ul>
                             </div>
                         </div>
+                    </div>
+                    <div class="float-right">
+                        <ul class="pagination pull-right">
+                        </ul>
                     </div>
                 </div>
                 <!--end of container-->

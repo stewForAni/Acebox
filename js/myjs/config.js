@@ -1,10 +1,15 @@
 require.config({
-	baseUrl:"/acebox_test/js",
+	baseUrl:"/landi_acebox/js",
 	paths: {
 		"jquery":"jquery-3.3.1.min",
 		"bootstrap":"bootstrap.bundle.min",
-		"http":"./myjs/service/http",
-		"scroll":"./myjs/scrollre"
+		"http":"./service/http",
+		"scroll":"./myjs/scrollre",
+		"ajaxUtil":"./myjs/ajaxUtil",
+		"getData":"./app/commongetdata",
+		"commonData":"./app/commondata",
+		"setting":"./service/setting",
+		"commoncontent":"./myjs/commoncontent"
 	},
 	shim:{
 		"bootstrap":[
@@ -14,6 +19,15 @@ require.config({
 			"jquery"
 		],
 		"scroll":[
+			"jquery"
+		],
+		"ajaxUtil":[
+			"jquery"
+		],
+		"getData":[
+			"jquery"
+		],
+		"commoncontent":[
 			"jquery"
 		],
 	}

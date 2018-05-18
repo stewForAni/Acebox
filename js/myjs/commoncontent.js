@@ -91,6 +91,9 @@ var modal_text2 = "File error, must be .jpg or .png ! ";
 
 var modal_text3 = "Account or Password cannot be empty ! ";
 
+var modal_text4 = "UserName or Employee ID or Password cannot be empty ! ";
+
+
 
 function getModalContent(content) {
     var modalContent = '<div class="modal fade" id="myWarnModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +

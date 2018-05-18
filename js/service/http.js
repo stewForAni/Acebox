@@ -1,20 +1,19 @@
 define(function(require){
     var $ = require('jquery');
+    require('setting');
     return {
-        getList:getList
+        processData:processData
     }
 
-    function getList(url,type,page) {
+    function processData(url,type,data,contentType="application/json; charset=utf-8") {
         return $.ajax({
             crossDomain: true,
-            contentType: "application/json; charset=utf-8",
+            contentType: contentType,
             type: type,
-            url: url,
+            url: URI + url,
             cache: false,
-            data: {
-                "page": page,
-                "per-page": 3
-            }
+            data: data
         });
     }
+
 })
