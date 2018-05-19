@@ -1,21 +1,38 @@
 var containerId = "#edit_course_container";
 var file;
 var fileName;
+var currentPosition = 0;
+var currentLevelId = -1;
 
 
 $(document).ready(function() {
-
     $('#add_course_structure').click(function() {
         window.location.href = "addcourse.html";
     });
 
     getCourseLevelData();
-
+    setBackIconDeal();  
 });
 
 
-function getCourseLevelData() {
 
+function setBackIconDeal(){
+    $('#back').click(function() {
+        if(currentPosition == 1){
+           return false;
+        }else if(currentPosition == 2){
+           getCourseLevelData();
+        }else if(currentPosition == 3){
+           getPhase(currentLevelId);
+        }
+        return false;
+    });
+}
+
+
+
+function getCourseLevelData() {
+    currentPosition = 1;
     $.ajax({
         url: ACE_BASE_URL + ACE_GET_COURSE_LEVEL_DATA,
         type: "GET",
@@ -145,7 +162,19 @@ function doAddPhaseApi(item) {
 }
 
 
+
+
+
+
+
+
+
+
+
+
 function getPhase(pid) {
+    currentLevelId = pid;
+    currentPosition = 2;
     $.ajax({
         url: ACE_BASE_URL + ACE_GET_COURSE_PHASE_DATA + "?pid=" + pid,
         type: "GET",
@@ -296,6 +325,7 @@ function doAddLessonApi(item) {
 
 
 function getLesson(pid) {
+    currentPosition = 3;
     $.ajax({
         url: ACE_BASE_URL + ACE_GET_COURSE_LESSON_DATA + "?pid=" + pid + "&per-page=" + 30,
         type: "GET",

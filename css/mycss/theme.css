@@ -8271,6 +8271,27 @@ img.zoom-img {
     overflow-y: hidden !important;
 }
 
+.float-button {
+position: fixed;
+height: 48px;
+width: 48px;
+bottom: 120px;
+right: 50px;
+background: #4582EC;
+border-radius: 24px;
+box-shadow:2px 2px 5px #333333;
+}
 
+.float-button img{
+  width: 48px;
+  height: 48px;
+  position: relative;
+  padding: 14px;
+  cursor: pointer;
+  /*top: 50%;
+  left: 50%;
+  margin-top: -15px;
+  margin-left: -7px;*/
+}
 
 
