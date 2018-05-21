@@ -1,5 +1,5 @@
 require.config({
-	baseUrl:"/landi_acebox/js",
+	baseUrl:"./js",
 	paths: {
 		"jquery":"jquery-3.3.1.min",
 		"bootstrap":"bootstrap.bundle.min",
@@ -15,7 +15,7 @@ require.config({
 		"bootstrap":[
 			"jquery"
 		],
-		"https":[
+		"http":[
 			"jquery"
 		],
 		"scroll":[
