@@ -1,5 +1,5 @@
 require.config({
-	baseUrl:"/landi_acebox/js",
+	baseUrl:"./js",
 	paths: {
 		"jquery":"jquery-3.3.1.min",
 		"bootstrap":"bootstrap.bundle.min",
@@ -15,8 +15,8 @@ require.config({
 		"bootstrap":[
 			"jquery"
 		],
-		"https":[
-			"jquery"
+		"http":[
+			"jquery","setting"
 		],
 		"scroll":[
 			"jquery"
@@ -32,3 +32,8 @@ require.config({
 		],
 	}
 });
+
+
+//paths:只是明确引用js文件的路径
+
+//shim:只是明确依赖关系

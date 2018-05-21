@@ -4,9 +4,13 @@ define(function(require, exports,module){
         httpService = require('http'),
         scroll = require('scroll'),
         getData = require('getData');
-
-
+        
     require('ajaxUtil');
+
+
+
+
+
 
     var picture_api = "material/lists",
         video_api = "",
