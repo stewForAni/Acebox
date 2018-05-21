@@ -16,7 +16,7 @@ require.config({
 			"jquery"
 		],
 		"http":[
-			"jquery","setting"
+			"jquery"
 		],
 		"scroll":[
 			"jquery"
@@ -32,8 +32,3 @@ require.config({
 		],
 	}
 });
-
-
-//paths:只是明确引用js文件的路径
-
-//shim:只是明确依赖关系
