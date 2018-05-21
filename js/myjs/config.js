@@ -22,7 +22,7 @@ require.config({
 			"jquery"
 		],
 		"ajaxUtil":[
-			"jquery"
+			"jquery","http"
 		],
 		"getData":[
 			"jquery"
