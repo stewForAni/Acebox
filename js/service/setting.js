@@ -1,1 +1,1 @@
-var URI = 'http://api.acebox.abc360.work/v1/';
+var URI = 'http://dev-stew.landi.com/v1/';
