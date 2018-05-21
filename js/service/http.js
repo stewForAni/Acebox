@@ -1,6 +1,4 @@
 define(function(require){
-    var $ = require('jquery');
-    require('setting');
     return {
         processData:processData
     }
