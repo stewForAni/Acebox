@@ -25,6 +25,12 @@ $(document).ready(function() {
         return false;
     });
 
+
+    $("#log_out").click(function() {
+        logout();
+        return false;
+    });
+
 });
 
 function getLessonListContentData() {
@@ -286,7 +292,7 @@ function dealLessonLogData(data) {
 
         (function(data) {
             $("#version_download" + i).click(function() {
-                window.location.href =  data.download_files[0].file_path;
+                window.location.href = data.download_files[0].file_path;
                 return false;
             });
         })(data);

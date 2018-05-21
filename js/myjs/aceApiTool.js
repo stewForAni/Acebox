@@ -2,10 +2,10 @@
 
 
 
-var ACE_BASE_URL = "http://dev-stew.landi.com/v1/";
+var ACE_BASE_URL = "https://api.dev.landi.com/v1/";
 
 
-var ACE_BASE_IMG_URL = "http://dev-stew.landi.com/";
+var ACE_BASE_IMG_URL = "https://api.dev.landi.com/";
 
 
 //ace login
@@ -55,4 +55,25 @@ var ACE_SUBMIT_TEST = "course/coursewares";
 var ACE_CHOOSE_COURSEWARE = "course/courseware-file-lists";
 
 var ACE_CHANGE_STATE = "course/courseware-verifications";
+
+
+
+
+//logout
+var ACE_LOG_OUT = "auth/logouts";
+
+function logout(){
+	 $.ajax({
+        url: ACE_BASE_URL + ACE_LOG_OUT,
+        type: "GET",
+        contentType:"application/json; charset=UTF-8",
+        success: function(result) {
+        	window.location.replace("index.html");
+            console.log("2222222");
+        },
+        error: function(e) {
+            console.log("333333");
+        }
+    });
+}
 

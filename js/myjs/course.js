@@ -11,19 +11,24 @@ $(document).ready(function() {
     });
 
     getCourseLevelData();
-    setBackIconDeal();  
+    setBackIconDeal();
+
+    $("#log_out").click(function() {
+        logout();
+        return false;
+    });
 });
 
 
 
-function setBackIconDeal(){
+function setBackIconDeal() {
     $('#back').click(function() {
-        if(currentPosition == 1){
-           return false;
-        }else if(currentPosition == 2){
-           getCourseLevelData();
-        }else if(currentPosition == 3){
-           getPhase(currentLevelId);
+        if (currentPosition == 1) {
+            return false;
+        } else if (currentPosition == 2) {
+            getCourseLevelData();
+        } else if (currentPosition == 3) {
+            getPhase(currentLevelId);
         }
         return false;
     });

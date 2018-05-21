@@ -1,5 +1,12 @@
 $(document).ready(function() {
     getMainContentData();
+
+    $("#log_out").click(function() {
+        logout();
+        return false;
+    });
+
+
 });
 
 
@@ -16,6 +23,8 @@ function getMainContentData() {
             console.log("333333");
         }
     });
+
+
 
 }
 
