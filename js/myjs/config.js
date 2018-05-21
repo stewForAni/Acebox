@@ -16,7 +16,7 @@ require.config({
 			"jquery"
 		],
 		"http":[
-			"jquery"
+			"jquery","setting"
 		],
 		"scroll":[
 			"jquery"
