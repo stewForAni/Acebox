@@ -1,14 +1,10 @@
 define(function(require, exports, module) {
     require('bootstrap');
-    var $ = require('jquery'),
-        httpService = require('http'),
-        scroll = require('scroll'),
-        getData = require('getData');
-
+    var $ = require('jquery');
+    var httpService = require('http');
+    var scroll = require('scroll');
+    var getData = require('getData');
     require('ajaxUtil');
-
-
-
 
 
 
