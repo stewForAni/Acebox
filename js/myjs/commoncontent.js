@@ -42,7 +42,7 @@ var sigh_up_content = ' <div class="form-group">' +
     '    </label>' +
     '</div>' +
     '</div>' +
-    '<button type="submit" class="btn btn-lg btn-success btn-block" id="register">Sign up for Wingman</button>';
+    '<button type="submit" class="btn btn-lg btn-success btn-block" id="register">Sign up for Acebox</button>';
 
 
 

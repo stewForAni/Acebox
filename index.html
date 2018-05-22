@@ -10,8 +10,14 @@
     <link rel="stylesheet" href="css/mycss/theme.css" media="all">
     <link rel="stylesheet" href="css/mycss/entypo.css" media="all">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,400i,500" rel="stylesheet">
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+ 
+    <script src="js/require.js"></script>
+    <script type="text/javascript">
+    requirejs(['js/myjs/config'], function(common) {
+        requirejs('js/myjs/login.js');
+    });
+    </script>
+    
 </head>
 
 <body>
@@ -34,7 +40,7 @@
                     </button>
                     <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                         <ul class="navbar-nav">
-                               <li class="nav-item">
+                            <li class="nav-item">
                                 <a href="course.html" class="nav-link">Course</a>
                             </li>
                             <li class="nav-item">

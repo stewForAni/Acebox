@@ -1,8 +1,9 @@
 require.config({
-	baseUrl:"./js",
+	baseUrl:"js",
 	paths: {
 		"jquery":"jquery-3.3.1.min",
-		"bootstrap":"bootstrap.bundle.min",
+		"bootstrap":"bootstrap.bundle.min", //包含了popper
+
 		"http":"./service/http",
 		"scroll":"./myjs/scrollre",
 		"ajaxUtil":"./myjs/ajaxUtil",
