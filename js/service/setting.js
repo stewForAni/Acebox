@@ -1,1 +1,1 @@
-var URI = 'http://dev-stew.landi.com/v1/';
+var URI = 'Https://api.dev.landi.com/v1/';
