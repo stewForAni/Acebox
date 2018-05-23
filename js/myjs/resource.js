@@ -42,7 +42,17 @@ define(function(require, exports, module) {
             if (currentLevelid != "0") {
                 for (var i = 0; i < level_length; i++) {
                     if (currentLevelid == level_data[i].id) {
+                        $('#select_stage').empty();
+                        $('#select_stage').append('<option value="0" selected>Select Stage</option>');
                         var stage_data = level_data[i].child;
+                        var stage_length = stage_data.length;
+                        for (var j = 0; j < stage_length; j++) {
+                            var data = stage_data[i];
+                            var stage_data_name = data.title;
+                            var stage_data_id = data.id;
+                            var options = '<option value=' + stage_data_id + '>' + stage_data_name + '</option>';
+                            $('#select_stage').append(options);
+                        }
                     }
                 }
             }
