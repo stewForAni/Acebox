@@ -32,6 +32,9 @@ var ACE_CHOOSE_COURSEWARE = "course/courseware-file-lists";
 var ACE_CHANGE_STATE = "course/courseware-verifications";
 //logout
 var ACE_LOG_OUT = "auth/logouts";
+//ace_get_struct
+var ACE_GET_ALL_STRUCT = "return-all-course-classifications";
+
 
 function logout(){
 	 $.ajax({
@@ -40,10 +43,8 @@ function logout(){
         contentType:"application/json; charset=UTF-8",
         success: function(result) {
         	window.location.replace("index.html");
-            console.log("2222222");
         },
         error: function(e) {
-            console.log("333333");
         }
     });
 }

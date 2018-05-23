@@ -10,7 +10,7 @@ define(function(require, exports, module) {
     var currentId;
     var lessonArray = new Array();
     var containerId = "#lesson_main_container";
-    
+
     init();
 
     function init() {
@@ -41,8 +41,7 @@ define(function(require, exports, module) {
             success: function(result) {
                 dealLessonListContentData(result);
             },
-            error: function(e) {
-            }
+            error: function(e) {}
         });
     }
 
@@ -54,8 +53,7 @@ define(function(require, exports, module) {
             success: function(result) {
                 showUploadModal(result);
             },
-            error: function(e) {
-            }
+            error: function(e) {}
         });
     }
 
@@ -136,6 +134,7 @@ define(function(require, exports, module) {
                     return false;
                 });
             })(item, i);
+
             lessonArray.push("#lesson_" + i);
         }
         if (lesson_length > 0) {
@@ -157,8 +156,7 @@ define(function(require, exports, module) {
                 dealLessonLogData(result);
                 $('html,body').animate({ scrollTop: 0 }, 200);
             },
-            error: function(e) {
-            }
+            error: function(e) {}
         });
     }
 

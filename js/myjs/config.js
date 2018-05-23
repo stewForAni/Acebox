@@ -15,7 +15,6 @@ require.config({
         "bootstrap": [
             "jquery"
         ],
-
         "scrollbartool": [
             "jquery"
         ],
