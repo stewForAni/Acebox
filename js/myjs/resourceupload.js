@@ -47,8 +47,8 @@ define(function(require, exports, module) {
                         reader.onload = function(e) {
                             html = html + '<div class="col-6 col-md-4 col-lg-3" id="uploadList_' + i + '" style="float:left; position:relative;margin-top:20px">' +
                                 '<img id="uploadImage_' + i + '" src="' + e.target.result + '" style="height:100px;width:100px"/>' +
-                                '<br />' + filename +
-                                '<br /><a href="javascript:" class="upload_delete" title="delete" data-index="' + i + '">delete</a>' +
+                                '<br/>' + filename +
+                                '<br/><a href="javascript:" class="upload_delete" title="delete" data-index="' + i + '"><i class="icon-trash display-12 opacity-60"></i> delete</a>' +
                                 '<span id="uploadProgress_' + i + '" class="upload_progress" style="display:none; padding:5px; border-radius:10px; color:#fff; background-color:rgba(0,0,0,.6); position:absolute; left:25px; top:45px;"></span>' +
                                 '</div>';
 
