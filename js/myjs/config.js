@@ -9,7 +9,8 @@ require.config({
         "ajaxUtil": "http/ajaxUtil",
         "aceApiTool": "http/aceApiTool",
         "getData": "app/commongetdata",
-        "commoncontent": "myjs/commoncontent"
+        "commoncontent": "myjs/commoncontent",
+        "zxxFile":"zxxFile"
     },
     shim: {
         "bootstrap": [

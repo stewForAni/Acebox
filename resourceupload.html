@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>ACERESOURCE</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="Bookmark" href="images/a.ico" />
+    <link rel="Shortcut Icon" href="images/a.ico" />
+    <link rel="stylesheet" href="css/mycss/theme.css">
+    <link rel="stylesheet" href="css/mycss/entypo.css">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,400i,500" rel="stylesheet">
+    <script src="js/require.js"></script>
+    <script type="text/javascript">
+    requirejs(['js/myjs/config'], function(common) {
+        requirejs(['myjs/resourceupload']);
+    });
+    </script>
+    <style>
+    body {
+        background-image: url("images/mainbg.png");
+        background-repeat: repeat;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="nav-container" style="position: fixed;width: 100%;z-index: 10000">
+        <div class="bg-dark navbar-dark">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="main.html">
+                             <img src="images/white_logo.png" style="height: 20px;margin-bottom: 7px">
+                        </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="icon-menu h4"></i>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="course.html" class="nav-link">Course</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="resource.html" class="nav-link">Resource</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="module.html" class="nav-link">Module</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="user.html" class="nav-link">User</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="" class="nav-link" id="log_out"><i class="icon-log-out"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end nav collapse-->
+                </nav>
+            </div>
+            <!--end of container-->
+        </div>
+        <nav aria-label="breadcrumb" role="navigation" class="bg-primary text-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="main.html">Home</a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="resource.html">Resource</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">Upload</li>
+                        </ol>
+                    </div>
+                    <!--end of col-->
+                </div>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </nav>
+    </div>
+    <div class="main-container" id="resource_container" style="position: relative;">
+        <section class="flush-with-above">
+            <div class="container" style="margin-top: 100px">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-10 col-lg-10">
+                        <div class="card card-lg text-center">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="mb-4">
+                                            <h2 class="mb-2">Resource Upload</h2>
+                                            <span>You can choose files or drag files to upload,select the type of file before upload.</span>
+                                        </div>
+                                        <div class="row no-gutters justify-content-center">
+                                            <div class="col">
+                                                <label class="custom-file mb-2" for="fileImage">
+                                                    <input type="file" id="fileImage" class="custom-file-input height-xs" multiple accept="image/jpeg,image/png,image/gif">
+                                                    <span class="btn btn-primary " id="fileImage">Choose to upload</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <!--end of row-->
+                                        <div id="fileDragArea" class="bg-secondary justify-content-center align-items-center" style="display: flex; height: 200px;border-style:dashed;border-radius: 5px;border-width: 2px;border-color: #aaaaaa;">Or drag file to here</span>
+                                        </div>
+                                        <div id="preview" style="margin-top: 20px"></div>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <span class="btn btn-primary " id="fileSubmit" style="display: none; margin-top: 20px"><i class="icon-upload-to-cloud"></i> Confirm Upload</span>
+                                    <div id="uploadInf"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--end of col-->
+                </div>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </section>
+        <!--end of section-->
+        <footer class="footer-short">
+            <div class="container">
+                <hr>
+                <nav class="row justify-content-between align-items-center">
+                    <div class="col-auto">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a href="#">
+                                        <img src="images/blue_logo.png" style="height: 20px;margin-bottom: 8px">
+                                    </a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">Overview</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">Documentation</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">Changelog</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end of col-->
+                    <div class="col-auto text-sm-right">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a href="#"><i class="socicon-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#"><i class="socicon-facebook"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end of col-->
+                </nav>
+                <!--end of row-->
+                <div class="row">
+                    <div class="col">
+                        <small>&copy; 2018 Acebox All Rights Reserved</small>
+                    </div>
+                    <!--end of col-->
+                </div>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </footer>
+    </div>
+</body>
