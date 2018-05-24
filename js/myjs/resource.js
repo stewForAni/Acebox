@@ -5,13 +5,16 @@ define(function(require, exports, module) {
     require('aceApiTool');
     require('commoncontent');
 
-    var currentLevelid;
-    var currentStageid;
-    var currentLessonid;
+    var currentLevelid = 0;
+    var currentStageid = 0;
+    var currentLessonid = 0;
 
     init();
 
     function init() {
+        $('#select_level').empty();
+        $('#select_level').append('<option value="0" selected>Select Level</option>');
+        reset();
         getdata();
     }
 
@@ -42,61 +45,88 @@ define(function(require, exports, module) {
         }
 
         $("#select_level").change(function() {
-            currentLevelid = $(this).children('option:selected').val()
+            currentLevelid = $(this).children('option:selected').val();
             if (currentLevelid != "0") {
                 for (var k = 0; k < level_length; k++) {
                     if (currentLevelid == level_data[k].id) {
-                        $('#select_stage').empty();
-                        $('#select_stage').append('<option value="0" selected>Select Stage</option>');
-
-                        $('#select_lesson').empty();
-                        $('#select_lesson').append('<option value="0" selected>Select Lesson</option>');
+                        reset();
                         current_stage_data = level_data[k].child;
                         current_stage_length = current_stage_data.length;
                         for (var j = 0; j < current_stage_length; j++) {
-                            var prestagedata = current_stage_data[j];
-                            var stage_data_name = prestagedata.title;
-                            var stage_data_id = prestagedata.id;
-                            var options = '<option value=' + stage_data_id + '>' + stage_data_name + '</option>';
+                            var options = '<option value=' + current_stage_data[j].id + '>' + current_stage_data[j].title + '</option>';
                             $('#select_stage').append(options);
                         }
                     }
                 }
             } else {
-                $('#select_stage').empty();
-                $('#select_stage').append('<option value="0" selected>Select Stage</option>');
-
-                $('#select_lesson').empty();
-                $('#select_lesson').append('<option value="0" selected>Select Lesson</option>');
+                reset()
             }
         });
 
 
 
         $("#select_stage").change(function() {
-            currentStageid = $(this).children('option:selected').val()
+            currentStageid = $(this).children('option:selected').val();
             if (currentStageid != "0") {
                 for (var t = 0; t < current_stage_length; t++) {
                     if (currentStageid == current_stage_data[t].id) {
-                        $('#select_lesson').empty();
-                        $('#select_lesson').append('<option value="0" selected>Select Lesson</option>');
+                        reset_2();
                         var lesson_data = current_stage_data[t].child;
                         var lesson_length = lesson_data.length;
                         for (var k = 0; k < lesson_length; k++) {
-                            var prelessondata = lesson_data[k];
-                            var lesson_data_name = prelessondata.title;
-                            var lesson_data_id = prelessondata.id;
-                            var optionls = '<option value=' + lesson_data_id + '>' + lesson_data_name + '</option>';
+                            var optionls = '<option value=' + lesson_data[k].id + '>' + lesson_data[k].title + '</option>';
                             $('#select_lesson').append(optionls);
                         }
                     }
                 }
             } else {
-                $('#select_lesson').empty();
-                $('#select_lesson').append('<option value="0" selected>Select Lesson</option>');
+                reset_2();
             }
         });
 
+
+        $("#select_lesson").change(function() {
+            currentLessonid = $(this).children('option:selected').val();
+            console.log(currentLevelid);
+            console.log(currentStageid);
+            console.log(currentLessonid);
+        });
+
+
+        $('#uploadsth').click(function() {
+            if (currentLessonid != 0) {
+                window.location.href = "resourceupload.html"+"?id="+currentLessonid;
+            } else {
+                showModal("#resource_container", "Please choose the right lesson ! ");
+            }
+
+            return false;
+        });
+
+
+        $('#downloadsth').click(function() {
+            if (currentLessonid != 0) {
+                window.location.href = "resourceshow.html"+"?id="+currentLessonid;
+            } else {
+                showModal("#resource_container", "Please choose the right lesson ! ");
+            }
+
+            return false;
+        });
+
+    }
+
+
+    function reset() {
+        $('#select_stage').empty();
+        $('#select_stage').append('<option value="0" selected>Select Stage</option>');
+        $('#select_lesson').empty();
+        $('#select_lesson').append('<option value="0" selected>Select Lesson</option>');
+    }
+
+    function reset_2() {
+        $('#select_lesson').empty();
+        $('#select_lesson').append('<option value="0" selected>Select Lesson</option>');
     }
 
 });
