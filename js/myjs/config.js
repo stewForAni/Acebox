@@ -10,7 +10,7 @@ require.config({
         "aceApiTool": "http/aceApiTool",
         "getData": "app/commongetdata",
         "commoncontent": "myjs/commoncontent",
-        "zxxFile":"zxxFile"
+        "multifileupload":"multifileupload"
     },
     shim: {
         "bootstrap": [

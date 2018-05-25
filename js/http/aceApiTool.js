@@ -1,7 +1,7 @@
 //ace-API-configuration
 
-var ACE_BASE_URL = "https://api.dev.landi.com/v1/";
-var ACE_BASE_IMG_URL = "https://api.dev.landi.com/";
+var ACE_BASE_URL = "https://stew-api.dev.landi.com/v1/";
+var ACE_BASE_IMG_URL = "https://stew-api.dev.landi.com/";
 //ace login
 var ACE_LOGIN_API = "auth/logins";
 //ace_upload
@@ -34,6 +34,10 @@ var ACE_CHANGE_STATE = "course/courseware-verifications";
 var ACE_LOG_OUT = "auth/logouts";
 //ace_get_struct
 var ACE_GET_ALL_STRUCT = "return-all-course-classifications";
+//ace_upload_resource
+var ACE_UPLOAD_RESOURCE = "uploadfiles";
+//ace_add_upload_resource_record
+var ACE_ADD_ADD_RESOURCE_RECORD = "material/lists";
 
 
 function logout(){

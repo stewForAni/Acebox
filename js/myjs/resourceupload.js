@@ -4,7 +4,7 @@ define(function(require, exports, module) {
     require('ajaxUtil');
     require('aceApiTool');
     require('commoncontent');
-    require('zxxFile');
+    require('multifileupload');
 
     init();
 
@@ -13,16 +13,16 @@ define(function(require, exports, module) {
             fileInput: $("#fileImage").get(0),
             dragDrop: $("#fileDragArea").get(0),
             upButton: $("#fileSubmit").get(0),
-            url: $("#uploadForm").attr("action"),
+            url: ACE_BASE_URL + ACE_UPLOAD_RESOURCE,
             filter: function(files) {
                 var arrFiles = [];
                 for (var i = 0, file; file = files[i]; i++) {
                     if (file.type.indexOf("image") == 0) {
-                        if (file.size >= 512000) {
-                            alert('您这张"' + file.name + '"图片大小过大，应小于500k');
-                        } else {
-                            arrFiles.push(file);
-                        }
+                        // if (file.size >= 512000) {
+                        //     alert('您这张"' + file.name + '"图片大小过大，应小于500k');
+                        // } else {
+                        arrFiles.push(file);
+                        // }
                     } else {
                         alert('文件"' + file.name + '"不是图片。');
                     }
@@ -38,15 +38,15 @@ define(function(require, exports, module) {
                         var reader = new FileReader()
                         var filename = "";
                         if (file.name.length > 12) {
-                            filename = file.name.substring(0, 12) + "...";
-                        }else{
+                            filename = file.name.substring(0, 10) + "...";
+                        } else {
                             filename = file.name;
                         }
 
 
                         reader.onload = function(e) {
                             html = html + '<div class="col-6 col-md-4 col-lg-3" id="uploadList_' + i + '" style="float:left; position:relative;margin-top:20px">' +
-                                '<img id="uploadImage_' + i + '" src="' + e.target.result + '" style="height:100px;width:100px"/>' +
+                                '<img id="uploadImage_' + i + '" src="' + e.target.result + '" style="height:100px;width:100px;border-radius:5px;box-shadow: 1px 1px 1px #666666;object-fit:cover;"/>' +
                                 '<br/>' + filename +
                                 '<br/><a href="javascript:" class="upload_delete" title="delete" data-index="' + i + '"><i class="icon-trash display-12 opacity-60"></i> delete</a>' +
                                 '<span id="uploadProgress_' + i + '" class="upload_progress" style="display:none; padding:5px; border-radius:10px; color:#fff; background-color:rgba(0,0,0,.6); position:absolute; left:25px; top:45px;"></span>' +
@@ -105,8 +105,8 @@ define(function(require, exports, module) {
                 $("#uploadInf").append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
             }
         };
-        ZXXFILE = $.extend(ZXXFILE, params);
-        ZXXFILE.init();
+        MFUpload = $.extend(MFUpload, params);
+        MFUpload.init();
     }
 
 
