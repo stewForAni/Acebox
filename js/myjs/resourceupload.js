@@ -61,7 +61,7 @@ define(function(require, exports, module) {
                         if (html) {
                             //删除方法
                             $(".upload_delete").click(function() {
-                                ZXXFILE.funDeleteFile(files[parseInt($(this).attr("data-index"))]);
+                                MFUpload.funDeleteFile(files[parseInt($(this).attr("data-index"))]);
                                 return false;
                             });
                             //提交按钮显示
@@ -76,7 +76,7 @@ define(function(require, exports, module) {
             },
             onDelete: function(file) {
                 $("#uploadList_" + file.index).fadeOut();
-                $('#uploadForm')[0].reset();
+                // $('#uploadForm')[0].reset();
             },
             onDragOver: function() {
                 $(this).addClass("upload_drag_hover");
@@ -100,7 +100,7 @@ define(function(require, exports, module) {
                 //提交按钮隐藏
                 $("#fileSubmit").hide();
                 //file控件value置空
-                $('#uploadForm')[0].reset();
+                // $('#uploadForm')[0].reset();
                 // 成功提示
                 $("#uploadInf").append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
             }
