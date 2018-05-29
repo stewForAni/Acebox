@@ -1,7 +1,17 @@
 //ace-API-configuration
 
+
+//外网
 var ACE_BASE_URL = "https://stew-api.dev.landi.com/v1/";
 var ACE_BASE_IMG_URL = "https://stew-api.dev.landi.com/";
+
+
+//内网
+var ACE_BASE_URL = "https://api.dev.landi.com/v1/";
+var ACE_BASE_IMG_URL = "https://api.dev.landi.com/";
+
+
+
 //ace login
 var ACE_LOGIN_API = "auth/logins";
 //ace_upload

@@ -18,11 +18,7 @@ define(function(require, exports, module) {
                 var arrFiles = [];
                 for (var i = 0, file; file = files[i]; i++) {
                     if (file.type.indexOf("image") == 0) {
-                        // if (file.size >= 512000) {
-                        //     alert('您这张"' + file.name + '"图片大小过大，应小于500k');
-                        // } else {
                         arrFiles.push(file);
-                        // }
                     } else {
                         alert('文件"' + file.name + '"不是图片。');
                     }
@@ -42,7 +38,6 @@ define(function(require, exports, module) {
                         } else {
                             filename = file.name;
                         }
-
 
                         reader.onload = function(e) {
                             html = html + '<div class="col-6 col-md-4 col-lg-3" id="uploadList_' + i + '" style="float:left; position:relative;margin-top:20px">' +
@@ -76,7 +71,6 @@ define(function(require, exports, module) {
             },
             onDelete: function(file) {
                 $("#uploadList_" + file.index).fadeOut();
-                // $('#uploadForm')[0].reset();
             },
             onDragOver: function() {
                 $(this).addClass("upload_drag_hover");
@@ -97,11 +91,7 @@ define(function(require, exports, module) {
                 $("#uploadImage_" + file.index).css("opacity", 0.2);
             },
             onComplete: function() {
-                //提交按钮隐藏
                 $("#fileSubmit").hide();
-                //file控件value置空
-                // $('#uploadForm')[0].reset();
-                // 成功提示
                 $("#uploadInf").append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
             }
         };

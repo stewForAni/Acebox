@@ -93,13 +93,27 @@
                                             <h2 class="mb-2">Resource Upload</h2>
                                             <span>You can choose files or drag files to upload,select the type of file before upload.</span>
                                         </div>
-                                        <div class="row no-gutters justify-content-center">
-                                            <div class="col">
+                                        <div class="row no-gutters justify-content-between">
+
+                                            <div class="col-12 col-md-4 col-lg-3">
                                                 <label class="custom-file mb-2" for="fileImage">
                                                     <input type="file" id="fileImage" class="custom-file-input height-xs" multiple="multiple">
                                                     <span class="btn btn-primary " id="fileImage">Choose to upload</span>
                                                 </label>
                                             </div>
+
+                                            <div class="col-12 col-md-4 col-lg-3">
+                                                <form class="d-flex align-items-center">
+                                                    <select class="custom-select" id="select_file_type">
+                                                        <option value="0" selected>Select File Type</option>
+                                                        <option value="1">Image (.png)</option>
+                                                        <option value="2">Animation (.png/.atlas/.json)</option>
+                                                        <option value="3">Audio (.mp3)</option>
+                                                        <option value="4">Video (.mp4)</option>
+                                                    </select>
+                                                </form>
+                                            </div>
+
                                         </div>
                                         <!--end of row-->
                                         <div id="fileDragArea" class="bg-secondary justify-content-center align-items-center" style="display: flex; height: 200px;border-style:dashed;border-radius: 5px;border-width: 2px;border-color: #aaaaaa;">Or drag file to here</span>
