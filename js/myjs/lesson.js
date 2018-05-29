@@ -12,6 +12,7 @@ define(function(require, exports, module) {
     var containerId = "#lesson_main_container";
 
     init();
+    initCatalog();
 
     function init() {
         var url = location.search;
@@ -22,18 +23,14 @@ define(function(require, exports, module) {
                 obj[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
             }
         }
+
         id = obj.pid;
         getLessonListContentData();
-        $("#upload_btn").click(function() {
-            getCoursewareList();
-            return false;
-        });
+
         $("#log_out").click(function() {
             logout();
             return false;
         });
-
-        initCatalog();
     }
 
     function getLessonListContentData() {
@@ -117,6 +114,11 @@ define(function(require, exports, module) {
         var lesson_data = data.data.items;
         var lesson_length = data.data.items.length;
         $("#lesson_list").html("");
+        $("#log_list").html("");
+        $('#card_title').html("");
+        $('#card_self').hide();
+
+
         for (var i = 0; i < lesson_length; i++) {
             var item = lesson_data[i];
             var lesson_list_item = '<a class="list-group-item d-flex justify-content-between" id="lesson_' + i + '" >' +
@@ -139,6 +141,7 @@ define(function(require, exports, module) {
 
             lessonArray.push("#lesson_" + i);
         }
+
         if (lesson_length > 0) {
             showLessonLog(lesson_data[0], 0);
             currentPosition = 0;
@@ -149,6 +152,14 @@ define(function(require, exports, module) {
         if (currentPosition == position) {
             return;
         }
+
+        var cartitle = ' <div>' +
+            '           <h5 id="lesson_title"></h5>' +
+            '       </div>' +
+            '      <button class="btn btn-primary" id="upload_btn"><i class="icon-retweet mr-1"></i>Submit Test</button>';
+        $('#card_self').show();
+        $('#card_title').html(cartitle);
+
         setCurrentPositionColor(position);
         currentId = item.id;
         $.ajax({
@@ -159,6 +170,12 @@ define(function(require, exports, module) {
                 $('html,body').animate({ scrollTop: 0 }, 200);
             },
             error: function(e) {}
+        });
+
+
+        $("#upload_btn").click(function() {
+            getCoursewareList();
+            return false;
         });
     }
 
@@ -378,49 +395,17 @@ define(function(require, exports, module) {
             }
         });
 
-
-
         $("#select_stage").change(function() {
             currentStageid = $(this).children('option:selected').val();
-            if (currentStageid != "0") {
-                for (var t = 0; t < current_stage_length; t++) {
-                    if (currentStageid == current_stage_data[t].id) {
-                        reset_2();
-                        var lesson_data = current_stage_data[t].child;
-                        var lesson_length = lesson_data.length;
-                        for (var k = 0; k < lesson_length; k++) {
-                            var optionls = '<option value=' + lesson_data[k].id + '>' + lesson_data[k].title + '</option>';
-                            $('#select_lesson').append(optionls);
-                        }
-                    }
-                }
-            } else {
-                reset_2();
-            }
         });
 
-
-        $("#select_lesson").change(function() {
-            currentLessonid = $(this).children('option:selected').val();
-        });
-
-
-        $('#uploadsth').click(function() {
-            if (currentLessonid != 0) {
-                window.location.href = "resourceupload.html" + "?id=" + currentLessonid;
+        $('#switch_btn').click(function() {
+            if (currentStageid != 0) {
+                id = currentStageid;
+                currentPosition = -1;
+                getLessonListContentData();
             } else {
-                showModal("#resource_container", "Please choose the right lesson ! ");
-            }
-
-            return false;
-        });
-
-
-        $('#downloadsth').click(function() {
-            if (currentLessonid != 0) {
-                window.location.href = "resourceshow.html" + "?id=" + currentLessonid;
-            } else {
-                showModal("#resource_container", "Please choose the right lesson ! ");
+                showModal(containerId, "Select Error !");
             }
 
             return false;
@@ -440,4 +425,5 @@ define(function(require, exports, module) {
         $('#select_lesson').empty();
         $('#select_lesson').append('<option value="0" selected>Select Lesson</option>');
     }
+
 });
