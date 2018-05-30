@@ -46,33 +46,33 @@ var sigh_up_content = ' <div class="form-group">' +
 
 
 
-    var continueContent = '<div class="col-12 col-sm-6 col-md-4">' +
-        '<div class="card card-lg">' +
-        ' <img class="card-img-top" src="images/wait.jpg" alt="Pit Stop">' +
-        '  <div class="card-body">' +
-        '     <h4 class="card-title">To be continued</h4>' +
-        '    <p class="card-text">More course series Stay tuned and check out our great new courses here!</p>' +
-        '   <ul class="list-unstyled list-spacing-sm">' +
-        '      <li>' +
-        '         <i class="icon-text-document text-muted mr-1"></i>' +
-        '        <a href="#">On the way</a>' +
-        '   </li>' +
-        '  <li>' +
-        '     <i class="icon-text-document text-muted mr-1"></i>' +
-        '    <a href="#">On the way</a>' +
-        '</li>' +
-        '<li>' +
-        '   <i class="icon-text-document text-muted mr-1"></i>' +
-        '  <a href="#">On the way</a>' +
-        '</li>' +
-        '<li>' +
-        '   <i class="icon-text-document text-muted mr-1"></i>' +
-        '  <a href="#">On the way</a>' +
-        '</li>' +
-        '</ul>' +
-        '</div>' +
-        '</div>' +
-        '</div>';
+var continueContent = '<div class="col-12 col-sm-6 col-md-4">' +
+    '<div class="card card-lg">' +
+    ' <img class="card-img-top" src="images/wait.jpg" alt="Pit Stop">' +
+    '  <div class="card-body">' +
+    '     <h4 class="card-title">To be continued</h4>' +
+    '    <p class="card-text">More course series Stay tuned and check out our great new courses here!</p>' +
+    '   <ul class="list-unstyled list-spacing-sm">' +
+    '      <li>' +
+    '         <i class="icon-text-document text-muted mr-1"></i>' +
+    '        <a href="#">On the way</a>' +
+    '   </li>' +
+    '  <li>' +
+    '     <i class="icon-text-document text-muted mr-1"></i>' +
+    '    <a href="#">On the way</a>' +
+    '</li>' +
+    '<li>' +
+    '   <i class="icon-text-document text-muted mr-1"></i>' +
+    '  <a href="#">On the way</a>' +
+    '</li>' +
+    '<li>' +
+    '   <i class="icon-text-document text-muted mr-1"></i>' +
+    '  <a href="#">On the way</a>' +
+    '</li>' +
+    '</ul>' +
+    '</div>' +
+    '</div>' +
+    '</div>';
 
 
 
@@ -647,4 +647,18 @@ function AddSeperator(data) {
             result = result + c;
     }
     return result;
+}
+
+
+
+
+function getTime(timestamp) {
+    var date = new Date(timestamp * 1000);
+    var Y = date.getFullYear() + '/';
+    var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '/';
+    var D = date.getDate() + ' ';
+    var h = date.getHours() + ':';
+    var m = (date.getMinutes() < 10 ? '0' + (date.getMinutes()) : date.getMinutes());
+    // var s = date.getSeconds();
+    return Y + M + D + h + m;
 }

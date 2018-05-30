@@ -229,7 +229,7 @@ define(function(require, exports, module) {
                 '<div class="media-body">' +
                 '<div>' +
                 '<span class="text-muted text-small">' + data.author_name + '</span>' +
-                '<h6 class="h6 mb-1">' + data.remark + " 【" + data.name + "】" + '<li id="have_bug' + i + '" class="list-inline-item" style="background-color:#d9534f;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer;color:white"><i class = "icon-eye" style="color:white" > </i> bugs</li></h6>' +
+                '<h6 class="h6 mb-1">' + data.remark + " 【" + data.name + "】" + '</h6>' +
                 '<ul class="list-inline text-small text-muted">' +
                 '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;">ID : ' + data.id + '</li>' +
                 '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer" id="version_download' + i + '"><i class = "icon-download" style="color:#4582EC"> </i> Ver : ' + data.version + '</li>' +
@@ -242,53 +242,44 @@ define(function(require, exports, module) {
                 '</div>' +
                 '</div>' +
                 '</a>' +
-                ' <div class="collapse" id="comment-reply' + i + '">' +
-                '   <form class="card-body">' +
-                '  <div class="form-group">' +
-                '    <textarea class="form-control from-control-lg" id="comment-reply-text" name="comment-reply" rows="2" placeholder="Type your comments here"></textarea>' +
-                '  </div>' +
-                ' <div class="d-flex align-items-center" style="float:right">' +
 
-                '   <a href="#comment-reply' + i + '" class="text-small text-muted" data-toggle="collapse" aria-expanded="true" aria-controls="comment-reply' + i + '"> <button class="btn btn-secondary mr-3">Cancel</button></a>' +
-                '   <button class="btn btn-primary">Comments</button>' +
-
-                ' </div>' +
+                '<div class="collapse" id="comment-reply' + i + '"  style="background-color:#f9f9f9;">' +
+                '<form class="card-body">' +
+                '<div class="form-group">' +
+                '<textarea class="form-control from-control-lg" id="comment-reply-text' + i + '" name="comment-reply" rows="2" placeholder="Type your comments here"></textarea>' +
+                '</div>' +
+                '<div class="d-flex align-items-center" style="float:right">' +
+                '<a href="#comment-reply' + i + '" class="text-small text-muted" data-toggle="collapse" aria-expanded="true" aria-controls="comment-reply' + i + '"> <button class="btn btn-secondary mr-3">Cancel</button></a>' +
+                '<button class="btn btn-primary" id="comment' + i + '">Comments</button>' +
+                '</div>' +
                 '</form>' +
                 '</div>' +
-                '<ul class="list-group list-group-flush list-group-comments">' +
-                '<li class="list-group-item py-1">' +
-                '<div class="media">' +
-                '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs" />' +
-                '<div class="media-body">' +
-                '<span class="text-muted text-small">stew</span>' +
-                '<small style="margin-left:10px">1st Dec 2017 • 10:15am</small><br/>' +
-                '<small>第一页，小熊动画失效，无法正常播放。</small>' +
-                '</div>' +
-                '</div>' +
-                '</li>' +
-                 '<li class="list-group-item py-1">' +
-                '<div class="media">' +
-                '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs" />' +
-                '<div class="media-body">' +
-                '<span class="text-muted text-small">stew</span>' +
-                '<small style="margin-left:10px">1st Dec 2017 • 10:15am</small><br/>' +
-                '<small>第一页，小熊动画失效，无法正常播放。</small>' +
-                '</div>' +
-                '</div>' +
-                '</li>' +
-                '</ui>';
-            $('#log_list').append(log_content);
-            if (isEmpty(data.bug)) {
-                $('#have_bug' + i).hide();
-            } else {
-                (function(data) {
-                    $('#have_bug' + i).click(function() {
-                        showViewBugsModal(containerId, AddSeperator(data.bug));
-                        return false;
-                    });
-                })(data);
+                '<ul class="list-group list-group-flush list-group-comments" id="comment_list' + i + '">' +
+                '</ul>';
 
+
+            $('#log_list').append(log_content);
+
+            var commentList = data.comments;
+            var commentLength = data.comments.length;
+
+            for (var j = 0; j < commentLength; j++) {
+                var item = commentList[j];
+                var index = randomNum(6);
+                var time = getTime(item.created_at);
+                var comment_item = '<li class="list-group-item py-1" style="background-color:#f9f9f9;">' +
+                    '<div class="media ml-3">' +
+                    '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs avatar-square" />' +
+                    '<div class="media-body">' +
+                    '<span class="text-muted text-small">' + item.operator_name + '</span>' +
+                    '<small style="margin-left:10px">Updated: ' + time + '</small><br/>' +
+                    '<small>' + item.content + '</small>' +
+                    '</div>' +
+                    '</div>' +
+                    '</li>';
+                $("#comment_list" + i).append(comment_item);
             }
+
             (function(data) {
                 $("#version_download" + i).click(function() {
                     window.location.href = data.download_files[0].file_path;
@@ -301,6 +292,16 @@ define(function(require, exports, module) {
                     return false;
                 });
             })(data);
+            (function(data,i) {
+                $("#comment" + i).click(function() {
+                    var comment = $("#comment-reply-text" + i).val();
+                    if (!isEmpty(comment)) {
+                        addComment(data, comment);
+                    }
+
+                    return false;
+                });
+            })(data,i);
         }
     }
 
@@ -336,6 +337,7 @@ define(function(require, exports, module) {
             '"test_status":"' + position + '",' +
             '"remark":"' + remarks + '"' +
             '}';
+
         $.ajax({
             url: ACE_BASE_URL + ACE_CHANGE_STATE,
             type: "POST",
@@ -345,24 +347,33 @@ define(function(require, exports, module) {
                 hideChangeStatusModal()
                 currentPosition = -1;
                 getLessonListContentData();
-                console.log("2222222");
             },
             error: function(e) {
                 hideChangeStatusModal()
-                console.log("333333");
             }
         });
     }
 
-    function getTime(timestamp) {
-        var date = new Date(timestamp * 1000);
-        var Y = date.getFullYear() + '/';
-        var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '/';
-        var D = date.getDate() + ' ';
-        var h = date.getHours() + ':';
-        var m = (date.getMinutes() < 10 ? '0' + (date.getMinutes()) : date.getMinutes());
-        // var s = date.getSeconds();
-        return Y + M + D + h + m;
+    function addComment(data, comment) {
+
+        var t = '{' +
+            ' "cou_verify_id": "' + data.id + '",' +
+            ' "content": "' + comment + '"' +
+            '}';
+
+        $.ajax({
+            url: ACE_BASE_URL + ACE_ADD_COMMENT,
+            type: "POST",
+            contentType: "application/json; charset=UTF-8",
+            data: t,
+            success: function(result) {
+                console.log("asasasasasasa");
+            },
+            error: function(e) {
+                console.log("gfgfgfgfgfgf");
+            }
+        });
+
     }
 
 

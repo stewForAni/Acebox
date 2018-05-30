@@ -2,8 +2,8 @@
 
 
 //外网
-var ACE_BASE_URL = "https://stew-api.dev.landi.com/v1/";
-var ACE_BASE_IMG_URL = "https://stew-api.dev.landi.com/";
+// var ACE_BASE_URL = "https://stew-api.dev.landi.com/v1/";
+// var ACE_BASE_IMG_URL = "https://stew-api.dev.landi.com/";
 
 
 //内网
@@ -35,7 +35,7 @@ var ACE_MAIN_CONTENT = "return-all-course-classifications";
 //ace_lesson_list
 var ACE_LESSON_LIST = "course/classifications";
 //ace_lesson_log
-var ACE_LESSON_VERSION_LOG = "course/courseware-verifications";
+var ACE_LESSON_VERSION_LOG = "course/verify/defaults";
 //ace_submit_test
 var ACE_SUBMIT_TEST = "course/coursewares";
 var ACE_CHOOSE_COURSEWARE = "course/courseware-file-lists";
@@ -48,7 +48,8 @@ var ACE_GET_ALL_STRUCT = "return-all-course-classifications";
 var ACE_UPLOAD_RESOURCE = "uploadfiles";
 //ace_add_upload_resource_record
 var ACE_ADD_ADD_RESOURCE_RECORD = "material/lists";
-
+//ace_add_comment
+var ACE_ADD_COMMENT = "course/comment/defaults";
 
 function logout(){
 	 $.ajax({
