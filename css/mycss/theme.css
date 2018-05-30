@@ -7044,6 +7044,9 @@ article pre + p {
   border-radius: 50%;
   width: 4.5rem;
   height: 4.5rem; }
+  .avatar.avatar-xxs {
+    width: 1.25rem;
+    height: 1.25rem; }
   .avatar.avatar-xs {
     width: 2.25rem;
     height: 2.25rem; }
@@ -7061,7 +7064,7 @@ article pre + p {
 
 .media > .avatar:first-child {
   margin-right: 1.5rem; }
-  .media > .avatar:first-child.avatar-xs, .media > .avatar:first-child.avatar-sm {
+  .media > .avatar:first-child.avatar-xs, .media > .avatar:first-child.avatar-sm, .media > .avatar:first-child.avatar-xxs{
     margin-right: 0.75rem; }
 
 .avatar + .avatar {

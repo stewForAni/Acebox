@@ -210,6 +210,7 @@ define(function(require, exports, module) {
             var data = log_data[i];
             var time = getTime(data.created_at);
             var status;
+
             if (data.test_status == 0) {
                 status = "badge-secondary";
             } else if (data.test_status == 1) {
@@ -219,8 +220,9 @@ define(function(require, exports, module) {
             } else if (data.test_status == 3) {
                 status = "badge-success";
             }
+
             var index = randomNum(6);
-            console.log(index);
+
             var log_content = '<a class="list-group-item list-group-item-action">' +
                 '<div class="media">' +
                 '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar" />' +
@@ -230,15 +232,51 @@ define(function(require, exports, module) {
                 '<h6 class="h6 mb-1">' + data.remark + " 【" + data.name + "】" + '<li id="have_bug' + i + '" class="list-inline-item" style="background-color:#d9534f;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer;color:white"><i class = "icon-eye" style="color:white" > </i> bugs</li></h6>' +
                 '<ul class="list-inline text-small text-muted">' +
                 '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;">ID : ' + data.id + '</li>' +
-                '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer" id="version_download' + i + '"><i class = "icon-download" style="color:#4582EC"> </i> Version : ' + data.version + '</li>' +
-                '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;">Review Status : <span class="badge badge-indicator ' + status + '">&nbsp;</span></li>' +
+                '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer" id="version_download' + i + '"><i class = "icon-download" style="color:#4582EC"> </i> Ver : ' + data.version + '</li>' +
+                '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;">Status : <span class="badge badge-indicator ' + status + '">&nbsp;</span></li>' +
                 '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;">Updated: ' + time + '</li>' +
-                '<li class="list-inline-item" style="background-color:#FFD700;border-radius : 5px;padding-left:15px;padding-right:15px;cursor:pointer" id="change_status' + i + '"> <i class = "icon-dots-three-horizontal" > </i> </li > ' +
+                '<li class="list-inline-item" style="background-color:#4582EC;border-radius : 5px;padding-left:15px;padding-right:15px;cursor:pointer" id="change_status' + i + '"> <i class = "icon-dots-three-horizontal" style="color:white"> </i> </li > ' +
+                '<li class="list-inline-item" style="background-color:#4582EC;border-radius : 5px;padding-left:15px;padding-right:15px;cursor:pointer" id="add_comment' + i + '"  data-target="#comment-reply' + i + '" data-toggle="collapse" aria-expanded="false" aria-controls="comment-reply' + i + '"> <i class = "icon-plus"  style="color:white"> </i> </li > ' +
                 '</ul>' +
                 '</div>' +
                 '</div>' +
                 '</div>' +
-                '</a>';
+                '</a>' +
+                ' <div class="collapse" id="comment-reply' + i + '">' +
+                '   <form class="card-body">' +
+                '  <div class="form-group">' +
+                '    <textarea class="form-control from-control-lg" id="comment-reply-text" name="comment-reply" rows="2" placeholder="Type your comments here"></textarea>' +
+                '  </div>' +
+                ' <div class="d-flex align-items-center" style="float:right">' +
+
+                '   <a href="#comment-reply' + i + '" class="text-small text-muted" data-toggle="collapse" aria-expanded="true" aria-controls="comment-reply' + i + '"> <button class="btn btn-secondary mr-3">Cancel</button></a>' +
+                '   <button class="btn btn-primary">Comments</button>' +
+
+                ' </div>' +
+                '</form>' +
+                '</div>' +
+                '<ul class="list-group list-group-flush list-group-comments">' +
+                '<li class="list-group-item py-1">' +
+                '<div class="media">' +
+                '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs" />' +
+                '<div class="media-body">' +
+                '<span class="text-muted text-small">stew</span>' +
+                '<small style="margin-left:10px">1st Dec 2017 • 10:15am</small><br/>' +
+                '<small>第一页，小熊动画失效，无法正常播放。</small>' +
+                '</div>' +
+                '</div>' +
+                '</li>' +
+                 '<li class="list-group-item py-1">' +
+                '<div class="media">' +
+                '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs" />' +
+                '<div class="media-body">' +
+                '<span class="text-muted text-small">stew</span>' +
+                '<small style="margin-left:10px">1st Dec 2017 • 10:15am</small><br/>' +
+                '<small>第一页，小熊动画失效，无法正常播放。</small>' +
+                '</div>' +
+                '</div>' +
+                '</li>' +
+                '</ui>';
             $('#log_list').append(log_content);
             if (isEmpty(data.bug)) {
                 $('#have_bug' + i).hide();
@@ -276,7 +314,6 @@ define(function(require, exports, module) {
         }
         $("#submit_state").click(function() {
             var remarks = $('#remarks').val();
-            var bugs = $('#bugs').val();
             for (var j = 0; j < radios.length; j++) {
                 if (radios[j].is(':checked')) {
                     position = j;
@@ -286,22 +323,17 @@ define(function(require, exports, module) {
             if (isEmpty(remarks) || position == -1) {
                 return false;
             }
-            if (isEmpty(bugs)) {
-                bugs = "";
-            }
-            changeStatusApi(data, remarks, position, bugs);
+
+            changeStatusApi(data, remarks, position);
             return false;
         });
     }
 
-    function changeStatusApi(data, remarks, position, bugs) {
-        if (bugs.indexOf("\n") >= 0) {
-            bugs = ReplaceSeperator(bugs);
-        }
+    function changeStatusApi(data, remarks, position) {
+
         var d = '{' +
             '"id":"' + data.id + '",' +
             '"test_status":"' + position + '",' +
-            '"bug":"' + bugs + '",' +
             '"remark":"' + remarks + '"' +
             '}';
         $.ajax({

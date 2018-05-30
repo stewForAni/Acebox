@@ -361,7 +361,7 @@ function getUploadCourseWareModalContent(content) {
         '<select class="custom-select mb-2" id="coursewarelist">' +
         ' <option selected>Select one to submit</option>' +
         '  </select>' +
-        '<small>select a courseware to test.</small>' +
+        '<small>Select a courseware to test.</small>' +
         '</div>' +
         '</div>' +
 
@@ -400,15 +400,6 @@ function getChangeStatusModalContent(content) {
         '<small>Write some remarks(must).</small>' +
         '</div>' +
         '</div>' +
-
-
-        '<div class="form-row form-group">' +
-        '   <div class="col">' +
-        '      <textarea class="form-control form-control-lg" name="profileBio" rows="4" id="bugs" placeholder="Write Bugs"></textarea>' +
-        '<small>Write bugs when test fails.</small>' +
-        '</div>' +
-        '</div>' +
-
 
         '<div class="custom-control custom-radio">' +
         '<input id="radio1" name="radio" type="radio" class="custom-control-input">' +
