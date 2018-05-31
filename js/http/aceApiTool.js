@@ -39,7 +39,7 @@ var ACE_LESSON_VERSION_LOG = "course/verify/defaults";
 //ace_submit_test
 var ACE_SUBMIT_TEST = "course/coursewares";
 var ACE_CHOOSE_COURSEWARE = "course/courseware-file-lists";
-var ACE_CHANGE_STATE = "course/courseware-verifications";
+var ACE_CHANGE_STATE = "course/verify/defaults";
 //logout
 var ACE_LOG_OUT = "auth/logouts";
 //ace_get_struct

@@ -253,12 +253,18 @@ define(function(require, exports, module) {
                 '<div class="d-flex">' +
                 '<div class="custom-control custom-radio">' +
                 '<input id="radio1_' + i + '" name="radio" type="radio" class="custom-control-input">' +
-                '<label class="custom-control-label" for="radio1_' + i + '"><span class="badge badge-indicator badge-secondary mr-1">&nbsp;</span>comment</label>' +
+                '<label class="custom-control-label" for="radio1_' + i + '"><span class="badge badge-indicator  mr-1" style="background-color:#F8BBD0">&nbsp;</span>comment</label>' +
                 '</div>' +
 
                 '<div class="custom-control custom-radio" style="margin-left:20px">' +
                 '<input id="radio2_' + i + '" name="radio" type="radio" class="custom-control-input">' +
-                '<label class="custom-control-label" for="radio2_' + i + '"><span class="badge badge-indicator badge-danger mr-1">&nbsp;</span>error</label>' +
+                '<label class="custom-control-label" for="radio2_' + i + '"><span class="badge badge-indicator  mr-1" style="background-color:#EC407A">&nbsp;</span>query</label>' +
+                '</div>' +
+
+
+                '<div class="custom-control custom-radio" style="margin-left:20px">' +
+                '<input id="radio3_' + i + '" name="radio" type="radio" class="custom-control-input">' +
+                '<label class="custom-control-label" for="radio3_' + i + '"><span class="badge badge-indicator  mr-1" style="background-color:#880E4F">&nbsp;</span>error</label>' +
                 '</div>' +
                 '</div>' +
 
@@ -271,9 +277,8 @@ define(function(require, exports, module) {
                 '</form>' +
                 '</div>' +
 
-                '<ul class="list-group list-group-flush list-group-comments" id="comment_list' + i + '">' +
+                '<ul class="list-group" id="comment_list' + i + '">' +
                 '</ul>';
-
 
             $('#log_list').append(log_content);
 
@@ -284,18 +289,33 @@ define(function(require, exports, module) {
                 var item = commentList[j];
                 var index = randomNum(6);
                 var time = getTime(item.created_at);
-                var comment_item = '<li>' +
-                    '<div class="list-group-item py-1" style="background-color:#f1f1f1;">' +
-                    '<div class="media ml-3">' +
-                    '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs avatar-square" style="box-shadow: 1px 1px 1px #888888;"/>' +
+                // var comment_item = '<li class="list-group-item py-1">' +
+                //     '<div class="media ml-3">' +
+                //     '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs avatar-square" style="box-shadow: 1px 1px 1px #888888;"/>' +
+                //     '<div class="media-body">' +
+                //     '<span class="text-muted text-small">' + item.operator_name + '</span>' +
+                //     '<small style="margin-left:10px">' + time + '</small><br/>' +
+                //     '<small>' + item.content + '</small>' +
+                //     '</div>' +
+                //     '</div>' +
+                //     '</li>';
+
+
+
+                var comment_item =
+                    '<li class="comment-list-group-item">' +
+                    '<div class="media" >' +
+                    '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs" style="box-shadow: 1px 1px 1px #888888;"/>' +
                     '<div class="media-body">' +
-                    '<span class="text-muted text-small">' + item.operator_name + '</span>' +
+                    '<small >' + item.operator_name + '</small>' +
                     '<small style="margin-left:10px">' + time + '</small><br/>' +
                     '<small>' + item.content + '</small>' +
                     '</div>' +
                     '</div>' +
-                    '</div>' +
+                  
                     '</li>';
+
+
                 $("#comment_list" + i).append(comment_item);
             }
 
@@ -318,14 +338,17 @@ define(function(require, exports, module) {
                     var type = -1;
                     var radio1 = $("#radio1_" + i);
                     var radio2 = $("#radio2_" + i);
+                    var radio3 = $("#radio3_" + i);
 
-                    if ((!radio1.is(':checked')) && (!radio2.is(':checked'))) {
+                    if ((!radio1.is(':checked')) && (!radio2.is(':checked')) && (!radio3.is(':checked'))) {
                         showModal(containerId, "Please select type !");
                         return false;
                     } else if (radio1.is(':checked')) {
                         type = 1;
                     } else if (radio2.is(':checked')) {
                         type = 2;
+                    } else if (radio3.is(':checked')) {
+                        type = 3;
                     }
 
                     if (!isEmpty(comment)) {

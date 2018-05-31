@@ -3568,6 +3568,45 @@ input[type="button"].btn-block {
     color: #212529;
     background-color: #e9ecef; }
 
+
+
+
+.comment-list-group-item {
+  position: relative;
+/*  display: block;
+*/  /*padding: 0.75rem 1.25rem;*/
+  margin-bottom: -1px;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-left: 0;
+  border-right: 0; }
+  .comment-list-group-item:first-child {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0; }
+  .comment-list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom: 0; }
+  .comment-list-group-item:hover, .comment-list-group-item:focus {
+    z-index: 1;
+    text-decoration: none; }
+  .comment-list-group-item.disabled, .comment-list-group-item:disabled {
+    color: #6c757d;
+    background-color: #fff; }
+  .comment-list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #4582EC;
+    border-color: #007bff; }
+
+
+
+
+
+
+
+
 .list-group-item {
   position: relative;
   display: block;
