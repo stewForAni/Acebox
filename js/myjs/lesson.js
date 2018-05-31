@@ -118,7 +118,6 @@ define(function(require, exports, module) {
         $('#card_title').html("");
         $('#card_self').hide();
 
-
         for (var i = 0; i < lesson_length; i++) {
             var item = lesson_data[i];
             var lesson_list_item = '<a class="list-group-item d-flex justify-content-between" id="lesson_' + i + '" >' +
@@ -225,7 +224,7 @@ define(function(require, exports, module) {
 
             var log_content = '<a class="list-group-item list-group-item-action">' +
                 '<div class="media">' +
-                '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar" />' +
+                '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar"  style="box-shadow: 1px 1px 1px #888888;"/>' +
                 '<div class="media-body">' +
                 '<div>' +
                 '<span class="text-muted text-small">' + data.author_name + '</span>' +
@@ -243,17 +242,35 @@ define(function(require, exports, module) {
                 '</div>' +
                 '</a>' +
 
-                '<div class="collapse" id="comment-reply' + i + '"  style="background-color:#f9f9f9;">' +
+                '<div class="collapse" id="comment-reply' + i + '"  style="background-color:#f1f1f1;">' +
                 '<form class="card-body">' +
                 '<div class="form-group">' +
                 '<textarea class="form-control from-control-lg" id="comment-reply-text' + i + '" name="comment-reply" rows="2" placeholder="Type your comments here"></textarea>' +
                 '</div>' +
-                '<div class="d-flex align-items-center" style="float:right">' +
+
+                '<div class="d-flex justify-content-between" style="margin-bottom:10px">' +
+
+                '<div class="d-flex">' +
+                '<div class="custom-control custom-radio">' +
+                '<input id="radio1_' + i + '" name="radio" type="radio" class="custom-control-input">' +
+                '<label class="custom-control-label" for="radio1_' + i + '"><span class="badge badge-indicator badge-secondary mr-1">&nbsp;</span>comment</label>' +
+                '</div>' +
+
+                '<div class="custom-control custom-radio" style="margin-left:20px">' +
+                '<input id="radio2_' + i + '" name="radio" type="radio" class="custom-control-input">' +
+                '<label class="custom-control-label" for="radio2_' + i + '"><span class="badge badge-indicator badge-danger mr-1">&nbsp;</span>error</label>' +
+                '</div>' +
+                '</div>' +
+
+                '<div class="d-flex">' +
                 '<a href="#comment-reply' + i + '" class="text-small text-muted" data-toggle="collapse" aria-expanded="true" aria-controls="comment-reply' + i + '"> <button class="btn btn-secondary mr-3">Cancel</button></a>' +
                 '<button class="btn btn-primary" id="comment' + i + '">Comments</button>' +
                 '</div>' +
+                '</div>' +
+
                 '</form>' +
                 '</div>' +
+
                 '<ul class="list-group list-group-flush list-group-comments" id="comment_list' + i + '">' +
                 '</ul>';
 
@@ -267,13 +284,15 @@ define(function(require, exports, module) {
                 var item = commentList[j];
                 var index = randomNum(6);
                 var time = getTime(item.created_at);
-                var comment_item = '<li class="list-group-item py-1" style="background-color:#f9f9f9;">' +
+                var comment_item = '<li>' +
+                    '<div class="list-group-item py-1" style="background-color:#f1f1f1;">' +
                     '<div class="media ml-3">' +
-                    '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs avatar-square" />' +
+                    '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs avatar-square" style="box-shadow: 1px 1px 1px #888888;"/>' +
                     '<div class="media-body">' +
                     '<span class="text-muted text-small">' + item.operator_name + '</span>' +
-                    '<small style="margin-left:10px">Updated: ' + time + '</small><br/>' +
+                    '<small style="margin-left:10px">' + time + '</small><br/>' +
                     '<small>' + item.content + '</small>' +
+                    '</div>' +
                     '</div>' +
                     '</div>' +
                     '</li>';
@@ -292,16 +311,32 @@ define(function(require, exports, module) {
                     return false;
                 });
             })(data);
-            (function(data,i) {
+            (function(data, i) {
                 $("#comment" + i).click(function() {
+
                     var comment = $("#comment-reply-text" + i).val();
+                    var type = -1;
+                    var radio1 = $("#radio1_" + i);
+                    var radio2 = $("#radio2_" + i);
+
+                    if ((!radio1.is(':checked')) && (!radio2.is(':checked'))) {
+                        showModal(containerId, "Please select type !");
+                        return false;
+                    } else if (radio1.is(':checked')) {
+                        type = 1;
+                    } else if (radio2.is(':checked')) {
+                        type = 2;
+                    }
+
                     if (!isEmpty(comment)) {
-                        addComment(data, comment);
+                        addComment(data, comment, type);
+                    } else {
+                        showModal(containerId, "Comment is empty !");
                     }
 
                     return false;
                 });
-            })(data,i);
+            })(data, i);
         }
     }
 
@@ -354,10 +389,11 @@ define(function(require, exports, module) {
         });
     }
 
-    function addComment(data, comment) {
+    function addComment(data, comment, type) {
 
         var t = '{' +
             ' "cou_verify_id": "' + data.id + '",' +
+            ' "type_id": "' + type + '",' +
             ' "content": "' + comment + '"' +
             '}';
 
