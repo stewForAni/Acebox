@@ -291,8 +291,8 @@ define(function(require, exports, module) {
                 '</div>' +
 
                 '<div class="d-flex">' +
-                '<a href="#comment-reply' + i + '" class="text-small text-muted" data-toggle="collapse" aria-expanded="true" aria-controls="comment-reply' + i + '"> <button class="btn btn-secondary mr-3">Cancel</button></a>' +
-                '<button class="btn btn-primary" id="comment' + i + '">Comments</button>' +
+                '<a href="#comment-reply' + i + '" class="text-small text-muted" data-toggle="collapse" aria-expanded="true" aria-controls="comment-reply' + i + '"> <button class="btn btn-secondary mr-3">cancel</button></a>' +
+                '<button class="btn btn-primary" id="comment' + i + '">send</button>' +
                 '</div>' +
                 '</div>' +
 
@@ -304,37 +304,7 @@ define(function(require, exports, module) {
 
             $('#log_list').append(log_content);
 
-
-
-            for (var j = 0; j < commentLength; j++) {
-                var item = commentList[j];
-                var index = randomNum(6);
-                var time = getTime(item.created_at);
-
-                var comment_level = item.type_id;
-                var current_color = "";
-                if (comment_level == 1) {
-                    current_color = comemnt_level_1;
-                } else if (comment_level == 2) {
-                    current_color = comemnt_level_2;
-                } else if (comment_level == 3) {
-                    current_color = comemnt_level_3;
-                }
-
-                var comment_item =
-                    '<li class="comment-list-group-item" style="background-color:' + current_color + ';display:block">' +
-                    '<div class="media" style="background-color:#ffffff;margin-left:5px;padding-left:40px;padding-top:10px;padding-bottom:10px;">' +
-                    '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs" style="box-shadow: 1px 1px 1px #888888;"/>' +
-                    '<div class="media-body">' +
-                    '<small >' + item.operator_name + '</small>' +
-                    '<small style="margin-left:10px">' + time + '</small><br/>' +
-                    '<small>' + item.content + '</small>' +
-                    '</div>' +
-                    '</div>' +
-                    '</li>';
-
-                $("#comment_list" + i).append(comment_item);
-            }
+            logAddComment(commentLength, commentList, i);
 
             (function(data) {
                 $("#version_download" + i).click(function() {
@@ -369,7 +339,7 @@ define(function(require, exports, module) {
                     }
 
                     if (!isEmpty(comment)) {
-                        addComment(data, comment, type);
+                        addComment(data, comment, type, i);
                     } else {
                         showModal(containerId, "Comment is empty !");
                     }
@@ -379,6 +349,9 @@ define(function(require, exports, module) {
             })(data, i);
         }
     }
+
+
+
 
     function changeStatus(data) {
         showChangeStatusModal(containerId, "Modify State");
@@ -429,7 +402,7 @@ define(function(require, exports, module) {
         });
     }
 
-    function addComment(data, comment, type) {
+    function addComment(data, comment, type, i) {
 
         var t = '{' +
             ' "cou_verify_id": "' + data.id + '",' +
@@ -443,17 +416,66 @@ define(function(require, exports, module) {
             contentType: "application/json; charset=UTF-8",
             data: t,
             success: function(result) {
-                console.log("asasasasasasa");
+                getLogCommentList(data.id, i);
             },
             error: function(e) {
-                console.log("gfgfgfgfgfgf");
+
             }
         });
 
     }
 
 
+    function getLogCommentList(id, i) {
 
+        $.ajax({
+            url: ACE_BASE_URL + ACE_GET_COMMENT_LIST + "?cou_verify_id=" + id ,
+            type: "GET",
+            contentType: "application/json; charset=UTF-8",
+            success: function(result) {
+                var list = result.data.items;
+                logAddComment(list.length, list, i);
+            },
+            error: function(e) {
+
+            }
+        });
+
+    }
+
+
+    function logAddComment(commentLength, commentList, i) {
+        for (var j = 0; j < commentLength; j++) {
+            var item = commentList[j];
+            var index = randomNum(6);
+            var time = getTime(item.created_at);
+
+            var comment_level = item.type_id;
+            var current_color = "";
+            if (comment_level == 1) {
+                current_color = comemnt_level_1;
+            } else if (comment_level == 2) {
+                current_color = comemnt_level_2;
+            } else if (comment_level == 3) {
+                current_color = comemnt_level_3;
+            }
+
+            var comment_item =
+                '<li class="comment-list-group-item" style="background-color:' + current_color + ';display:block">' +
+                '<div class="media" style="background-color:#ffffff;margin-left:5px;padding-left:40px;padding-top:10px;padding-bottom:10px;">' +
+                '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs" style="box-shadow: 1px 1px 1px #888888;"/>' +
+                '<div class="media-body">' +
+                '<small >' + item.operator_name + '</small>' +
+                '<small style="margin-left:10px">' + time + '</small><br/>' +
+                '<small>' + item.content + '</small>' +
+                '</div>' +
+                '</div>' +
+                '</li>';
+
+            $("#comment_list" + i).append(comment_item);
+        }
+
+    }
 
 
 

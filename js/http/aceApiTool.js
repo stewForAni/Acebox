@@ -50,6 +50,8 @@ var ACE_UPLOAD_RESOURCE = "uploadfiles";
 var ACE_ADD_ADD_RESOURCE_RECORD = "material/lists";
 //ace_add_comment
 var ACE_ADD_COMMENT = "course/comment/defaults";
+//ace_get_comment_list
+var ACE_GET_COMMENT_LIST = "course/comment/devaults";
 
 function logout(){
 	 $.ajax({
