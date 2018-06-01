@@ -11,6 +11,10 @@ define(function(require, exports, module) {
     var lessonArray = new Array();
     var containerId = "#lesson_main_container";
 
+    var comemnt_level_1 = "#6c757d";
+    var comemnt_level_2 = "#f0ad4e";
+    var comemnt_level_3 = "#d9534f";
+
     init();
     initCatalog();
 
@@ -209,6 +213,13 @@ define(function(require, exports, module) {
             var data = log_data[i];
             var time = getTime(data.created_at);
             var status;
+            var commentList = data.comments;
+            var commentLength = data.comments.length;
+            var comment_count = 0;
+            var query_count = 0;
+            var error_count = 0;
+            var index = randomNum(6);
+
 
             if (data.test_status == 0) {
                 status = "badge-secondary";
@@ -220,7 +231,18 @@ define(function(require, exports, module) {
                 status = "badge-success";
             }
 
-            var index = randomNum(6);
+
+            for (var k = 0; k < commentLength; k++) {
+                var item = commentList[k];
+                if (item.type_id == 1) {
+                    comment_count++;
+                } else if (item.type_id == 2) {
+                    query_count++;
+                } else if (item.type_id == 3) {
+                    error_count++;
+                }
+            }
+
 
             var log_content = '<a class="list-group-item list-group-item-action">' +
                 '<div class="media">' +
@@ -228,7 +250,7 @@ define(function(require, exports, module) {
                 '<div class="media-body">' +
                 '<div>' +
                 '<span class="text-muted text-small">' + data.author_name + '</span>' +
-                '<h6 class="h6 mb-1">' + data.remark + " 【" + data.name + "】" + '</h6>' +
+                '<h6 class="h6 mb-1">' + data.remark + " 【" + data.name + "】" + '<span class="comment-badge badge-secondary" style="border-radius:0.25rem 0 0 0.25rem">' + comment_count + '</span><span class="comment-badge badge-warning">' + query_count + '</span><span class="comment-badge badge-danger" style="border-radius:0 0.25rem 0.25rem 0">' + error_count + '</span></h6>' +
                 '<ul class="list-inline text-small text-muted">' +
                 '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;">ID : ' + data.id + '</li>' +
                 '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer" id="version_download' + i + '"><i class = "icon-download" style="color:#4582EC"> </i> Ver : ' + data.version + '</li>' +
@@ -253,18 +275,18 @@ define(function(require, exports, module) {
                 '<div class="d-flex">' +
                 '<div class="custom-control custom-radio">' +
                 '<input id="radio1_' + i + '" name="radio" type="radio" class="custom-control-input">' +
-                '<label class="custom-control-label" for="radio1_' + i + '"><span class="badge badge-indicator  mr-1" style="background-color:#F8BBD0">&nbsp;</span>comment</label>' +
+                '<label class="custom-control-label" for="radio1_' + i + '"><span class="badge badge-indicator  mr-1" style="background-color:' + comemnt_level_1 + '">&nbsp;</span>comment</label>' +
                 '</div>' +
 
                 '<div class="custom-control custom-radio" style="margin-left:20px">' +
                 '<input id="radio2_' + i + '" name="radio" type="radio" class="custom-control-input">' +
-                '<label class="custom-control-label" for="radio2_' + i + '"><span class="badge badge-indicator  mr-1" style="background-color:#EC407A">&nbsp;</span>query</label>' +
+                '<label class="custom-control-label" for="radio2_' + i + '"><span class="badge badge-indicator  mr-1" style="background-color:' + comemnt_level_2 + '">&nbsp;</span>query</label>' +
                 '</div>' +
 
 
                 '<div class="custom-control custom-radio" style="margin-left:20px">' +
                 '<input id="radio3_' + i + '" name="radio" type="radio" class="custom-control-input">' +
-                '<label class="custom-control-label" for="radio3_' + i + '"><span class="badge badge-indicator  mr-1" style="background-color:#880E4F">&nbsp;</span>error</label>' +
+                '<label class="custom-control-label" for="radio3_' + i + '"><span class="badge badge-indicator  mr-1" style="background-color:' + comemnt_level_3 + '">&nbsp;</span>error</label>' +
                 '</div>' +
                 '</div>' +
 
@@ -282,29 +304,26 @@ define(function(require, exports, module) {
 
             $('#log_list').append(log_content);
 
-            var commentList = data.comments;
-            var commentLength = data.comments.length;
+
 
             for (var j = 0; j < commentLength; j++) {
                 var item = commentList[j];
                 var index = randomNum(6);
                 var time = getTime(item.created_at);
-                // var comment_item = '<li class="list-group-item py-1">' +
-                //     '<div class="media ml-3">' +
-                //     '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs avatar-square" style="box-shadow: 1px 1px 1px #888888;"/>' +
-                //     '<div class="media-body">' +
-                //     '<span class="text-muted text-small">' + item.operator_name + '</span>' +
-                //     '<small style="margin-left:10px">' + time + '</small><br/>' +
-                //     '<small>' + item.content + '</small>' +
-                //     '</div>' +
-                //     '</div>' +
-                //     '</li>';
 
-
+                var comment_level = item.type_id;
+                var current_color = "";
+                if (comment_level == 1) {
+                    current_color = comemnt_level_1;
+                } else if (comment_level == 2) {
+                    current_color = comemnt_level_2;
+                } else if (comment_level == 3) {
+                    current_color = comemnt_level_3;
+                }
 
                 var comment_item =
-                    '<li class="comment-list-group-item">' +
-                    '<div class="media" >' +
+                    '<li class="comment-list-group-item" style="background-color:' + current_color + ';display:block">' +
+                    '<div class="media" style="background-color:#ffffff;margin-left:5px;padding-left:40px;padding-top:10px;padding-bottom:10px;">' +
                     '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs" style="box-shadow: 1px 1px 1px #888888;"/>' +
                     '<div class="media-body">' +
                     '<small >' + item.operator_name + '</small>' +
@@ -312,9 +331,7 @@ define(function(require, exports, module) {
                     '<small>' + item.content + '</small>' +
                     '</div>' +
                     '</div>' +
-                  
                     '</li>';
-
 
                 $("#comment_list" + i).append(comment_item);
             }

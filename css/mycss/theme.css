@@ -3315,6 +3315,20 @@ input[type="button"].btn-block {
   border-top-right-radius: 0.2rem;
   border-bottom-right-radius: 0.2rem; }
 
+.comment-badge {
+  display: inline-block;
+   padding: 0.25em 0.4em;
+  font-size: 75%;
+  font-weight: 500;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+ }
+  .comment-badge:empty {
+    display: none; }
+
+
 .badge {
   display: inline-block;
   padding: 0.25em 0.4em;
@@ -3577,7 +3591,7 @@ input[type="button"].btn-block {
 */  /*padding: 0.75rem 1.25rem;*/
   margin-bottom: -1px;
   background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  /*border: 1px solid rgba(224,224,224);*/
   border-left: 0;
   border-right: 0; }
   .comment-list-group-item:first-child {
