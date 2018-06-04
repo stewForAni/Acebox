@@ -215,9 +215,6 @@ define(function(require, exports, module) {
             var status;
             var commentList = data.comments;
             var commentLength = data.comments.length;
-            var comment_count = 0;
-            var query_count = 0;
-            var error_count = 0;
             var index = randomNum(6);
 
 
@@ -232,25 +229,16 @@ define(function(require, exports, module) {
             }
 
 
-            for (var k = 0; k < commentLength; k++) {
-                var item = commentList[k];
-                if (item.type_id == 1) {
-                    comment_count++;
-                } else if (item.type_id == 2) {
-                    query_count++;
-                } else if (item.type_id == 3) {
-                    error_count++;
-                }
-            }
-
-
             var log_content = '<a class="list-group-item list-group-item-action">' +
                 '<div class="media">' +
                 '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar"  style="box-shadow: 1px 1px 1px #888888;"/>' +
                 '<div class="media-body">' +
                 '<div>' +
                 '<span class="text-muted text-small">' + data.author_name + '</span>' +
-                '<h6 class="h6 mb-1">' + data.remark + " 【" + data.name + "】" + '<span class="comment-badge badge-secondary" style="border-radius:0.25rem 0 0 0.25rem">' + comment_count + '</span><span class="comment-badge badge-warning">' + query_count + '</span><span class="comment-badge badge-danger" style="border-radius:0 0.25rem 0.25rem 0">' + error_count + '</span></h6>' +
+                '<h6 class="h6 mb-1">' + data.remark + " 【" + data.name + "】" +
+                '<span id="comment_count_id' + i + '" class="comment-badge badge-secondary" style="border-radius:0.25rem 0 0 0.25rem">n/a</span>' +
+                '<span id="query_count_id' + i + '" class="comment-badge badge-warning">n/a</span>' +
+                '<span id="error_count_id' + i + '" class="comment-badge badge-danger" style="border-radius:0 0.25rem 0.25rem 0">n/a</span></h6>' +
                 '<ul class="list-inline text-small text-muted">' +
                 '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;">ID : ' + data.id + '</li>' +
                 '<li class="list-inline-item" style="background-color:#f1f1f1;border-radius : 5px;padding-left:5px;padding-right:5px;cursor:pointer" id="version_download' + i + '"><i class = "icon-download" style="color:#4582EC"> </i> Ver : ' + data.version + '</li>' +
@@ -429,7 +417,7 @@ define(function(require, exports, module) {
     function getLogCommentList(id, i) {
 
         $.ajax({
-            url: ACE_BASE_URL + ACE_GET_COMMENT_LIST + "?cou_verify_id=" + id ,
+            url: ACE_BASE_URL + ACE_GET_COMMENT_LIST + "?cou_verify_id=" + id,
             type: "GET",
             contentType: "application/json; charset=UTF-8",
             success: function(result) {
@@ -445,6 +433,13 @@ define(function(require, exports, module) {
 
 
     function logAddComment(commentLength, commentList, i) {
+        $("#comment_list" + i).empty();
+
+        var comment_count = 0;
+        var query_count = 0;
+        var error_count = 0;
+
+
         for (var j = 0; j < commentLength; j++) {
             var item = commentList[j];
             var index = randomNum(6);
@@ -458,6 +453,15 @@ define(function(require, exports, module) {
                 current_color = comemnt_level_2;
             } else if (comment_level == 3) {
                 current_color = comemnt_level_3;
+            }
+
+
+            if (item.type_id == 1) {
+                comment_count++;
+            } else if (item.type_id == 2) {
+                query_count++;
+            } else if (item.type_id == 3) {
+                error_count++;
             }
 
             var comment_item =
@@ -475,7 +479,21 @@ define(function(require, exports, module) {
             $("#comment_list" + i).append(comment_item);
         }
 
+
+
+        $("#comment_count_id" + i).text(comment_count);
+        $("#query_count_id" + i).text(query_count);
+        $("#error_count_id" + i).text(error_count);
+
     }
+
+
+
+
+
+
+
+
 
 
 
