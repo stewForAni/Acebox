@@ -480,7 +480,6 @@ define(function(require, exports, module) {
         }
 
 
-
         $("#comment_count_id" + i).text(comment_count);
         $("#query_count_id" + i).text(query_count);
         $("#error_count_id" + i).text(error_count);

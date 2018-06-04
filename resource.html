@@ -86,9 +86,6 @@
                     </div>
                     <!--end of col-->
                 </div>
-                <!--end of row-->
-                <div class="row" id="main_content"></div>
-                <!--end of row-->
             </div>
             <!--end of container-->
         </section>
@@ -107,13 +104,12 @@
                     <div class="col-12 col-md-4 col-lg-3">
                         <form class="d-flex align-items-center">
                             <select class="custom-select" id="select_file_type">
-                              
                             </select>
                         </form>
                     </div>
                     <div class="col-12 col-md-4 col-lg-3">
                         <form class="d-flex align-items-center">
-                           <input class="form-control" type="text" id="remarks" placeholder="Write Label" />
+                            <input class="form-control" type="text" id="remarks" placeholder="Write Label" />
                         </form>
                     </div>
                 </div>
@@ -122,7 +118,7 @@
             <!--end of container-->
         </section>
         <!--end of section-->
-        <section class="flush-with-above">
+        <section class="flush-with-above" id="upload_section">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-10 col-lg-10">
@@ -141,7 +137,6 @@
                                                 </label>
                                             </div>
                                         </div>
-                                        <!--end of row-->
                                         <div id="fileDragArea" class="bg-secondary justify-content-center align-items-center" style="display: flex; height: 250px;border-style:dashed;border-radius: 5px;border-width: 2px;border-color: #aaaaaa;">Or drag file to here
                                         </div>
                                         <div id="preview" style="margin-top: 20px"></div>
@@ -163,6 +158,135 @@
             <!--end of container-->
         </section>
         <!--end of section-->
+        <section class="flush-with-above" id="download_section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-10 col-lg-10">
+                        <div class="card card-lg height-100">
+                            <ul class="nav nav-tabs" id="myTab" role="tablist" style="background-color: #E6EAED">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="picture-tab" data-toggle="tab" href="#picture" role="tab" aria-controls="picture" aria-selected="true">Picture</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="animations-tab" data-toggle="tab" href="#animations" role="tab" aria-controls="animations" aria-selected="false">Animation</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="audios-tab" data-toggle="tab" href="#audios" role="tab" aria-controls="audios" aria-selected="false">Audio</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="videos-tab" data-toggle="tab" href="#videos" role="tab" aria-controls="videos" aria-selected="false">Video</a>
+                                </li>
+                                <li class="nav-item">
+
+                                    <div class="card-body row no-gutters align-items-center">
+                                        <div class="col-auto">
+                                            <i class="icon-magnifying-glass"></i>
+                                        </div>
+                                        <div class="col">
+                                            <input class="form-control form-control-sm form-control-borderless" type="search" placeholder="Search topics or keywords">
+                                        </div>
+                                        <div class="col-auto">
+                                            <button class="btn btn-sm btn-success search-button" type="button">Search</button>
+                                        </div>
+                                    </div>
+
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active show" id="picture" role="tabpanel" aria-labelledby="picture-tab">
+                                    <div class="container">
+                                        <ul class="row feature-list feature-list-sm index-list-content">
+                                        </ul>
+                                        <div id="img-modal" class="modal fade">
+                                            <div id="img-dialog" class="modal-dialog" style="margin: 0;">
+                                                <div id="img-content" class="modal-content">
+                                                    <img id="img-zoom" src="" style="max-height: 100%; max-width: 100%;margin:10px;">
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
+                                        <!-- /.modal -->
+                                        <div class="float-right">
+                                            <ul class="pagination pull-right">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--end of container-->
+                                </div>
+                                <!--end of tab pane-->
+                                <div class="tab-pane fade " id="videos" role="tabpanel" arialabelledby="videos-tab">
+                                    <div class="container">
+                                        <ul class="row feature-list feature-list-sm index-list-content">
+                                        </ul>
+                                        <div class="modal fade bs-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <video id="video" src="" controls preload="metadata" height="449" autoplay></video>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="float-right">
+                                            <ul class="pagination pull-right">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--end of container-->
+                                </div>
+                                <!--end of tab pane-->
+                                <div class="tab-pane fade" id="audios" role="tabpanel" aria-labelledby="audios-tab">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="card card-sm">
+                                                    <ul class="list-group list-group-flush">
+                                                        <li class="list-group-item">
+                                                            测试音频1
+                                                            <audio src="https://chimee.org/vod/1.mp4" controls>
+                                                                此浏览器不支持video标签
+                                                            </audio>
+                                                        </li>
+                                                        <li class="list-group-item">
+                                                            测试音频2
+                                                            <audio src="../video/1.mp4" controls>
+                                                                此浏览器不支持video标签
+                                                            </audio>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="float-right">
+                                            <ul class="pagination pull-right">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--end of container-->
+                                </div>
+                                <div class="tab-pane fade" id="animations" role="tabpanel" aria-labelledby="animations-tab">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col">
+                                                <div class="card card-sm">
+                                                    <ul class="list-group list-group-flush">
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="float-right">
+                                            <ul class="pagination pull-right">
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!--end of container-->
+                                </div>
+                            </div>
+                            <!--end of tabs content-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <footer class="footer-short">
             <div class="container">
                 <hr>
