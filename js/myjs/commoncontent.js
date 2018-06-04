@@ -396,7 +396,7 @@ function getChangeStatusModalContent(content) {
         '<form>' +
         '<div class="form-row form-group">' +
         '   <div class="col">' +
-        '<input class="form-control form-control-lg" type="text" id="remarks" placeholder="Write Remarks" />' +
+        '<input class="form-control form-control-sm" type="text" id="remarks" placeholder="Write Remarks" />' +
         '<small>Write some remarks(must).</small>' +
         '</div>' +
         '</div>' +

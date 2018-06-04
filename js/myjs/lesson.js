@@ -466,7 +466,7 @@ define(function(require, exports, module) {
 
             var comment_item =
                 '<li class="comment-list-group-item" style="background-color:' + current_color + ';display:block">' +
-                '<div class="media" style="background-color:#ffffff;margin-left:5px;padding-left:40px;padding-top:10px;padding-bottom:10px;">' +
+                '<div class="media" style="background-color:#ffffff;margin-left:5px;padding-left:40px;padding-top:10px;padding-bottom:10px;padding-right:40px">' +
                 '<img alt="Image" src="images/changelog_icon' + index + '.jpg" class="avatar avatar-xxs" style="box-shadow: 1px 1px 1px #888888;"/>' +
                 '<div class="media-body">' +
                 '<small >' + item.operator_name + '</small>' +

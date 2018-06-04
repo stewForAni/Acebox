@@ -52,6 +52,8 @@ var ACE_ADD_ADD_RESOURCE_RECORD = "material/lists";
 var ACE_ADD_COMMENT = "course/comment/defaults";
 //ace_get_comment_list
 var ACE_GET_COMMENT_LIST = "course/comment/defaults";
+//ace_get_file_type
+var ACE_GET_FILE_TYPE = "material/types";
 
 function logout(){
 	 $.ajax({
