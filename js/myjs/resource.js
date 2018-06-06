@@ -174,8 +174,8 @@ define(function(require, exports, module) {
 
         var d = '{' +
             '"type_id": ' + currentFileType + ',' +
-            '"tags": [' + tag_str + '],' +
-            '"files_token": [' + token_str + ']' +
+            '"tags":"' + tag_str + '",' +
+            '"files_token": "' + token_str + '"' +
             '}';
 
         $.ajax({
