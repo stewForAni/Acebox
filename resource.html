@@ -109,7 +109,7 @@
                     </div>
                     <div class="col-12 col-md-4 col-lg-3">
                         <form class="d-flex align-items-center">
-                            <input class="form-control" type="text" id="remarks" placeholder="Write Label" />
+                            <input class="form-control" type="text" id="resource_label" placeholder="Write Label" />
                         </form>
                     </div>
                 </div>
@@ -130,14 +130,16 @@
                                             <span>This is file upload area,select the type of file and write label before you choose or drag files to upload.</span>
                                         </div>
                                         <div class="row no-gutters justify-content-center">
+                                        </div>
+                                        <div id="fileDragArea" class="bg-secondary justify-content-center align-items-center" style="display: flex; height: 300px;border-style:dashed;border-radius: 5px;border-width: 2px;border-color: #aaaaaa;">
                                             <div class="col-12 col-md-4 col-lg-3">
                                                 <label class="custom-file mb-2" for="fileImage">
                                                     <input type="file" id="fileImage" class="custom-file-input height-xs" multiple="multiple">
                                                     <span class="btn btn-primary " id="fileImage">Choose to upload</span>
                                                 </label>
+                                                 <p>Or drag file to here</p>
                                             </div>
-                                        </div>
-                                        <div id="fileDragArea" class="bg-secondary justify-content-center align-items-center" style="display: flex; height: 250px;border-style:dashed;border-radius: 5px;border-width: 2px;border-color: #aaaaaa;">Or drag file to here
+                                           
                                         </div>
                                         <div id="preview" style="margin-top: 20px"></div>
                                     </div>
@@ -163,7 +165,7 @@
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-10 col-lg-10">
                         <div class="card card-lg height-100">
-                            <ul class="nav nav-tabs" id="myTab" role="tablist" style="background-color: #E6EAED">
+                            <ul class="nav nav-tabs justify-content-between" id="myTab" role="tablist" style="background-color: #E6EAED">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="picture-tab" data-toggle="tab" href="#picture" role="tab" aria-controls="picture" aria-selected="true">Picture</a>
                                 </li>
@@ -176,21 +178,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="videos-tab" data-toggle="tab" href="#videos" role="tab" aria-controls="videos" aria-selected="false">Video</a>
                                 </li>
-                                <li class="nav-item">
-
-                                    <div class="card-body row no-gutters align-items-center">
-                                        <div class="col-auto">
-                                            <i class="icon-magnifying-glass"></i>
-                                        </div>
-                                        <div class="col">
-                                            <input class="form-control form-control-sm form-control-borderless" type="search" placeholder="Search topics or keywords">
-                                        </div>
-                                        <div class="col-auto">
-                                            <button class="btn btn-sm btn-success search-button" type="button">Search</button>
-                                        </div>
-                                    </div>
-
-                                </li>
+                                <input class="form-control" placeholder="Search" type="search" style="width: 300px;margin: 6px;" />
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active show" id="picture" role="tabpanel" aria-labelledby="picture-tab">

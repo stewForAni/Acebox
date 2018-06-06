@@ -15,6 +15,9 @@ var MFUpload = {
     onSuccess: function() {}, //文件上传成功时
     onFailure: function() {}, //文件上传失败时,
     onComplete: function() {}, //文件全部上传完毕时
+    onComfireUpload: function() { //确认上传时
+        return isReady;
+    },
 
     /* 开发参数和内置方法分界线 */
 
@@ -66,24 +69,20 @@ var MFUpload = {
     //文件上传
     funUploadFile: function() {
         var self = this;
-
-
-
-
-
-        
         if (location.host.indexOf("sitepointstatic") >= 0) {
             //非站点服务器上运行
             return;
         }
-
+        console.log("1");
+        if (this.onComfireUpload()) {
+            console.log("5");
+            return
+        }
+        console.log("6");
         for (var i = 0, file; file = this.fileFilter[i]; i++) {
-
             (function(file) {
-
                 var formData = new FormData();
                 formData.append('file', file);
-
                 $.ajax({
                     url: self.url,
                     type: "POST",
@@ -100,18 +99,16 @@ var MFUpload = {
                     processData: false,
                     contentType: false,
                     success: function(result) {
-                        self.onSuccess(file, "zzzz");
+                        self.onSuccess(file, result);
                         self.funDeleteFile(file);
                         if (!self.fileFilter.length) {
                             self.onComplete();
                         }
                     },
                     error: function(err) {
-                        self.onFailure(file, "zzzz");
+                        self.onFailure(file);
                     }
                 });
-
-
             })(file);
         }
 

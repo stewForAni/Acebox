@@ -6,7 +6,10 @@ define(function(require, exports, module) {
     require('commoncontent');
     require('multifileupload');
     var getData = require('getData');
-    var currentOperation = -1;
+    var currentOperation = 0;
+    var currentFileType = -1;
+    var fileTokenArray = new Array();
+
 
     init();
 
@@ -47,6 +50,11 @@ define(function(require, exports, module) {
         for (var i = 0; i < l; i++) {
             $('#select_file_type').append('<option value="' + d[i].id + '">' + d[i].name + '</option>');
         }
+
+
+        $("#select_file_type").change(function() {
+            currentFileType = $(this).children('option:selected').val();
+        });
     }
 
 
@@ -68,6 +76,7 @@ define(function(require, exports, module) {
                 return arrFiles;
             },
             onSelect: function(files) {
+
                 var html = '',
                     i = 0;
                 var funAppendImage = function() {
@@ -83,9 +92,9 @@ define(function(require, exports, module) {
 
                         reader.onload = function(e) {
                             html = html + '<div class="col-6 col-md-4 col-lg-3" id="uploadList_' + i + '" style="float:left; position:relative;margin-top:20px">' +
-                                '<img id="uploadImage_' + i + '" src="' + e.target.result + '" style="height:100px;width:100px;border-radius:5px;box-shadow: 1px 1px 1px #666666;object-fit:cover;"/>' +
+                                '<img id="uploadImage_' + i + '" src="' + e.target.result + '" style="height:100px;width:120px;border-radius:4px;border-style: solid; border-width: 2px;border-color:#999999;object-fit:cover;"/>' +
                                 '<br/>' + filename +
-                                '<br/><a href="javascript:" class="upload_delete" title="delete" data-index="' + i + '"><i class="icon-trash display-12 opacity-60"></i> delete</a>' +
+                                '<br/><a href="javascript:" class="upload_delete" title="delete" data-index="' + i + '"><i class="icon-trash display-12 opacity-80"></i> delete</a>' +
                                 '<span id="uploadProgress_' + i + '" class="upload_progress" style="display:none; padding:5px; border-radius:10px; color:#fff; background-color:rgba(0,0,0,.6); position:absolute; left:25px; top:45px;"></span>' +
                                 '</div>';
 
@@ -121,29 +130,75 @@ define(function(require, exports, module) {
                 $(this).removeClass("upload_drag_hover");
             },
             onProgress: function(file, loaded, total) {
-                var eleProgress = $("#uploadProgress_" + file.index),
-                    percent = (loaded / total * 100).toFixed(2) + '%';
+                var eleProgress = $("#uploadProgress_" + file.index);
+                var percent = (loaded / total * 100).toFixed(2) + '%';
                 eleProgress.show().html(percent);
             },
-            onSuccess: function(file, response) {
-                $("#uploadInf").append("<p>上传成功，图片地址是：" + response + "</p>");
+            onSuccess: function(file, result) {
+                $("#uploadInf").append("<small>[" + result.data.file_name + "] upload success,file address:" + ACE_BASE_IMG_URL + result.data.file_path + "</small>");
+                fileTokenArray.push(result.data.token);
             },
             onFailure: function(file) {
-                $("#uploadInf").append("<p>图片" + file.name + "上传失败！</p>");
+                $("#uploadInf").append("<p>File : " + file.name + " upload failure</p>");
                 $("#uploadImage_" + file.index).css("opacity", 0.2);
             },
             onComplete: function() {
-                $("#fileSubmit").hide();
-                $("#uploadInf").append("<p>当前图片全部上传完毕，可继续添加上传。</p>");
-            }
+                doAddResourceApi();
+            },
+            onComfireUpload: function() {
+                console.log("2");
+                if (currentFileType == -1 || currentOperation == -1 || isEmpty($("#resource_label").val())) {
+                    console.log("3");
+                    showModal("#resource_container", "Please select the file type and write label first !")
+                    return true;
+                }
+                console.log("4");
+                return false;
+            },
         };
+
         MFUpload = $.extend(MFUpload, params);
         MFUpload.init();
     }
 
 
+    function doAddResourceApi(result) {
+
+
+        var token_str = "";
+        var tag_str = $("#resource_label").val();
+
+        for (var i = 0; i < fileTokenArray.length; i++) {
+            token_str = token_str + fileTokenArray[i] + ",";
+        }
+
+        var d = '{' +
+            '"type_id": ' + currentFileType + ',' +
+            '"tags": [' + tag_str + '],' +
+            '"files_token": [' + token_str + ']' +
+            '}';
+
+        $.ajax({
+            url: ACE_BASE_URL + ACE_GET_ADD_RESOURCE,
+            type: "POST",
+            contentType: "application/json; charset=UTF-8",
+            data: d,
+            success: function(result) {
+                $("#fileSubmit").hide();
+                $("#uploadInf").append("<p style=" + "color:#4582EC" + ";margin-top:10px" + "><i class=" + "icon-info-with-circle" + "></i> All files are uploaded and you can continue upload file.</p>");
+
+            },
+            error: function(e) {
+                hideChangeStatusModal()
+            }
+        });
+    }
+
+
+
 
     function initDownload() {
+
         var picture_api = "material/lists",
             video_api = "",
             audio_api = "",
@@ -151,15 +206,10 @@ define(function(require, exports, module) {
             sourcebar = "",
             per_page = 3;
 
-        // 视频
         var video = $("#video").get(0);
 
-        init();
-
-        function init() {
-            registerEvents();
-            get_resource_data(picture_api, $("#picture"), "GET");
-        }
+        registerEvents();
+        get_resource_data(picture_api, $("#picture"), "GET");
 
         function registerEvents() {
             tabEvents();
