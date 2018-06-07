@@ -94,7 +94,7 @@ define(function(require, exports, module) {
                             html = html + '<div class="col-6 col-md-4 col-lg-3" id="uploadList_' + i + '" style="float:left; position:relative;margin-top:20px">' +
                                 '<img id="uploadImage_' + i + '" src="' + e.target.result + '" style="width:120px;border-radius:4px;border-style: solid; border-width: 2px;border-color:#999999;object-fit:cover;"/>' +
                                 '<div  id="uploadProgress_' + i + '" class="progress" style="height:5px;margin-top:10px;margin-left:20px;margin-right:20px;margin-bottom:5px;visibility: hidden;">' +
-                                '<div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>' +
+                                '<div id="progress_' + i + '" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>' +
                                 '</div>' +filename +
                                 '<br/><a href="javascript:" class="upload_delete" title="delete" data-index="' + i + '"><i class="icon-circle-with-cross"></i> delete</a>' +
                                 '</div>';
@@ -132,9 +132,11 @@ define(function(require, exports, module) {
             },
             onProgress: function(file, loaded, total) {
                 var eleProgress = $("#uploadProgress_" + file.index);
+                var progress = $("#progress_" + file.index);
                 var percent = (loaded / total * 100).toFixed(2) + '%';
+                console.log(percent);
                 eleProgress.css("visibility", "visible");
-                eleProgress.css('width', percent+'%').attr('aria-valuenow', percent*100); 
+                progress.css('width', percent); 
             },
             onSuccess: function(file, result) {
                 $("#uploadInf").append("<small>[" + result.data.file_name + "] upload success,file address:" + ACE_BASE_IMG_URL + result.data.file_path + "</small>");
