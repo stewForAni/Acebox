@@ -33,10 +33,14 @@ define(function(require, exports, module) {
             currentOperation = $(this).children('option:selected').val();
             if (currentOperation == 0) {
                 $('#upload_section').show();
+                $('#file_type_content').show();
                 $("#download_section").hide();
+                $("#resource_download_search_btn").css("display", "none");
             } else if (currentOperation == 1) {
                 $('#upload_section').hide();
+                $('#file_type_content').hide();
                 $("#download_section").show();
+                $("#resource_download_search_btn").css("display", "inline");
             }
         });
     }
@@ -95,7 +99,7 @@ define(function(require, exports, module) {
                                 '<img id="uploadImage_' + i + '" src="' + e.target.result + '" style="width:120px;border-radius:4px;border-style: solid; border-width: 2px;border-color:#999999;object-fit:cover;"/>' +
                                 '<div  id="uploadProgress_' + i + '" class="progress" style="height:5px;margin-top:10px;margin-left:20px;margin-right:20px;margin-bottom:5px;visibility: hidden;">' +
                                 '<div id="progress_' + i + '" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>' +
-                                '</div>' +filename +
+                                '</div>' + filename +
                                 '<br/><a href="javascript:" class="upload_delete" title="delete" data-index="' + i + '"><i class="icon-circle-with-cross"></i> delete</a>' +
                                 '</div>';
 
@@ -136,7 +140,7 @@ define(function(require, exports, module) {
                 var percent = (loaded / total * 100).toFixed(2) + '%';
                 console.log(percent);
                 eleProgress.css("visibility", "visible");
-                progress.css('width', percent); 
+                progress.css('width', percent);
             },
             onSuccess: function(file, result) {
                 $("#uploadInf").append("<small>[" + result.data.file_name + "] upload success,file address:" + ACE_BASE_IMG_URL + result.data.file_path + "</small>");

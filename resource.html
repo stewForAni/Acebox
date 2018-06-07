@@ -86,14 +86,13 @@
                     </div>
                     <!--end of col-->
                 </div>
-
             </div>
             <!--end of container-->
         </section>
         <!--end of section-->
         <section class="flush-with-above">
             <div class="container">
-                <div class="row justify-content-center align-items-center">
+                <div class="row justify-content-center">
                     <div class="col-12 col-md-4 col-lg-3">
                         <form class="d-flex align-items-center">
                             <select class="custom-select" id="select_operation">
@@ -102,7 +101,7 @@
                             </select>
                         </form>
                     </div>
-                    <div class="col-12 col-md-4 col-lg-3">
+                    <div class="col-12 col-md-4 col-lg-3" id="file_type_content">
                         <form class="d-flex align-items-center">
                             <select class="custom-select" id="select_file_type">
                             </select>
@@ -113,6 +112,7 @@
                             <input class="form-control" type="text" id="resource_label" placeholder="Write Label" />
                         </form>
                     </div>
+                    <span class="col-12 col-md-4 col-lg-3 btn btn-primary" id="resource_download_search_btn" style="display:none;"><i class="icon-magnifying-glass" style="margin-right: 10px"></i>Search File</span>
                 </div>
                 <!--end of row-->
             </div>
@@ -164,7 +164,7 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-10 col-lg-10">
-                        <div class="card card-lg height-100">
+                        <div class="card card-lg">
                             <ul class="nav nav-tabs justify-content-between" id="myTab" role="tablist" style="background-color: #E6EAED">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="picture-tab" data-toggle="tab" href="#picture" role="tab" aria-controls="picture" aria-selected="true">Picture</a>
@@ -181,7 +181,18 @@
                                 <input class="form-control" placeholder="Search" type="search" style="width: 300px;margin: 6px;" />
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active show" id="picture" role="tabpanel" aria-labelledby="picture-tab">
+
+
+
+
+
+
+
+                                <div class="tab-pane active show  height-60" id="picture" role="tabpanel" aria-labelledby="picture-tab" style="position: relative;">
+                                    <div id="pic_no_data" class="col" style="width: 300px;height: 150px;position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);">
+                                        <img src="images/juice.svg" style="width: 300px;height: 100px;" />
+                                        <h6 style="width: 300px;height: 20px;" class="text-center">emmm...no data</h6>
+                                    </div>
                                     <div class="container">
                                         <ul class="row feature-list feature-list-sm index-list-content">
                                         </ul>
@@ -203,7 +214,24 @@
                                     <!--end of container-->
                                 </div>
                                 <!--end of tab pane-->
-                                <div class="tab-pane fade " id="videos" role="tabpanel" arialabelledby="videos-tab">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="tab-pane fade  height-60" id="videos" role="tabpanel" arialabelledby="videos-tab" style="position: relative;">
+                                    <div id="video_no_data" class="col" style="width: 300px;height: 150px;position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);">
+                                        <img src="images/juice.svg" style="width: 300px;height: 100px;" />
+                                        <h6 style="width: 300px;height: 20px;" class="text-center">emmm...no data</h6>
+                                    </div>
                                     <div class="container">
                                         <ul class="row feature-list feature-list-sm index-list-content">
                                         </ul>
@@ -222,23 +250,35 @@
                                     <!--end of container-->
                                 </div>
                                 <!--end of tab pane-->
-                                <div class="tab-pane fade" id="audios" role="tabpanel" aria-labelledby="audios-tab">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="tab-pane fade  height-60" id="audios" role="tabpanel" aria-labelledby="audios-tab" style="position: relative;">
+                                    <div id="audio_no_data" class="col" style="width: 300px;height: 150px;position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);">
+                                        <img src="images/juice.svg" style="width: 300px;height: 100px;" />
+                                        <h6 style="width: 300px;height: 20px;" class="text-center">emmm...no data</h6>
+                                    </div>
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
                                                 <div class="card card-sm">
                                                     <ul class="list-group list-group-flush">
-                                                        <li class="list-group-item">
-                                                            测试音频1
-                                                            <audio src="https://chimee.org/vod/1.mp4" controls>
-                                                                此浏览器不支持video标签
-                                                            </audio>
+                                                        <li class="list-group-item">测试音频1
+                                                            <audio src="https://chimee.org/vod/1.mp4" controls>此浏览器不支持video标签</audio>
                                                         </li>
-                                                        <li class="list-group-item">
-                                                            测试音频2
-                                                            <audio src="../video/1.mp4" controls>
-                                                                此浏览器不支持video标签
-                                                            </audio>
+                                                        <li class="list-group-item">测试音频2
+                                                            <audio src="../video/1.mp4" controls>此浏览器不支持video标签</audio>
                                                         </li>
                                                     </ul>
                                                 </div>
@@ -251,7 +291,24 @@
                                     </div>
                                     <!--end of container-->
                                 </div>
-                                <div class="tab-pane fade" id="animations" role="tabpanel" aria-labelledby="animations-tab">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                <div class="tab-pane fade  height-60" id="animations" role="tabpanel" aria-labelledby="animations-tab" style="position: relative;">
+                                    <div id="ani_no_data" class="col" style="width: 300px;height: 150px;position: absolute;left: 50%;top: 50%;transform: translate(-50%, -50%);">
+                                        <img src="images/juice.svg" style="width: 300px;height: 100px;" />
+                                        <h6 style="width: 300px;height: 20px;" class="text-center">emmm...no data</h6>
+                                    </div>
                                     <div class="container">
                                         <div class="row">
                                             <div class="col">
@@ -268,6 +325,21 @@
                                     </div>
                                     <!--end of container-->
                                 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
                             </div>
                             <!--end of tabs content-->
                         </div>
