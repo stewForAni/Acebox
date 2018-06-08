@@ -180,11 +180,11 @@ define(function(require, exports, module) {
             token_str = token_str + fileTokenArray[i] + ",";
         }
 
-        var d = '{' +
-            '"type_id": ' + currentFileType + ',' +
-            '"tags":"' + tag_str + '",' +
-            '"files_token": "' + token_str + '"' +
-            '}';
+        var d = {
+            "type_id": currentFileType,
+            "atgs": tag_str,
+            "files_token": token_str
+        };
 
         $.ajax({
             url: ACE_BASE_URL + ACE_GET_ADD_RESOURCE,
@@ -207,23 +207,12 @@ define(function(require, exports, module) {
 
     function initDownload() {
 
-        var picture_api = "material/lists",
-            video_api = "",
-            audio_api = "",
-            animation_api = "",
-            sourcebar = "",
-            per_page = 3;
-
         var video = $("#video").get(0);
+        var sourcebar = "";
 
-        registerEvents();
-        get_resource_data(picture_api, $("#picture"), "GET");
-
-        function registerEvents() {
-            tabEvents();
-            bodyEvents();
-            keyEvents();
-        }
+        tabEvents();
+        bodyEvents();
+        keyEvents();
 
         function tabEvents() {
             $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
@@ -344,48 +333,58 @@ define(function(require, exports, module) {
             });
         }
 
+        $('#resource_download_search_btn').click(function() {
+            var tags = $('#resource_label').val();
+            if (isEmpty(tags)) {
+                showModal("#resource_container", "Please write label first !")
+                return false;
+            }
+            get_resource_data(tags, $('#picture'));
+            return false;
+        });
+
+
+        function get_resource_data(tags, ele) {
+
+            $.ajax({
+                url: ACE_BASE_URL + ACE_GET_RESOURCE_LIST + "?tags=" + tags + "&per-page=" + 40 + "&type_id=5",
+                type: "GET",
+                contentType: "application/json; charset=UTF-8",
+                success: function(result) {
+                    var col = '';
+                    var contentList = ele.find(".index-list-content");
+                    if (result.data.items.length == 0) {
+                        contentList.append("没有数据！");
+                    } else {
+                        if (contentList.find("li").length) {
+                            contentList.html("");
+                        }
+                        $.each(result.data.items, function(index, obj) {
+                            col += col_data(obj);
+                        });
+                        contentList.append(col);
+                        getData.page_data(result.data, ele);
+                        scroll.commonscroll();
+                    }
+                },
+                error: function(e) {
+                    hideChangeStatusModal()
+                }
+            });
+
+        }
+
         function col_data(object) {
             if (sourcebar == "picture" || sourcebar == "") {
                 return getData.col_data('RESOURCE_PICTURE', object);
-            }
-            if (sourcebar == "video") {
+            } else if (sourcebar == "video") {
                 return getData.col_data('RESOURCE_VIDEO', object);
-            }
-            if (sourcebar == "audio") {
+            } else if (sourcebar == "audio") {
                 return getData.col_data('RESOURCE_AUDIO', object);
-            }
-            if (sourcebar == "animation") {
+            } else if (sourcebar == "animation") {
                 return getData.col_data('RESOURCE_ANIMATION', object);
             }
         }
-
-        function get_resource_data(url, ele, type, page = 1) {
-            var parameterData = {
-                "page": page,
-                "per-page": per_page
-            };
-
-            // httpService.processData(url, type, parameterData).done(function(result) {
-            //         var col = '';
-            //         var contentList = ele.find(".index-list-content");
-            //         if (result.data.items.length == 0) {
-            //             contentList.append("没有数据！");
-            //         } else {
-            //             if (contentList.find("li").length) {
-            //                 contentList.html("");
-            //             }
-            //             $.each(result.data.items, function(index, obj) {
-            //                 col += col_data(obj);
-            //             });
-            //             contentList.append(col);
-            //             getData.page_data(result.data, ele);
-            //             scroll.commonscroll();
-            //         }
-            //     })
-            //     .fail(function() {});
-        }
-
-
 
         // 暂停或播放
         function videoSmart() {

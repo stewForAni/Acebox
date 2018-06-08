@@ -1,29 +1,29 @@
-define(function(require){
+define(function(require) {
     var $ = require('jquery');
     return {
-        page_data:page_data,
-        col_data:col_data
+        page_data: page_data,
+        col_data: col_data
     }
 
-    function page_data(pagedata, multiplicity=''){
-        if(multiplicity == ''){
+    function page_data(pagedata, multiplicity = '') {
+        if (multiplicity == '') {
             var pagination = $(".pagination");
-        }else{
+        } else {
             var pagination = multiplicity.find(".pagination");
         }
         if (pagination.find(".page-item").length == 0) {
             var page_item = '';
             for (var i = 1; i < pagedata.counts.total_page + 1; i++) {
-                page_item += '<li class="page-item"><a class="page-link" href="javascript:void(0);">' + i + '</a></li>';                
+                page_item += '<li class="page-item"><a class="page-link" href="javascript:void(0);">' + i + '</a></li>';
             }
             pagination.append(page_item);
         }
     }
 
-    function col_data(type, object){
+    function col_data(type, object) {
         var COL = '';
-        if(type == 'RESOURCE_PICTURE'){
-            COL = '<li class="col-12 col-md-6 col-lg-4">\n' +
+        if (type == 'RESOURCE_PICTURE') {
+            COL = '<li class="col-12 col-md-4 col-lg-3">\n' +
                 '                    <div class="card">\n' +
                 '                        <img class="card-img-top" src="' + object.title_picture + '">' +
                 '                        <div class="card-body">\n' +
@@ -44,12 +44,11 @@ define(function(require){
                 '                        </div>\n' +
                 '                    </div>\n' +
                 '                </li>\n';
-        }
-        if(type == 'RESOURCE_VIDEO'){
+        } else if (type == 'RESOURCE_VIDEO') {
             COL = '<li class="col-12 col-md-6 col-lg-4">\n' +
                 '    <div class="card">' +
                 '        <div class="video-cover rounded">' +
-                '            <img class="card-img-top" src="'+ object.title_picture +'" video="'+ object.file_url +'" alt="Card image cap">' +
+                '            <img class="card-img-top" src="' + object.title_picture + '" video="' + object.file_url + '" alt="Card image cap">' +
                 '            <div data-toggle="modal" data-target=".bs-modal-lg">' +
                 '                <div class="video-play-icon">' +
                 '                    <i class="icon-controller-play"></i>' +
@@ -57,14 +56,14 @@ define(function(require){
                 '            </div>' +
                 '        </div>' +
                 '        <div class="card-body">' +
-                '            <h4 class="card-title search-title">'+ object.title +'</h4>' +
+                '            <h4 class="card-title search-title">' + object.title + '</h4>' +
                 '            <p class="card-text">视频描述</p>' +
                 '        </div>' +
                 '        <div class="card-footer card-footer-borderless d-flex justify-content-between">' +
                 '            <div class="text-small">' +
                 '                <ul class="list-inline">' +
                 '                    <li class="list-inline-item"><i class="icon-heart"></i> 221</li>' +
-                '                    <a href="'+ object.file_url +'" download>' +
+                '                    <a href="' + object.file_url + '" download>' +
                 '                        <li class="list-inline-item">' +
                 '                            <i class="icon-download"></i> download' +
                 '                        </li>' +
@@ -74,31 +73,30 @@ define(function(require){
                 '        </div>' +
                 '    </div>' +
                 '</li>';
-        }
-        if(type == 'RESOURCE_AUDIO'){
+        } else if (type == 'RESOURCE_AUDIO') {
             COL = '<li class="list-group-item" style="background: #FAFAFA;">' +
                 '                <div class="media align-items-center">' +
                 '                    <a href="#" class="mr-4">' +
-                '                        <img alt="Image" src="'+ object.title_picture +'" class="rounded avatar">' +
+                '                        <img alt="Image" src="' + object.title_picture + '" class="rounded avatar">' +
                 '                    </a>' +
                 '                    <div class="media-body row">' +
                 '                        <div class="d-flex justify-content-between mb-2 col-sm-2">' +
                 '                            <div>' +
                 '                                <a href="#" class="mb-1">' +
-                '                                    <h4>'+ object.title +'</h4>' +
+                '                                    <h4>' + object.title + '</h4>' +
                 '                                </a>' +
                 '                            </div>' +
                 '                        </div>' +
                 '                        <div class="col-sm-5">' +
                 '                    <span>' +
-                '                        <audio src="'+ object.file_url +'" controls>' +
+                '                        <audio src="' + object.file_url + '" controls>' +
                 '                            此浏览器不支持aideo标签' +
                 '                        </audio>' +
                 '                    </span>' +
                 '                        </div>' +
                 '                        <div class="col-sm-3">' +
                 '                            <ul class="list-inline" style="margin-top: 3px;">' +
-                '                                <a href="'+ object.file_url +'" download>' +
+                '                                <a href="' + object.file_url + '" download>' +
                 '                                    <li class="list-inline-item">' +
                 '                                        <i class="icon-download"></i> download' +
                 '                                    </li>' +
@@ -106,20 +104,19 @@ define(function(require){
                 '                            </ul>' +
                 '                        </div>' +
                 '                    </div>' +
-                '                </div>' + 
+                '                </div>' +
                 '            </li>';
-        }
-        if(type == 'RESOURCE_ANIMATION'){
+        } else if (type == 'RESOURCE_ANIMATION') {
             COL = '<li class="list-group-item">' +
                 '            <div class="media align-items-center">' +
                 '                <a href="#" class="mr-4">' +
-                '                    <img alt="Image" src="'+ object.title_picture +'" class="rounded avatar avatar-lg">' +
+                '                    <img alt="Image" src="' + object.title_picture + '" class="rounded avatar avatar-lg">' +
                 '                </a>' +
                 '                <div class="media-body">' +
                 '                    <div class="d-flex justify-content-between mb-2">' +
                 '                        <div>' +
                 '                            <a href="#" class="mb-1">' +
-                '                                <h4>'+ object.title +'</h4>' +
+                '                                <h4>' + object.title + '</h4>' +
                 '                            </a>' +
                 '                            <span>动画描述</span>' +
                 '                        </div>' +
@@ -128,7 +125,7 @@ define(function(require){
                 '                    <div class="text-small">' +
                 '                        <ul class="list-inline">' +
                 '                            <li class="list-inline-item"><i class="icon-heart"></i> 90</li>' +
-                '                            <a href="'+ object.file_url +'" download>' +
+                '                            <a href="' + object.file_url + '" download>' +
                 '                                <li class="list-inline-item">' +
                 '                                    <i class="icon-download"></i> download' +
                 '                                </li>' +
@@ -138,23 +135,22 @@ define(function(require){
                 '                </div>' +
                 '            </div>' +
                 '        </li>';
-        }
-        if(type == 'USER_INFORMATION'){
+        } else if (type == 'USER_INFORMATION') {
             COL = '<tr class="bg-white">\n' +
                 '            <th scope="row">\n' +
                 '                <div class="media align-items-center">\n' +
-                '                    <img alt="Image" src="'+ object.picture +'" class="avatar">\n' +
+                '                    <img alt="Image" src="' + object.picture + '" class="avatar">\n' +
                 '                </div>\n' +
                 '            </th>\n' +
                 '            <td>\n' +
                 '                <div class="media-body">\n' +
-                '                        <span class="h6 mb-0">'+ object.username +'\n' +
-                '                            <span class="badge badge-secondary">'+ object.usertype +'</span>\n' +
+                '                        <span class="h6 mb-0">' + object.username + '\n' +
+                '                            <span class="badge badge-secondary">' + object.usertype + '</span>\n' +
                 '                        </span>\n' +
                 '                </div>\n' +
                 '            </td>\n' +
-                '            <td>'+ object.userid +'</td>\n' +
-                '            <td>'+ object.position +'</td>\n' +
+                '            <td>' + object.userid + '</td>\n' +
+                '            <td>' + object.position + '</td>\n' +
                 '            <td>\n' +
                 '                <div class="dropdown">\n' +
                 '                    <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="dropdownMenuButton-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\n' +
