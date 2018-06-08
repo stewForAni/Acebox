@@ -1,5 +1,6 @@
 define(function(require) {
     var $ = require('jquery');
+
     return {
         page_data: page_data,
         col_data: col_data
@@ -25,7 +26,7 @@ define(function(require) {
         if (type == 'RESOURCE_PICTURE') {
             COL = '<li class="col-12 col-md-4 col-lg-3">\n' +
                 '                    <div class="card">\n' +
-                '                        <img class="card-img-top" src="' + object.title_picture + '">' +
+                '                        <img class="card-img-top" src="' + object.download_file + '">' +
                 '                        <div class="card-body">\n' +
                 '                            <h4 class="card-title search-title">' + object.title + '</h4>\n' +
                 '                            <p class="card-text">Holistic fitness tracking</p>\n' +

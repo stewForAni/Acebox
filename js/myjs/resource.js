@@ -10,6 +10,10 @@ define(function(require, exports, module) {
     var currentFileType = -1;
     var fileTokenArray = new Array();
 
+    var TYPE_ID_PICTRUE = 5;
+    var TYPE_ID_ANIMATION = 6;
+    var TYPE_ID_AUDIO = 7;
+    var TYPE_ID_VIDEO = 8;
 
     init();
 
@@ -180,11 +184,11 @@ define(function(require, exports, module) {
             token_str = token_str + fileTokenArray[i] + ",";
         }
 
-        var d = {
-            "type_id": currentFileType,
-            "atgs": tag_str,
-            "files_token": token_str
-        };
+        var d = '{' +
+            '"type_id":' + currentFileType + ' ,' +
+            '"tags": "' + tag_str + '",' +
+            '"files_token": "' + token_str + '"' +
+            '}';
 
         $.ajax({
             url: ACE_BASE_URL + ACE_GET_ADD_RESOURCE,
@@ -339,52 +343,63 @@ define(function(require, exports, module) {
                 showModal("#resource_container", "Please write label first !")
                 return false;
             }
-            get_resource_data(tags, $('#picture'));
+            get_resource_data(tags, TYPE_ID_PICTRUE);
             return false;
         });
 
 
-        function get_resource_data(tags, ele) {
+        function get_resource_data(tags, type_id) {
 
             $.ajax({
-                url: ACE_BASE_URL + ACE_GET_RESOURCE_LIST + "?tags=" + tags + "&per-page=" + 40 + "&type_id=5",
+                url: ACE_BASE_URL + ACE_GET_RESOURCE_LIST + "?tags=" + tags + "&per-page=" + 40 + "&type_id=" + type_id,
                 type: "GET",
                 contentType: "application/json; charset=UTF-8",
                 success: function(result) {
-                    var col = '';
-                    var contentList = ele.find(".index-list-content");
-                    if (result.data.items.length == 0) {
-                        contentList.append("没有数据！");
-                    } else {
-                        if (contentList.find("li").length) {
-                            contentList.html("");
-                        }
-                        $.each(result.data.items, function(index, obj) {
-                            col += col_data(obj);
-                        });
-                        contentList.append(col);
-                        getData.page_data(result.data, ele);
-                        scroll.commonscroll();
-                    }
+                    dealData(result, type_id);
                 },
-                error: function(e) {
-                    hideChangeStatusModal()
-                }
+                error: function(e) {}
             });
 
         }
 
-        function col_data(object) {
-            if (sourcebar == "picture" || sourcebar == "") {
-                return getData.col_data('RESOURCE_PICTURE', object);
-            } else if (sourcebar == "video") {
-                return getData.col_data('RESOURCE_VIDEO', object);
-            } else if (sourcebar == "audio") {
-                return getData.col_data('RESOURCE_AUDIO', object);
-            } else if (sourcebar == "animation") {
-                return getData.col_data('RESOURCE_ANIMATION', object);
+        function dealData(result, type_id) {
+            var list = '';
+            if (type_id == TYPE_ID_PICTRUE) {
+                $("#content_list_picture").empty();
+                if (!result.data.items.length == 0) {
+                    $("#pic_no_data").hide();
+                    $.each(result.data.items, function(index, obj) {
+                        list += getPictrueItem(obj, type_id);
+                    });
+
+
+                    $("#content_list_picture").append(list);
+                    //getData.page_data(result.data, ele);
+                } else {
+                    $("#pic_no_data").show();
+                }
             }
         }
+
+
+        function getPictrueItem(object, type_id) {
+            var item = "";
+            if (type_id == TYPE_ID_PICTRUE) {
+                item = ' <li class="col-12 col-md-4 col-lg-3">' +
+                    '<div class="card">' +
+                    '<a href="#">' +
+                    '<img class="my-card-img-top" src="' + ACE_BASE_IMG_URL + object.download_file + '" alt="Card image cap" style="object-fit:cover;">' +
+                    '</a>' +
+                    '<div>' +
+                    '<h6 style="margin-top:20px;margin-left:20px;margin-right:20px">' + object.title + '</h6>' +
+                    '<p style="margin-left:20px;margin-right:20px;margin-bottom:10px;"><small>created_at:' + getTime(object.created_at) + '</small></p>' +
+                    '</div>' +
+                    '</div>' +
+                    '</li>';
+            }
+            return item;
+        }
+
 
         // 暂停或播放
         function videoSmart() {

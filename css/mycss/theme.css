@@ -3106,6 +3106,13 @@ input[type="button"].btn-block {
   width: 100%;
   border-radius: calc(0.25rem - 1px); }
 
+.my-card-img-top {
+  width: 100%;
+  height: 200px;
+  border-top-left-radius: calc(0.25rem - 1px);
+  border-top-right-radius: calc(0.25rem - 1px); }
+
+
 .card-img-top {
   width: 100%;
   border-top-left-radius: calc(0.25rem - 1px);
