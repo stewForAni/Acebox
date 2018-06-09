@@ -100,7 +100,7 @@ define(function(require, exports, module) {
 
                         reader.onload = function(e) {
                             html = html + '<div class="col-6 col-md-4 col-lg-3" id="uploadList_' + i + '" style="float:left; position:relative;margin-top:20px">' +
-                                '<img id="uploadImage_' + i + '" src="' + e.target.result + '" style="width:120px;border-radius:4px;border-style: solid; border-width: 2px;border-color:#999999;object-fit:cover;"/>' +
+                                '<img id="uploadImage_' + i + '" src="' + e.target.result + '" style="width:120px;height:100px;border-radius:4px;border-style: solid; border-width: 2px;border-color:#999999;object-fit:cover;"/>' +
                                 '<div  id="uploadProgress_' + i + '" class="progress" style="height:5px;margin-top:10px;margin-left:20px;margin-right:20px;margin-bottom:5px;visibility: hidden;">' +
                                 '<div id="progress_' + i + '" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>' +
                                 '</div>' + filename +
@@ -371,8 +371,6 @@ define(function(require, exports, module) {
                     $.each(result.data.items, function(index, obj) {
                         list += getPictrueItem(obj, type_id);
                     });
-
-
                     $("#content_list_picture").append(list);
                     //getData.page_data(result.data, ele);
                 } else {
@@ -391,8 +389,8 @@ define(function(require, exports, module) {
                     '<img class="my-card-img-top" src="' + ACE_BASE_IMG_URL + object.download_file + '" alt="Card image cap" style="object-fit:cover;">' +
                     '</a>' +
                     '<div>' +
-                    '<h6 style="margin-top:20px;margin-left:20px;margin-right:20px">' + object.title + '</h6>' +
-                    '<p style="margin-left:20px;margin-right:20px;margin-bottom:10px;"><small>created_at:' + getTime(object.created_at) + '</small></p>' +
+                    '<h6 style="margin-top:20px;margin-left:20px;margin-right:20px">'+"(" + object.id + ")" + object.title + '</h6>' +
+                    '<p style="margin-left:20px;margin-right:20px;margin-bottom:10px;"><small><i class="icon-calendar" style="margin-right:5px"></i>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:15px"></i><a href="'+ ACE_BASE_IMG_URL + object.download_file +'" target="_blank">Click to download</a></small></p>' +
                     '</div>' +
                     '</div>' +
                     '</li>';
