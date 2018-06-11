@@ -99,8 +99,17 @@ define(function(require, exports, module) {
                         }
 
                         reader.onload = function(e) {
+
+                            var imgsrc = "";
+                            var l = file.name.length;
+                            if (file.name.substring(l - 3, l) == "zip") {
+                                imgsrc = "images/animation.svg";
+                            } else {
+                                imgsrc = e.target.result;
+                            }
+
                             html = html + '<div class="col-6 col-md-4 col-lg-3" id="uploadList_' + i + '" style="float:left; position:relative;margin-top:20px">' +
-                                '<img id="uploadImage_' + i + '" src="' + e.target.result + '" style="width:120px;height:100px;border-radius:4px;border-style: solid; border-width: 2px;border-color:#999999;object-fit:cover;"/>' +
+                                '<img id="uploadImage_' + i + '" src="' + imgsrc + '" style="width:120px;height:100px;border-radius:4px;border-style: solid; border-width: 2px;border-color:#999999;object-fit:cover;"/>' +
                                 '<div  id="uploadProgress_' + i + '" class="progress" style="height:5px;margin-top:10px;margin-left:20px;margin-right:20px;margin-bottom:5px;visibility: hidden;">' +
                                 '<div id="progress_' + i + '" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%"></div>' +
                                 '</div>' + filename +
