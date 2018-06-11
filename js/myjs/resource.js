@@ -75,11 +75,11 @@ define(function(require, exports, module) {
             filter: function(files) {
                 var arrFiles = [];
                 for (var i = 0, file; file = files[i]; i++) {
-                    if (file.type.indexOf("image") == 0) {
-                        arrFiles.push(file);
-                    } else {
-                        alert('文件"' + file.name + '"不是图片。');
-                    }
+                    //if (file.type.indexOf("image") == 0) {
+                    arrFiles.push(file);
+                    // } else {
+                    //     alert('文件"' + file.name + '"不是图片。');
+                    // }
                 }
                 return arrFiles;
             },
@@ -212,30 +212,31 @@ define(function(require, exports, module) {
     function initDownload() {
 
         var video = $("#video").get(0);
-        var sourcebar = "";
+        var currentElement = "#picture";
 
         tabEvents();
-        bodyEvents();
+        //bodyEvents();
         keyEvents();
 
         function tabEvents() {
             $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-                var currentElement = $(e.target).attr("href");
+
+                currentElement = $(e.target).attr("href");
+                var tags = $('#resource_label').val();
+
+                if (isEmpty(tags)) {
+                    showModal("#resource_container", "Please write label first !")
+                    return false;
+                }
+
                 if ("#picture" == currentElement) {
-                    sourcebar = "picture";
-                    get_resource_data(picture_api, $(currentElement), "GET");
-                }
-                if ("#video" == currentElement) {
-                    sourcebar = "video";
-                    get_resource_data(video_api, $(currentElement), "GET");
-                }
-                if ("#audio" == currentElement) {
-                    sourcebar = "audio";
-                    get_resource_data(audio_api, $(currentElement), "GET");
-                }
-                if ("#animation" == currentElement) {
-                    sourcebar = "animation";
-                    get_resource_data(animation_api, $(currentElement), "GET");
+                    get_resource_data(tags, TYPE_ID_PICTRUE);
+                } else if ("#videos" == currentElement) {
+                    get_resource_data(tags, TYPE_ID_VIDEO);
+                } else if ("#audios" == currentElement) {
+                    get_resource_data(tags, TYPE_ID_AUDIO);
+                } else if ("#animations" == currentElement) {
+                    get_resource_data(tags, TYPE_ID_ANIMATION);
                 }
             });
         }
@@ -313,26 +314,18 @@ define(function(require, exports, module) {
 
         function keyEvents() {
             $(document).keydown(function() {
-                // console.log(event.keyCode);
                 if (event.keyCode == 32) {
-                    // 空格
-                    videoSmart();
+                    videoSmart(); // 空格
                 } else if (event.keyCode == 37) {
-                    // 回退
-                    // console.log(video.currentTime);
-                    recede();
+                    recede(); // 回退
                 } else if (event.keyCode == 38) {
-                    // 上键
-                    volumeInc();
+                    volumeInc(); // 上键
                 } else if (event.keyCode == 39) {
-                    // 右键
-                    onward();
+                    onward(); // 右键
                 } else if (event.keyCode == 40) {
-                    // 下键
-                    volumeDec();
+                    volumeDec(); // 下键
                 } else if (event.keyCode == 13) {
-                    // 回车
-                    search();
+                    search(); // 回车
                 }
             });
         }
@@ -363,21 +356,49 @@ define(function(require, exports, module) {
         }
 
         function dealData(result, type_id) {
-            var list = '';
             if (type_id == TYPE_ID_PICTRUE) {
-                $("#content_list_picture").empty();
-                if (!result.data.items.length == 0) {
-                    $("#pic_no_data").hide();
-                    $.each(result.data.items, function(index, obj) {
-                        list += getPictrueItem(obj, type_id);
-                    });
-                    $("#content_list_picture").append(list);
-                    //getData.page_data(result.data, ele);
-                } else {
-                    $("#pic_no_data").show();
-                }
+                dealPic(result, type_id);
+            } else if (type_id == TYPE_ID_ANIMATION) {
+                dealAni(result, type_id);
+            } else if (type_id == TYPE_ID_AUDIO) {
+                dealAud(result, type_id);
+            } else if (type_id == TYPE_ID_VIDEO) {
+                dealVid(result, type_id);
             }
         }
+
+
+        function dealPic(result, type_id) {
+            var listpic = '';
+            $("#content_list_picture").empty();
+            if (!result.data.items.length == 0) {
+                $("#pic_no_data").hide();
+                $.each(result.data.items, function(index, obj) {
+                    listpic += getPictrueItem(obj, type_id);
+                });
+                $("#content_list_picture").append(listpic);
+                //getData.page_data(result.data, ele);
+            } else {
+                $("#pic_no_data").show();
+            }
+        }
+
+
+        function dealAni(result, type_id) {
+            var listani = '';
+            $("#content_list_picture").empty();
+            if (!result.data.items.length == 0) {
+                $("#pic_no_data").hide();
+                $.each(result.data.items, function(index, obj) {
+                    listani += getPictrueItem(obj, type_id);
+                });
+                $("#content_list_picture").append(listani);
+                //getData.page_data(result.data, ele);
+            } else {
+                $("#pic_no_data").show();
+            }
+        }
+
 
 
         function getPictrueItem(object, type_id) {
@@ -389,8 +410,8 @@ define(function(require, exports, module) {
                     '<img class="my-card-img-top" src="' + ACE_BASE_IMG_URL + object.download_file + '" alt="Card image cap" style="object-fit:cover;">' +
                     '</a>' +
                     '<div>' +
-                    '<h6 style="margin-top:20px;margin-left:20px;margin-right:20px">'+"(" + object.id + ")" + object.title + '</h6>' +
-                    '<p style="margin-left:20px;margin-right:20px;margin-bottom:10px;"><small><i class="icon-calendar" style="margin-right:5px"></i>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:15px"></i><a href="'+ ACE_BASE_IMG_URL + object.download_file +'" target="_blank">Click to download</a></small></p>' +
+                    '<h6 style="margin-top:20px;margin-left:20px;margin-right:20px">' + "(" + object.id + ")" + object.title + '</h6>' +
+                    '<p style="margin-left:20px;margin-right:20px;margin-bottom:10px;"><small><i class="icon-calendar" style="margin-right:5px"></i>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:15px"></i><a href="' + ACE_BASE_IMG_URL + object.download_file + '?">Download</a></small></p>' +
                     '</div>' +
                     '</div>' +
                     '</li>';
