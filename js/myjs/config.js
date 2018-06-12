@@ -8,7 +8,6 @@ require.config({
         "scrollbartool": "myjs/scrollbartool",
         "ajaxUtil": "http/ajaxUtil",
         "aceApiTool": "http/aceApiTool",
-        "getData": "app/commongetdata",
         "commoncontent": "myjs/commoncontent",
         "multifileupload":"multifileupload"
     },

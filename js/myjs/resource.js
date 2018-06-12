@@ -5,7 +5,6 @@ define(function(require, exports, module) {
     require('aceApiTool');
     require('commoncontent');
     require('multifileupload');
-    var getData = require('getData');
     var currentOperation = 0;
     var currentFileType = -1;
     var fileTokenArray = new Array();
@@ -103,7 +102,11 @@ define(function(require, exports, module) {
                             var imgsrc = "";
                             var l = file.name.length;
                             if (file.name.substring(l - 3, l) == "zip") {
-                                imgsrc = "images/animation.svg";
+                                imgsrc = "images/ani.png";
+                            } else if (file.name.substring(l - 3, l) == "ogg") {
+                                imgsrc = "images/audio.jpg";
+                            } else if (file.name.substring(l - 3, l) == "mp4") {
+                                imgsrc = "images/video.jpg";
                             } else {
                                 imgsrc = e.target.result;
                             }
@@ -222,9 +225,8 @@ define(function(require, exports, module) {
 
         var video = $("#video").get(0);
         var currentElement = "#picture";
-
+        var currentType = 5;
         tabEvents();
-        //bodyEvents();
         keyEvents();
 
         function tabEvents() {
@@ -239,87 +241,22 @@ define(function(require, exports, module) {
                 }
 
                 if ("#picture" == currentElement) {
+                    currentType = TYPE_ID_PICTRUE;
                     get_resource_data(tags, TYPE_ID_PICTRUE);
                 } else if ("#videos" == currentElement) {
+                    currentType = TYPE_ID_VIDEO;
                     get_resource_data(tags, TYPE_ID_VIDEO);
                 } else if ("#audios" == currentElement) {
+                    currentType = TYPE_ID_AUDIO;
                     get_resource_data(tags, TYPE_ID_AUDIO);
                 } else if ("#animations" == currentElement) {
+                    currentType = TYPE_ID_ANIMATION;
                     get_resource_data(tags, TYPE_ID_ANIMATION);
                 }
+
             });
         }
 
-        function bodyEvents() {
-            $("body")
-                .on('click', "#img-zoom", function() {
-                    $('#img-modal').modal("hide");
-                })
-                .on('click', "#img-dialog", function() {
-                    $('#img-modal').modal("hide");
-                })
-                .on('click', "#picture .pagination a", function() {
-                    // $("#video").attr("src", $(this).attr("video"));
-                    var p = $(this).text();
-                    get_resource_data(picture_api, $("#picture"), "GET", p);
-                    search();
-                })
-                .on('click', "#video .pagination a", function() {
-                    var p = $(this).text();
-                    get_resource_data(video_api, $("#video"), "GET", p);
-                    search();
-                })
-                .on('click', "#audio .pagination a", function() {
-                    var p = $(this).text();
-                    get_resource_data(audio_api, $("#audio"), "GET", p);
-                    search();
-                })
-                .on('click', "#animation .pagination a", function() {
-                    var p = $(this).text();
-                    get_resource_data(animation_api, $("#animation"), "GET", p);
-                    search();
-                })
-                .on('click', ".index-list-content img", function() {
-                    var src = $(this).attr("src");
-                    $("#img-zoom").attr("src", src);
-                    var oImg = $(this);
-                    var img = new Image();
-                    img.src = $(oImg).attr("src");
-                    var realWidth = img.width; //真实的宽度
-                    var realHeight = img.height; //真实的高度
-                    var ww = $(window).width(); //当前浏览器可视宽度
-                    var wh = $(window).height(); //当前浏览器可视宽度
-                    var ll = $("#img-dialog").css('margin-left');
-                    // alert(ll);
-                    // alert(wh);
-                    $("#img-content").css({ "top": 0, "left": 0, "height": "auto" });
-                    // $("#img-zoom").css({"height":"auto"});
-                    if ((realWidth + 20) > ww) {
-                        $("#img-content").css({ "width": "100%" });
-                        $("#img-zoom").css({ "width": "99%" });
-                    } else {
-                        $("#img-content").css({ "width": realWidth + 20, "height": realHeight + 20 });
-                        $("#img-zoom").css({ "width": realWidth, "height": realHeight });
-                    }
-                    if ((wh - realHeight - 40) > 0) {
-                        $("#img-content").css({ "top": (wh - realHeight) / 2 });
-                    }
-                    if ((ww - realWidth - 20) > 0) {
-                        $("#img-content").css({ "left": ((ww - realWidth) / 2) });
-                    }
-                    // console.log("realWidth:"+realWidth+" realHeight:"+realHeight+" ww:"+ww)
-                    $('#img-modal').modal();
-                })
-                .on('click', ".video-play-icon", function() {
-                    $("#video").attr("src", $(this).parent().prev("img").attr("video"));
-                })
-                .on('click', "#video", function() {
-                    videoSmart();
-                })
-                .on('click', ".search-button", function() {
-                    search();
-                });
-        }
 
         function keyEvents() {
             $(document).keydown(function() {
@@ -345,9 +282,18 @@ define(function(require, exports, module) {
                 showModal("#resource_container", "Please write label first !")
                 return false;
             }
-            get_resource_data(tags, TYPE_ID_PICTRUE);
+            get_resource_data(tags, currentType);
             return false;
         });
+
+
+        $('#search_input').bind('input propertychange', function() {
+            console.log("1");
+            window.find($(this).val(),false,true);  
+        });
+
+
+
 
 
         function get_resource_data(tags, type_id) {
@@ -383,10 +329,9 @@ define(function(require, exports, module) {
             if (!result.data.items.length == 0) {
                 $("#pic_no_data").hide();
                 $.each(result.data.items, function(index, obj) {
-                    listpic += getPictrueItem(obj, type_id);
+                    listpic += getListItem(obj, type_id);
                 });
                 $("#content_list_picture").append(listpic);
-                //getData.page_data(result.data, ele);
             } else {
                 $("#pic_no_data").show();
             }
@@ -395,22 +340,48 @@ define(function(require, exports, module) {
 
         function dealAni(result, type_id) {
             var listani = '';
-            $("#content_list_picture").empty();
+            $("#content_list_animation").empty();
             if (!result.data.items.length == 0) {
-                $("#pic_no_data").hide();
+                $("#ani_no_data").hide();
                 $.each(result.data.items, function(index, obj) {
-                    listani += getPictrueItem(obj, type_id);
+                    listani += getListItem(obj, type_id);
                 });
-                $("#content_list_picture").append(listani);
-                //getData.page_data(result.data, ele);
+                $("#content_list_animation").append(listani);
             } else {
-                $("#pic_no_data").show();
+                $("#ani_no_data").show();
+            }
+        }
+
+        function dealAud(result, type_id) {
+            var listaud = '';
+            $("#content_list_audio").empty();
+            if (!result.data.items.length == 0) {
+                $("#audio_no_data").hide();
+                $.each(result.data.items, function(index, obj) {
+                    listaud += getListItem(obj, type_id);
+                });
+                $("#content_list_audio").append(listaud);
+            } else {
+                $("#audio_no_data").show();
+            }
+        }
+
+        function dealVid(result, type_id) {
+            var listvid = '';
+            $("#content_list_video").empty();
+            if (!result.data.items.length == 0) {
+                $("#video_no_data").hide();
+                $.each(result.data.items, function(index, obj) {
+                    listvid += getListItem(obj, type_id);
+                });
+                $("#content_list_video").append(listvid);
+            } else {
+                $("#video_no_data").show();
             }
         }
 
 
-
-        function getPictrueItem(object, type_id) {
+        function getListItem(object, type_id) {
             var item = "";
             if (type_id == TYPE_ID_PICTRUE) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
@@ -419,12 +390,49 @@ define(function(require, exports, module) {
                     '<img class="my-card-img-top" src="' + ACE_BASE_IMG_URL + object.download_file + '" alt="Card image cap" style="object-fit:cover;">' +
                     '</a>' +
                     '<div>' +
-                    '<h6 style="margin-top:20px;margin-left:20px;margin-right:20px">' + "(" + object.id + ")" + object.title + '</h6>' +
-                    '<p style="margin-left:20px;margin-right:20px;margin-bottom:10px;"><small><i class="icon-calendar" style="margin-right:5px"></i>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:15px"></i><a href="' + ACE_BASE_IMG_URL + object.download_file + '?">Download</a></small></p>' +
+                    '<h6 style="margin-top:20px;margin-left:10px;margin-right:20px">' + "[ " + object.id + " ] " + object.title + '</h6>' +
+                    '<p style="margin-left:10px;margin-right:20px;margin-bottom:10px;"><small>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:20px"></i><a href="' + ACE_BASE_IMG_URL + object.download_file + '?">Download</a></small></p>' +
+                    '</div>' +
+                    '</div>' +
+                    '</li>';
+            } else if (type_id == TYPE_ID_ANIMATION) {
+                item = ' <li class="col-12 col-md-4 col-lg-3">' +
+                    '<div class="card">' +
+                    '<a href="#">' +
+                    '<img class="my-card-img-top" src="images/ani.png" alt="Card image cap" style="object-fit:cover;">' +
+                    '</a>' +
+                    '<div>' +
+                    '<h6 style="margin-top:20px;margin-left:10px;margin-right:20px">' + "[ " + object.id + " ] " + object.title + '</h6>' +
+                    '<p style="margin-left:10px;margin-right:20px;margin-bottom:10px;"><small>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:20px"></i><a href="' + ACE_BASE_IMG_URL + object.download_file + '?">Download</a></small></p>' +
+                    '</div>' +
+                    '</div>' +
+                    '</li>';
+            } else if (type_id == TYPE_ID_AUDIO) {
+                item = ' <li class="col-12 col-md-4 col-lg-3">' +
+                    '<div class="card">' +
+                    '<a href="#">' +
+                    '<img class="my-card-img-top" src="images/audio.jpg" alt="Card image cap" style="object-fit:cover;">' +
+                    '</a>' +
+                    '<div>' +
+                    '<h6 style="margin-top:20px;margin-left:10px;margin-right:20px">' + "[ " + object.id + " ] " + object.title + '</h6>' +
+                    '<p style="margin-left:10px;margin-right:20px;margin-bottom:10px;"><small>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:20px"></i><a href="' + ACE_BASE_IMG_URL + object.download_file + '?">Download</a></small></p>' +
+                    '</div>' +
+                    '</div>' +
+                    '</li>';
+            } else if (type_id == TYPE_ID_VIDEO) {
+                item = ' <li class="col-12 col-md-4 col-lg-3">' +
+                    '<div class="card">' +
+                    '<a href="#">' +
+                    '<img class="my-card-img-top" src="images/video.jpg" alt="Card image cap" style="object-fit:cover;">' +
+                    '</a>' +
+                    '<div>' +
+                    '<h6 style="margin-top:20px;margin-left:10px;margin-right:20px">' + "[ " + object.id + " ] " + object.title + '</h6>' +
+                    '<p style="margin-left:10px;margin-right:20px;margin-bottom:10px;"><small>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:20px"></i><a href="' + ACE_BASE_IMG_URL + object.download_file + '?">Download</a></small></p>' +
                     '</div>' +
                     '</div>' +
                     '</li>';
             }
+
             return item;
         }
 
@@ -455,19 +463,7 @@ define(function(require, exports, module) {
             video.currentTime - 10 < 0.1 ? video.currentTime = 0 : video.currentTime -= 10;
         }
 
-        function search() {
-            $.each($('.search-title'), function() {
-                var str1 = $(this).html().toUpperCase();
-                var str2 = $('input').val().toUpperCase();
-                // console.log(str1);
-                // console.log(str2);
-                if ((str1 == str2) || ((str1.search(str2) != -1) && (str2))) {
-                    $(this).css({ 'background': 'yellow' });
-                } else {
-                    $(this).css({ 'background': '' });
-                }
-            });
-        }
+
     }
 
 });
