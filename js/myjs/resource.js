@@ -286,13 +286,14 @@ define(function(require, exports, module) {
             return false;
         });
 
-
-        $('#search_input').bind('input propertychange', function() {
-            console.log("1");
-            window.find($(this).val(),false,true);  
+        $('#search_btn').click(function() {
+            var content = $('#search_input').val();
+            if (isEmpty(content)) {
+                return false;
+            }
+            window.find(content);
+            return false;
         });
-
-
 
 
 
@@ -439,11 +440,11 @@ define(function(require, exports, module) {
 
         // 暂停或播放
         function videoSmart() {
-            if (video.paused) {
-                video.play();
-            } else {
-                video.pause();
-            }
+            // if (video.paused) {
+            //     video.play();
+            // } else {
+            //     video.pause();
+            // }
         }
         // 音量加
         function volumeInc() {
