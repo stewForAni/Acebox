@@ -73,12 +73,11 @@ var MFUpload = {
             //非站点服务器上运行
             return;
         }
-        console.log("1");
+
         if (this.onComfireUpload()) {
-            console.log("5");
             return
         }
-        console.log("6");
+
         for (var i = 0, file; file = this.fileFilter[i]; i++) {
             (function(file) {
                 var formData = new FormData();
@@ -133,4 +132,5 @@ var MFUpload = {
             this.upButton.addEventListener("click", function(e) { self.funUploadFile(e); }, false);
         }
     }
+
 };

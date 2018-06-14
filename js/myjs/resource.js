@@ -58,9 +58,10 @@ define(function(require, exports, module) {
             $('#select_file_type').append('<option value="' + d[i].id + '">' + d[i].name + '</option>');
         }
 
-
         $("#select_file_type").change(function() {
             currentFileType = $(this).children('option:selected').val();
+
+            $("#uploadInf").empty();
         });
     }
 
@@ -154,7 +155,6 @@ define(function(require, exports, module) {
                 var eleProgress = $("#uploadProgress_" + file.index);
                 var progress = $("#progress_" + file.index);
                 var percent = (loaded / total * 100).toFixed(2) + '%';
-                console.log(percent);
                 eleProgress.css("visibility", "visible");
                 progress.css('width', percent);
             },
@@ -170,13 +170,10 @@ define(function(require, exports, module) {
                 doAddResourceApi();
             },
             onComfireUpload: function() {
-                console.log("2");
                 if (currentFileType == -1 || currentOperation == -1 || isEmpty($("#resource_label").val())) {
-                    console.log("3");
                     showModal("#resource_container", "Please select the file type and write label first !")
                     return true;
                 }
-                console.log("4");
                 return false;
             },
         };
@@ -210,7 +207,7 @@ define(function(require, exports, module) {
             success: function(result) {
                 $("#fileSubmit").hide();
                 $("#uploadInf").append("<p style=" + "color:#4582EC" + ";margin-top:10px" + "><i class=" + "icon-info-with-circle" + "></i> All files are uploaded and you can continue upload file.</p>");
-
+                fileTokenArray = [];
             },
             error: function(e) {
                 hideChangeStatusModal()
@@ -386,7 +383,7 @@ define(function(require, exports, module) {
             var item = "";
             if (type_id == TYPE_ID_PICTRUE) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
-                    '<div class="card">' +
+                    '<div class="card" style="background-color:#fefefe">' +
                     '<a href="#">' +
                     '<img class="my-card-img-top" src="' + ACE_BASE_IMG_URL + object.download_file + '" alt="Card image cap" style="object-fit:cover;">' +
                     '</a>' +
@@ -398,7 +395,7 @@ define(function(require, exports, module) {
                     '</li>';
             } else if (type_id == TYPE_ID_ANIMATION) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
-                    '<div class="card">' +
+                    '<div class="card" style="background-color:#fefefe">' +
                     '<a href="#">' +
                     '<img class="my-card-img-top" src="images/ani.png" alt="Card image cap" style="object-fit:cover;">' +
                     '</a>' +
@@ -410,7 +407,7 @@ define(function(require, exports, module) {
                     '</li>';
             } else if (type_id == TYPE_ID_AUDIO) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
-                    '<div class="card">' +
+                    '<div class="card" style="background-color:#fefefe">' +
                     '<a href="#">' +
                     '<img class="my-card-img-top" src="images/audio.jpg" alt="Card image cap" style="object-fit:cover;">' +
                     '</a>' +
@@ -422,7 +419,7 @@ define(function(require, exports, module) {
                     '</li>';
             } else if (type_id == TYPE_ID_VIDEO) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
-                    '<div class="card">' +
+                    '<div class="card" style="background-color:#fefefe">' +
                     '<a href="#">' +
                     '<img class="my-card-img-top" src="images/video.jpg" alt="Card image cap" style="object-fit:cover;">' +
                     '</a>' +
