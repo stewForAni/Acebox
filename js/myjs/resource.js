@@ -14,6 +14,8 @@ define(function(require, exports, module) {
     var TYPE_ID_AUDIO = 7;
     var TYPE_ID_VIDEO = 8;
 
+    var containerId = "#resource_container";
+
     init();
 
     function init() {
@@ -171,7 +173,7 @@ define(function(require, exports, module) {
             },
             onComfireUpload: function() {
                 if (currentFileType == -1 || currentOperation == -1 || isEmpty($("#resource_label").val())) {
-                    showModal("#resource_container", "Please select the file type and write label first !")
+                    showModal(containerId, "Please select the file type and write label first !")
                     return true;
                 }
                 return false;
@@ -233,7 +235,7 @@ define(function(require, exports, module) {
                 var tags = $('#resource_label').val();
 
                 if (isEmpty(tags)) {
-                    showModal("#resource_container", "Please write label first !")
+                    showModal(containerId, "Please write label first !")
                     return false;
                 }
 
@@ -276,7 +278,7 @@ define(function(require, exports, module) {
         $('#resource_download_search_btn').click(function() {
             var tags = $('#resource_label').val();
             if (isEmpty(tags)) {
-                showModal("#resource_container", "Please write label first !")
+                showModal(containerId, "Please write label first !")
                 return false;
             }
             get_resource_data(tags, currentType);
@@ -322,14 +324,25 @@ define(function(require, exports, module) {
 
 
         function dealPic(result, type_id) {
-            var listpic = '';
+            var itempic = '';
             $("#content_list_picture").empty();
             if (!result.data.items.length == 0) {
                 $("#pic_no_data").hide();
-                $.each(result.data.items, function(index, obj) {
-                    listpic += getListItem(obj, type_id);
-                });
-                $("#content_list_picture").append(listpic);
+
+                var data = result.data.items;
+                var l = data.length;
+                for (var i = 0; i < l; i++) {
+                    var d = data[i];
+                    itempic = getListItem(d, type_id, i);
+                    $("#content_list_picture").append(itempic);
+                    (function(d) {
+                        $("#item_pic_" + i).click(function() {
+                            showPicModal(containerId, d);
+                            return false;
+                        });
+                    })(d);
+                }
+
             } else {
                 $("#pic_no_data").show();
             }
@@ -342,7 +355,7 @@ define(function(require, exports, module) {
             if (!result.data.items.length == 0) {
                 $("#ani_no_data").hide();
                 $.each(result.data.items, function(index, obj) {
-                    listani += getListItem(obj, type_id);
+                    listani += getListItem(obj, type_id, index + 1);
                 });
                 $("#content_list_animation").append(listani);
             } else {
@@ -356,7 +369,7 @@ define(function(require, exports, module) {
             if (!result.data.items.length == 0) {
                 $("#audio_no_data").hide();
                 $.each(result.data.items, function(index, obj) {
-                    listaud += getListItem(obj, type_id);
+                    listaud += getListItem(obj, type_id, index + 1);
                 });
                 $("#content_list_audio").append(listaud);
             } else {
@@ -370,7 +383,7 @@ define(function(require, exports, module) {
             if (!result.data.items.length == 0) {
                 $("#video_no_data").hide();
                 $.each(result.data.items, function(index, obj) {
-                    listvid += getListItem(obj, type_id);
+                    listvid += getListItem(obj, type_id, index + 1);
                 });
                 $("#content_list_video").append(listvid);
             } else {
@@ -379,14 +392,12 @@ define(function(require, exports, module) {
         }
 
 
-        function getListItem(object, type_id) {
+        function getListItem(object, type_id, i) {
             var item = "";
             if (type_id == TYPE_ID_PICTRUE) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
                     '<div class="card" style="background-color:#fefefe">' +
-                    '<a href="#">' +
-                    '<img class="my-card-img-top" src="' + ACE_BASE_IMG_URL + object.download_file + '" alt="Card image cap" style="object-fit:cover;">' +
-                    '</a>' +
+                    '<img id="item_pic_' + i + '" class="my-card-img-top" src="' + ACE_BASE_IMG_URL + object.download_file + '" style="object-fit:cover;cursor:pointer">' +
                     '<div>' +
                     '<h6 style="margin-top:20px;margin-left:10px;margin-right:20px">' + "[ " + object.id + " ] " + object.title + '</h6>' +
                     '<p style="margin-left:10px;margin-right:20px;margin-bottom:10px;"><small>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:20px"></i><a href="' + ACE_BASE_IMG_URL + object.download_file + '?">Download</a></small></p>' +
