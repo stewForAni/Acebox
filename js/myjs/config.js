@@ -9,7 +9,9 @@ require.config({
         "ajaxUtil": "http/ajaxUtil",
         "aceApiTool": "http/aceApiTool",
         "commoncontent": "myjs/commoncontent",
-        "multifileupload":"multifileupload"
+        "multifileupload": "multifileupload",
+        "phaser": "phaser",
+        "phaser-spine": "phaser-spine"
     },
     shim: {
         "bootstrap": [
@@ -32,6 +34,9 @@ require.config({
         ],
         "aceApiTool": [
             "jquery"
+        ],
+        "phaser-spine": [
+            "phaser"
         ],
     }
 });

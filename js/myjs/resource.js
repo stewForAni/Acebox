@@ -5,6 +5,10 @@ define(function(require, exports, module) {
     require('aceApiTool');
     require('commoncontent');
     require('multifileupload');
+    require('phaser');
+    require('phaser-spine');
+
+
     var currentOperation = 0;
     var currentFileType = -1;
     var fileTokenArray = new Array();
@@ -29,6 +33,7 @@ define(function(require, exports, module) {
                 setFileType(result);
                 initUpload();
                 initDownload();
+                showAnimation();
             },
             error: function(e) {}
         });
@@ -474,5 +479,42 @@ define(function(require, exports, module) {
 
 
     }
+
+
+
+
+
+
+
+
+
+
+    function showAnimation() {
+        var buddy, game, notificationLeft, notificationRight, tween;
+        game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '', { init: init, preload: preload, create: create });
+
+        function init() {
+            this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        }
+
+        function preload() {
+            game.plugins.add(PhaserSpine.SpinePlugin);
+            game.stage.disableVisibilityChange = true;
+            game.load.spine('spineboy', "assets/xiaodi.json");
+        }
+
+        function create() {
+            background = game.add.tileSprite(0, 0, window.innerWidth, window.innerHeight, 'background');
+            background.smoothed = false;
+            spineboy = game.add.spine(window.innerWidth / 2, window.innerHeight / 2, "spineboy");
+            spineboy.scale.set(1);
+            spineboy.setAnimationByName(0, "开心的说话", true);
+        }
+    }
+
+
+
+
+
 
 });

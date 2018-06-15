@@ -1,0 +1,153 @@
+
+场景2_小兰床.png
+size: 1024,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+beizi1
+  rotate: false
+  xy: 750, 731
+  size: 254, 119
+  orig: 254, 119
+  offset: 0, 0
+  index: -1
+beizi1g
+  rotate: false
+  xy: 247, 335
+  size: 263, 129
+  orig: 263, 129
+  offset: 0, 0
+  index: -1
+beizi2
+  rotate: false
+  xy: 270, 466
+  size: 287, 143
+  orig: 287, 143
+  offset: 0, 0
+  index: -1
+beizi2g
+  rotate: false
+  xy: 270, 611
+  size: 293, 150
+  orig: 293, 150
+  offset: 0, 0
+  index: -1
+boom1_fen
+  rotate: false
+  xy: 674, 719
+  size: 54, 53
+  orig: 54, 53
+  offset: 0, 0
+  index: -1
+boom2_fen
+  rotate: false
+  xy: 247, 284
+  size: 54, 49
+  orig: 54, 49
+  offset: 0, 0
+  index: -1
+boom3_fen
+  rotate: false
+  xy: 303, 284
+  size: 54, 49
+  orig: 54, 49
+  offset: 0, 0
+  index: -1
+chuang1
+  rotate: false
+  xy: 2, 75
+  size: 234, 227
+  orig: 234, 227
+  offset: 0, 0
+  index: -1
+chuang1g
+  rotate: false
+  xy: 2, 304
+  size: 243, 235
+  orig: 243, 235
+  offset: 0, 0
+  index: -1
+chuang2
+  rotate: false
+  xy: 514, 774
+  size: 234, 229
+  orig: 234, 229
+  offset: 0, 0
+  index: -1
+chuang2g
+  rotate: false
+  xy: 270, 763
+  size: 242, 240
+  orig: 242, 240
+  offset: 0, 0
+  index: -1
+chuangdan1
+  rotate: false
+  xy: 2, 773
+  size: 266, 230
+  orig: 266, 230
+  offset: 0, 0
+  index: -1
+chuangdan1g
+  rotate: false
+  xy: 750, 852
+  size: 272, 151
+  orig: 272, 151
+  offset: 0, 0
+  index: -1
+chuangdan2
+  rotate: false
+  xy: 2, 541
+  size: 266, 230
+  orig: 266, 230
+  offset: 0, 0
+  index: -1
+light
+  rotate: false
+  xy: 565, 620
+  size: 86, 85
+  orig: 86, 85
+  offset: 0, 0
+  index: -1
+paopao7
+  rotate: false
+  xy: 359, 288
+  size: 45, 45
+  orig: 45, 45
+  offset: 0, 0
+  index: -1
+xingxing8
+  rotate: false
+  xy: 406, 305
+  size: 28, 28
+  orig: 28, 28
+  offset: 0, 0
+  index: -1
+zhengtou1
+  rotate: true
+  xy: 512, 364
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: -1
+zhengtou1g
+  rotate: false
+  xy: 117, 7
+  size: 107, 66
+  orig: 107, 66
+  offset: 0, 0
+  index: -1
+zhengtou2
+  rotate: false
+  xy: 565, 707
+  size: 107, 65
+  orig: 107, 65
+  offset: 0, 0
+  index: -1
+zhengtou2g
+  rotate: false
+  xy: 2, 2
+  size: 113, 71
+  orig: 113, 71
+  offset: 0, 0
+  index: -1
