@@ -304,7 +304,7 @@ define(function(require, exports, module) {
         function get_resource_data(tags, type_id) {
 
             $.ajax({
-                url: ACE_BASE_URL + ACE_GET_RESOURCE_LIST + "?tags=" + tags + "&per-page=" + 40 + "&type_id=" + type_id,
+                url: ACE_BASE_URL + ACE_GET_RESOURCE_LIST + "?tags=" + tags + "&per-page=" + 100 + "&type_id=" + type_id,
                 type: "GET",
                 contentType: "application/json; charset=UTF-8",
                 success: function(result) {
@@ -358,11 +358,25 @@ define(function(require, exports, module) {
             var listani = '';
             $("#content_list_animation").empty();
             if (!result.data.items.length == 0) {
+
                 $("#ani_no_data").hide();
-                $.each(result.data.items, function(index, obj) {
-                    listani += getListItem(obj, type_id, index + 1);
-                });
-                $("#content_list_animation").append(listani);
+
+                var data = result.data.items;
+                var l = data.length;
+                for (var i = 0; i < l; i++) {
+                    var d = data[i];
+                    listani = getListItem(d, type_id, i);
+                    $("#content_list_animation").append(listani);
+                    (function(d) {
+                        $("#item_animation_" + i).click(function() {
+                            getAnimationResource(d);
+                            //showAniModal(containerId,d);
+                            return false;
+                        });
+                    })(d);
+                }
+
+
             } else {
                 $("#ani_no_data").show();
             }
@@ -412,9 +426,7 @@ define(function(require, exports, module) {
             } else if (type_id == TYPE_ID_ANIMATION) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
                     '<div class="card" style="background-color:#fefefe">' +
-                    '<a href="#">' +
-                    '<img class="my-card-img-top" src="images/ani.png" alt="Card image cap" style="object-fit:cover;">' +
-                    '</a>' +
+                    '<img  id="item_animation_' + i + '" class="my-card-img-top" src="images/ani.png" alt="Card image cap" style="object-fit:cover;">' +
                     '<div>' +
                     '<h6 style="margin-top:20px;margin-left:10px;margin-right:20px">' + "[ " + object.id + " ] " + object.title + '</h6>' +
                     '<p style="margin-left:10px;margin-right:20px;margin-bottom:10px;"><small>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:20px"></i><a href="' + ACE_BASE_IMG_URL + object.download_file + '?">Download</a></small></p>' +
@@ -484,7 +496,30 @@ define(function(require, exports, module) {
 
 
 
-
+    function getAnimationResource(d) {
+        $.ajax({
+            url: ACE_BASE_IMG_URL + d.download_file,
+            type: "GET",
+            xhr: function() { // custom xhr
+                myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) { // check if upload property exists
+                    myXhr.upload.addEventListener('progress', function(e) {
+                        var percent = (e.loaded / e.total * 100).toFixed(2) + '%';
+                        console.log(percent);
+                    }, false); // for handling the progress of the upload
+                }
+                return myXhr;
+            },
+            processData: false,
+            contentType: false,
+            success: function(result) {
+                console.log('ccc');
+            },
+            error: function(err) {
+                console.log('vvv');
+            }
+        });
+    }
 
 
 

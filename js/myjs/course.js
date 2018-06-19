@@ -238,19 +238,26 @@ define(function(require, exports, module) {
         showAddLessonModal(containerId);
         $('#create_lesson').click(function() {
             var lessonName = $('#lesson_name').val();
-            if (!isEmpty(lessonName)) {
-                doAddLessonApi(item);
+            var lessonID = $('#lesson_id').val();
+            var lessonType = $('#lesson_type').val();
+
+            if (!isEmpty(lessonName) || !isEmpty(lessonID) || !isEmpty(lessonType)) {
+                doAddLessonApi(item, lessonName, lessonID, lessonType);
             }
             return false;
         });
     }
 
-    function doAddLessonApi(item) {
-        var lessonName = $('#lesson_name').val();
+    function doAddLessonApi(item, lessonName, lessonID, lessonType) {
+
         var pid = item.id;
         var d = '{' +
             '"parent_id":"' + pid + '",' +
             '"child_title":"' + lessonName + '"' +
+            '"lesson": {'+
+            '"lesson_id":"' + lessonID + '"' +
+            '"lesson_type":"' + lessonType + '"' +
+            '}'+
             '}';
 
         $.ajax({

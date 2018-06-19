@@ -219,13 +219,30 @@ function getAddLessonModalContent() {
         '</div>' +
         '<div class="modal-body">' +
         '<form>' +
+
         '<div class="form-row form-group">' +
-        '   <div class="col">' +
-        '      <input class="form-control form-control-lg" type="text" id="lesson_name" placeholder="Lesson Name" />' +
-        '     <small style="margin-top:10px">A stage can contain multiple lessons,each lesson needs to be separated by " , ".For example: lesson1,lesson2,lesson3</small>' +
-        ' </div>' +
+        '<div class="col">' +
+        '<input class="form-control form-control-lg" type="text" id="lesson_name" placeholder="Lesson Name" />' +
+        '<small style="margin-top:10px">Write your lesson name.For example: lesson1</small>' +
         '</div>' +
+        '</div>' +
+
+
         '<div class="form-row form-group">' +
+        '<div class="col">' +
+        '<input class="form-control form-control-lg" type="text" id="lesson_id" placeholder="Lesson ID" />' +
+        '<small style="margin-top:10px">Write your lessonID.Can not repeat</small>' +
+        '</div>' +
+        '</div>' +
+
+        '<select class="custom-select mb-2" id="lesson_type">' +
+        '<option selected>Select Lesson Type</option>' +
+        '<option value="2">Offline(单机)</option>' +
+        '<option value="3">Interaction(互动)</option>' +
+        '</select>' +
+
+
+        '<div class="form-row form-group" style="margin-top:30px">' +
         '   <div class="col">' +
         '     <button class="btn btn-block btn-success btn-lg" id="create_lesson">Create Lesson</button>' +
         '</div>' +
@@ -625,7 +642,7 @@ function showViewBugsModal(id, content) {
 
 
 
-function showPicModal(id,obj) {
+function showPicModal(id, obj) {
     $('#picModal').remove();
     $(id).append(getPicModalContent(obj));
     $("#picModal").modal();
