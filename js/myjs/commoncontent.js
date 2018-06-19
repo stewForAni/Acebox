@@ -463,12 +463,12 @@ function getViewBugsModalContent(content) {
 
 function getPicModalContent(obj) {
     var modalContent = ' <div class="modal fade" id="picModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">' +
-        '  <div class="modal-dialog modal-lg modal-center-viewport" role="document">' +
-        '     <div class="modal-content">' +
-        '  <div class="modal-body d-flex justify-content-center">' +
-        '     <div class="text-center w-100 h-75">' +
-        '        <img alt="Image" src="' + ACE_BASE_IMG_URL + obj.download_file + '" style="max-width:100%;max-height:600px" />' +
-        '   </div>' +
+        '<div class="modal-dialog modal-lg modal-center-viewport" role="document">' +
+        '<div class="modal-content">' +
+        '<div class="modal-body d-flex justify-content-center">' +
+        '<div class="text-center h-75">' +
+        '<img alt="Image" src="' + ACE_BASE_IMG_URL + obj.download_file + '" style="max-width:100%;max-height:500px" />' +
+        '</div>' +
         '</div>' +
         '</div>' +
         '</div>' +

@@ -33,7 +33,7 @@ define(function(require, exports, module) {
                 setFileType(result);
                 initUpload();
                 initDownload();
-                showAnimation();
+                //showAnimation();
             },
             error: function(e) {}
         });
