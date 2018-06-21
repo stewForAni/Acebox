@@ -133,7 +133,7 @@ define(function(require, exports, module) {
             '"child_title":"' + stageName + '"' +
             '}';
         $.ajax({
-            url: ACE_BASE_URL + ACE_ADD_COURSE_PL,
+            url: ACE_BASE_URL + ACE_ADD_COURSE_P,
             type: "POST",
             contentType: "application/json",
             data: d,
@@ -253,15 +253,15 @@ define(function(require, exports, module) {
         var pid = item.id;
         var d = '{' +
             '"parent_id":"' + pid + '",' +
-            '"child_title":"' + lessonName + '"' +
-            '"lesson": {'+
+            '"title":"' + lessonName + '",' +
+            '"lesson": {' +
+            '"type_id":"' + lessonType + '",' +
             '"lesson_id":"' + lessonID + '"' +
-            '"lesson_type":"' + lessonType + '"' +
-            '}'+
+            '}' +
             '}';
 
         $.ajax({
-            url: ACE_BASE_URL + ACE_ADD_COURSE_PL,
+            url: ACE_BASE_URL + ACE_ADD_COURSE_L,
             type: "POST",
             contentType: "application/json",
             data: d,
@@ -387,7 +387,7 @@ define(function(require, exports, module) {
         if (isEmpty(file) && isEmpty(fileName)) {
             doEditCourseApi("", item);
         } else {
-            if (isEmpty(file) || isEmpty(fileName) || (name != "jpeg") && (name != "jpg") && (name != "png")) {
+            if (isEmpty(file) || isEmpty(fileName) || (fileName != "jpeg") && (fileName != "jpg") && (fileName != "png")) {
                 showModal(containerId, modal_text2);
                 return false;
             }

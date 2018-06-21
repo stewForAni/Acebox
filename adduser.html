@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>ADD USER</title>
     <meta charset="utf-8">
@@ -9,164 +10,174 @@
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,400i,500" rel="stylesheet">
     <script src="js/require.js"></script>
     <script type="text/javascript">
-        requirejs(['./js/myjs/config'], function (common) {
-            requirejs(['./myjs/adduser']);
-        });
+    requirejs(['./js/myjs/config'], function(common) {
+        requirejs(['./myjs/adduser']);
+    });
     </script>
+    <style>
+    body {
+        background-image: url("images/mainbg.png");
+        background-repeat: repeat;
+    }
+    </style>
 </head>
+
 <body>
-<div class="nav-container" style="position: fixed;width: 100%;z-index: 10000">
-    <div class="bg-dark navbar-dark">
-        <div class="container">
-            <nav class="navbar navbar-expand-lg">
-                <a class="navbar-brand" href="index.html">
+    <div class="nav-container" style="position: fixed;width: 100%;z-index: 10000">
+        <div class="bg-dark navbar-dark">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg">
+                    <a class="navbar-brand" href="index.html">
                     <img src="images/white_logo.png" style="height: 20px;margin-bottom: 7px">
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="icon-menu h4"></i>
-                </button>
-                <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a href="index.html" class="nav-link">Course</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="index.html" class="nav-link">User</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="index.html" class="nav-link">Resource</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="index.html" class="nav-link">Module</a>
-                        </li>
-                    </ul>
-                </div>
-                <!--end nav collapse-->
-            </nav>
-        </div>
-        <!--end of container-->
-    </div>
-    <nav aria-label="breadcrumb" role="navigation" class="bg-primary text-white">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html"> Home </a>
-                        </li>
-                        <li class="breadcrumb-item"><a href="pages-app.html"> User </a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page"> Add User </li>
-                    </ol>
-                </div>
-                <!--end of col-->
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="icon-menu h4"></i>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="course.html" class="nav-link">Course</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="resource.html" class="nav-link">Resource</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="module.html" class="nav-link">Module</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="user.html" class="nav-link">User</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a href="" class="nav-link" id="log_out"><i class="icon-log-out"></i> Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end nav collapse-->
+                </nav>
             </div>
-            <!--end of row-->
+            <!--end of container-->
         </div>
-        <!--end of container-->
-    </nav>
-</div>
-<div class="main-container" id="add_user_container">
-    <section class="space-sm">
-        <div class="container align-self-start" style="margin-top: 100px">
-            <div class="row justify-content-center">
-                <div class="col-12 col-md-8 col-lg-7">
-                    <div class="card card-lg text-center">
-                        <div class="card-body">
-                            <div class="mb-5">
-                                <h1 class="h2 mb-2">Add User</h1>
-                                <span>Sign in to your account to continue</span>
+        <nav aria-label="breadcrumb" role="navigation" class="bg-primary text-white">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="main.html"> Home </a>
+                            </li>
+                            <li class="breadcrumb-item"><a href="user.html"> User </a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page"> Add User </li>
+                        </ol>
+                    </div>
+                    <!--end of col-->
+                </div>
+                <!--end of row-->
+            </div>
+            <!--end of container-->
+        </nav>
+    </div>
+    <div class="main-container" id="add_user_container">
+        <section class="space-sm">
+            <div class="container align-self-start" style="margin-top: 150px">
+                <div class="row justify-content-center">
+                    <div class="col-12 col-md-10 col-lg-8">
+                        <div class="card card-lg text-center">
+                            <div class="card-body">
+                                <div class="mb-5">
+                                    <h1 class="h2 mb-2">Create User</h1>
+                                    <span>Get an account here , Employee ID is your login account.</span>
+                                </div>
+                                <div class="row no-gutters justify-content-center">
+                                    <form class="text-left col-lg-10">
+                                        <div class="form-group">
+                                            <label>Username</label>
+                                            <input class="form-control form-control-lg" type="text" name="username" id="login-name" placeholder="Username">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Employee ID</label>
+                                            <input class="form-control form-control-lg" type="email" name="employeeid" id="login-employeeid" placeholder="Employee ID (员工工号)">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Password</label>
+                                            <input class="form-control form-control-lg" type="password" name="password" id="login-password" placeholder="Enter a password">
+                                            <small>Password must be at least 6 characters</small>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Position</label>
+                                            <select class="custom-select" id="select_job_position"> </select>
+                                        </div>
+                                        <div class="form-group" style="margin-top: 20px">
+                                            <label>Avatar</label>
+                                            <label class="custom-file mb-2" for="avatar_name_input">
+                                                <input type="file" id="avatar_name_input" class="custom-file-input height-xs">
+                                                <span class="btn btn-lg btn-primary col-12" id="avatar_name_span"><i class="icon-upload-to-cloud">&nbsp;</i>Upload Your Avatar</span>
+                                            </label>
+                                            <small id="file_name" style="color: #4582EC">No file has been selected yet.</small>
+                                        </div>
+                                        <div class="text-center" style="margin-top: 30px">
+                                            <button class="btn btn-lg btn-success col-12" id="creat_account">Create Account</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <!--end of row-->
                             </div>
-                            <div class="row no-gutters justify-content-center">
-                                <form class="text-left col-lg-8">
-                                    <div class="form-group">
-                                        <label for="login-name">Username</label>
-                                        <input class="form-control form-control-lg" type="text" name="username" id="login-name" placeholder="Username">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="login-employeeid">Employee ID</label>
-                                        <input class="form-control form-control-lg" type="email" name="employeeid" id="login-employeeid" placeholder="Employee number">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="login-password">Password</label>
-                                        <input class="form-control form-control-lg" type="password" name="password" id="login-password" placeholder="Enter a password">
-                                        <small>Password must be at least 7 characters</small>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="custom-file mb-2" for="avatar_name_input">
-                                            <input type="file" id="avatar_name_input" class="custom-file-input height-xs">
-                                            <span class="btn btn-primary " id="avatar_name_span"><i class="icon-upload-to-cloud">&nbsp;</i>Upload Your Avatar</span>
-                                        </label>
-                                        <span><a href="#" id="file_name">No file has been selected yet.</a></span>
-                                    </div>
-                                    <div class="text-center mt-3">
-                                        <button type="submit" class="btn btn-lg btn-primary" id="c">Create Account</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <!--end of row-->
                         </div>
                     </div>
-                    <div class="text-center">
-                                <span class="text-small">Already have an account? <a href="index.html">Log in here</a>
-                                </span>
-                    </div>
+                    <!--end of col-->
                 </div>
-                <!--end of col-->
+                <!--end of row-->
             </div>
-            <!--end of row-->
-        </div>
-        <!--end of container-->
-    </section>
-
-    <footer class="footer-short">
-        <div class="container">
-            <hr>
-            <nav class="row justify-content-between align-items-center">
-                <div class="col-auto">
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <a href="#">
+            <!--end of container-->
+        </section>
+        <footer class="footer-short">
+            <div class="container">
+                <hr>
+                <nav class="row justify-content-between align-items-center">
+                    <div class="col-auto">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a href="#">
                                 <img src="images/blue_logo.png" style="height: 20px;margin-bottom: 8px">
                             </a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">Overview</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">Documentation</a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#">Changelog</a>
-                        </li>
-                    </ul>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">Overview</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">Documentation</a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#">Changelog</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end of col-->
+                    <div class="col-auto text-sm-right">
+                        <ul class="list-inline">
+                            <li class="list-inline-item">
+                                <a href="#"><i class="socicon-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#"><i class="socicon-facebook"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--end of col-->
+                </nav>
+                <!--end of row-->
+                <div class="row">
+                    <div class="col">
+                        <small>&copy; 2018 Acebox All Rights Reserved</small>
+                    </div>
+                    <!--end of col-->
                 </div>
-                <!--end of col-->
-                <div class="col-auto text-sm-right">
-                    <ul class="list-inline">
-                        <li class="list-inline-item">
-                            <a href="#"><i class="socicon-twitter"></i></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#"><i class="socicon-facebook"></i></a>
-                        </li>
-                    </ul>
-                </div>
-                <!--end of col-->
-            </nav>
-            <!--end of row-->
-            <div class="row">
-                <div class="col">
-                    <small>&copy; 2018 Acebox All Rights Reserved</small>
-                </div>
-                <!--end of col-->
+                <!--end of row-->
             </div>
-            <!--end of row-->
-        </div>
-        <!--end of container-->
-    </footer>
-</div>
-
+            <!--end of container-->
+        </footer>
+    </div>
 </body>
 
 </html>

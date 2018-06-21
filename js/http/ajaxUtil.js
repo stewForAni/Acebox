@@ -19,7 +19,7 @@ $.ajax = function(options) {
 
         beforeSend: function(xhr, data) {
 
-            if (!(data.url.indexOf("logins")!=-1)) {
+            if (!(data.url.indexOf("logins") != -1)) {
                 var sigh = getLocalSigh();
                 if (!isEmpty(sigh)) {
                     xhr.setRequestHeader("Authorization", "Bearer " + sigh);
@@ -36,7 +36,6 @@ $.ajax = function(options) {
              */
             if (data.code_status !== 0) {
                 alert(data.error_msg);
-                return;
             }
             /**
              * 调用业务端的回调。

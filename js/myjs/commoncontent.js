@@ -155,7 +155,7 @@ function getProgressModalContent() {
 
 
 function getProgressModalContent2() {
-    var modalContent = '<div class="modal fade" id="myProgressModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="padding-bottom: 50px;">' +
+    var modalContent = '<div class="modal fade" id="myProgressModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="padding-bottom: 50px;">' +
         ' <div class="modal-dialog" role="document">' +
         '  <div class="modal-content">' +
         '   <div class="modal-header">' +
@@ -505,7 +505,7 @@ function showModal(id, content) {
 }
 
 //progress dialog center
-function showProgressModal(id) {
+function showProgressModalCenter(id) {
     $('#myProgressModal').remove();
     $(id).append(getProgressModalContent());
     $("#myProgressModal").modal();
@@ -513,9 +513,9 @@ function showProgressModal(id) {
 
 //progress dialog top
 function showProgressModal(id, content) {
-    $('#myProgressModal').remove();
+    $('#myProgressModal2').remove();
     $(id).append(getProgressModalContent2());
-    $("#myProgressModal").modal();
+    $("#myProgressModal2").modal();
 }
 
 
