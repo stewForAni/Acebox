@@ -10,8 +10,18 @@
     <link rel="stylesheet" href="css/mycss/theme.css">
     <link rel="stylesheet" href="css/mycss/entypo.css">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,400i,500" rel="stylesheet">
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="js/require.js"></script>
+    <script type="text/javascript">
+    requirejs(['js/myjs/config'], function(common) {
+        requirejs(['myjs/course']);
+    });
+    </script>
+    <style>
+    body {
+        background-image: url("images/mainbg.png");
+        background-repeat: repeat;
+    }
+    </style>
 </head>
 
 <body>
@@ -32,24 +42,23 @@
                     <div class="collapse navbar-collapse justify-content-between" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="index.html" class="nav-link">Course</a>
+                                <a href="course.html" class="nav-link">Course</a>
                             </li>
                             <li class="nav-item">
-                                <a href="index.html" class="nav-link">User</a>
+                                <a href="resource.html" class="nav-link">Resource</a>
                             </li>
                             <li class="nav-item">
-                                <a href="index.html" class="nav-link">Resource</a>
+                                <a href="module.html" class="nav-link">Module</a>
                             </li>
                             <li class="nav-item">
-                                <a href="index.html" class="nav-link">Module</a>
+                                <a href="user.html" class="nav-link">User</a>
                             </li>
                         </ul>
-                        <!--   <ul class="navbar-nav">
+                        <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a href="#">Sign up</a>
-                                <span>&nbsp;or&nbsp;</span><a href="#">Sign in</a>
+                                <a href="" class="nav-link" id="log_out"><i class="icon-log-out"></i> Logout</a>
                             </li>
-                        </ul> -->
+                        </ul>
                     </div>
                     <!--end nav collapse-->
                 </nav>
@@ -61,7 +70,7 @@
                 <div class="row justify-content-center">
                     <div class="col">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html">Home</a>
+                            <li class="breadcrumb-item"><a href="main.html">Home</a>
                             </li>
                             <li class="breadcrumb-item active" aria-current="page">Module</li>
                         </ol>
@@ -73,11 +82,11 @@
             <!--end of container-->
         </nav>
     </div>
-    <div class="main-container" id="edit_course_container">
+    <div class="main-container" id="module_container">
         <section class="bg-dark text-light height-50">
-            <img alt="Image" src="images/module_bg.jpg" class="bg-image opacity-70" />
+            <img alt="Image" src="images/module_bg.jpg" class="bg-image opacity-60" />
             <div class="container align-self-end">
-                <div class="row" >
+                <div class="row">
                     <div class="col">
                         <div class="media align-items-center">
                             <a href="#" class="mr-4">
@@ -104,7 +113,7 @@
             <!--end of container-->
         </section>
         <!--end of section-->
-        <section class="flush-with-above space-0">
+        <section class="flush-with-above space-0" style="background-color: #ffffff">
             <div>
                 <div class="container">
                     <div class="row">
@@ -133,7 +142,143 @@
                 <div class="tab-pane fade show active" id="projects" role="tabpanel" aria-labelledby="projects-tab">
                     <div class="container">
                         <ul class="row feature-list feature-list-sm">
-                            <li class="col-12 col-md-6 col-lg-4">
+                            <li class="col-12 col-md-6 col-lg-3">
+                                <div class="card">
+                                    <a href="#">
+                                            <img class="card-img-top" src="images/pree.jpg" alt="Card image cap">
+                                        </a>
+                                    <div class="card-body">
+                                        <a href="#">
+                                            <h4 class="card-title">Bench</h4>
+                                            <p class="card-text text-body">Accounting for creative people</p>
+                                        </a>
+                                    </div>
+                                    <div class="card-footer card-footer-borderless d-flex justify-content-between">
+                                        <div class="text-small">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item"><i class="icon-heart mr-1"></i> 373</li>
+                                                <li class="list-inline-item"><i class="icon-message mr-1"></i> 62</li>
+                                            </ul>
+                                        </div>
+                                        <div class="dropup">
+                                            <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="BenchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="icon-dots-three-horizontal"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="BenchButton">
+                                                <a class="dropdown-item" href="#">Save</a>
+                                                <a class="dropdown-item" href="#">Share</a>
+                                                <a class="dropdown-item" href="#">Comment</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Report</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--end of col-->
+                             <li class="col-12 col-md-6 col-lg-3">
+                                <div class="card">
+                                    <a href="#">
+                                            <img class="card-img-top" src="images/pree.jpg" alt="Card image cap">
+                                        </a>
+                                    <div class="card-body">
+                                        <a href="#">
+                                            <h4 class="card-title">Bench</h4>
+                                            <p class="card-text text-body">Accounting for creative people</p>
+                                        </a>
+                                    </div>
+                                    <div class="card-footer card-footer-borderless d-flex justify-content-between">
+                                        <div class="text-small">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item"><i class="icon-heart mr-1"></i> 373</li>
+                                                <li class="list-inline-item"><i class="icon-message mr-1"></i> 62</li>
+                                            </ul>
+                                        </div>
+                                        <div class="dropup">
+                                            <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="BenchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="icon-dots-three-horizontal"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="BenchButton">
+                                                <a class="dropdown-item" href="#">Save</a>
+                                                <a class="dropdown-item" href="#">Share</a>
+                                                <a class="dropdown-item" href="#">Comment</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Report</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--end of col-->
+                             <li class="col-12 col-md-6 col-lg-3">
+                                <div class="card">
+                                    <a href="#">
+                                            <img class="card-img-top" src="images/pree.jpg" alt="Card image cap">
+                                        </a>
+                                    <div class="card-body">
+                                        <a href="#">
+                                            <h4 class="card-title">Bench</h4>
+                                            <p class="card-text text-body">Accounting for creative people</p>
+                                        </a>
+                                    </div>
+                                    <div class="card-footer card-footer-borderless d-flex justify-content-between">
+                                        <div class="text-small">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item"><i class="icon-heart mr-1"></i> 373</li>
+                                                <li class="list-inline-item"><i class="icon-message mr-1"></i> 62</li>
+                                            </ul>
+                                        </div>
+                                        <div class="dropup">
+                                            <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="BenchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="icon-dots-three-horizontal"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="BenchButton">
+                                                <a class="dropdown-item" href="#">Save</a>
+                                                <a class="dropdown-item" href="#">Share</a>
+                                                <a class="dropdown-item" href="#">Comment</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Report</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--end of col-->
+                             <li class="col-12 col-md-6 col-lg-3">
+                                <div class="card">
+                                    <a href="#">
+                                            <img class="card-img-top" src="images/pree.jpg" alt="Card image cap">
+                                        </a>
+                                    <div class="card-body">
+                                        <a href="#">
+                                            <h4 class="card-title">Bench</h4>
+                                            <p class="card-text text-body">Accounting for creative people</p>
+                                        </a>
+                                    </div>
+                                    <div class="card-footer card-footer-borderless d-flex justify-content-between">
+                                        <div class="text-small">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item"><i class="icon-heart mr-1"></i> 373</li>
+                                                <li class="list-inline-item"><i class="icon-message mr-1"></i> 62</li>
+                                            </ul>
+                                        </div>
+                                        <div class="dropup">
+                                            <button class="btn btn-sm btn-outline-primary dropdown-toggle dropdown-toggle-no-arrow" type="button" id="BenchButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="icon-dots-three-horizontal"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-sm" aria-labelledby="BenchButton">
+                                                <a class="dropdown-item" href="#">Save</a>
+                                                <a class="dropdown-item" href="#">Share</a>
+                                                <a class="dropdown-item" href="#">Comment</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="#">Report</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <!--end of col-->
+                             <li class="col-12 col-md-6 col-lg-3">
                                 <div class="card">
                                     <a href="#">
                                             <img class="card-img-top" src="images/pree.jpg" alt="Card image cap">
@@ -214,10 +359,6 @@
                     </div>
                     <!--end of container-->
                 </div>
-
-
-
-
                 <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">
                     <div class="container">
                         <ul class="row feature-list feature-list-sm">
