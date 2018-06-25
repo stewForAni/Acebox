@@ -3,7 +3,7 @@
 
 //外网
 // var ACE_BASE_URL = "https://stew-api.dev.landi.com/v1/";
- //var ACE_BASE_IMG_URL = "https://stew-api.dev.landi.com/";
+//var ACE_BASE_IMG_URL = "https://stew-api.dev.landi.com/";
 
 
 //内网
@@ -71,19 +71,19 @@ var ACE_GET_JOB_POSITION_LIST = "positions";
 var ACE_ADD_USER = "system/user-manage/defaults";
 //ace_get_user_list
 var ACE_GET_USER_LIST = "system/user-manage/defaults";
+//ace_get_module_list
+var ACE_GET_MODULE_LIST = "material/module/lists";
 
 
 
-function logout(){
-	 $.ajax({
+function logout() {
+    $.ajax({
         url: ACE_BASE_URL + ACE_LOG_OUT,
         type: "GET",
-        contentType:"application/json; charset=UTF-8",
+        contentType: "application/json; charset=UTF-8",
         success: function(result) {
-        	window.location.replace("index.html");
+            window.location.replace("index.html");
         },
-        error: function(e) {
-        }
+        error: function(e) {}
     });
 }
-
