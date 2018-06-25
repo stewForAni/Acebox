@@ -10,10 +10,11 @@
     <link rel="stylesheet" href="css/mycss/theme.css">
     <link rel="stylesheet" href="css/mycss/entypo.css">
     <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,400i,500" rel="stylesheet">
+
     <script src="js/require.js"></script>
     <script type="text/javascript">
     requirejs(['js/myjs/config'], function(common) {
-        requirejs(['myjs/course']);
+        requirejs(['myjs/module']);
     });
     </script>
     <style>
@@ -25,10 +26,7 @@
 </head>
 
 <body>
-    <script type="text/javascript" src="js/myjs/commoncontent.js"></script>
-    <script type="text/javascript" src="js/myjs/aceApiTool.js"></script>
-    <script type="text/javascript" src="js/myjs/ajaxUtil.js"></script>
-    <script type="text/javascript" src="js/myjs/module.js"></script>
+
     <div class="nav-container" style="position: fixed;width: 100%;z-index: 10000">
         <div class="bg-dark navbar-dark">
             <div class="container">
@@ -120,13 +118,13 @@
                         <div class="col">
                             <ul class="nav nav-tabs" id="myTab" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="1_tab" data-toggle="tab" href="#projects" role="tab" aria-controls="projects" aria-selected="true">Guidance</a>
+                                    <a class="nav-link active" id="1_tab" data-toggle="tab" href="#Guidance" role="tab" aria-controls="Guidance" aria-selected="true">Guidance</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="2_tab" data-toggle="tab" href="#followers" role="tab" aria-controls="followers" aria-selected="false">Interaction</a>
+                                    <a class="nav-link" id="2_tab" data-toggle="tab" href="#Interaction" role="tab" aria-controls="Interaction" aria-selected="false">Interaction</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="3_tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="false">Competition</a>
+                                    <a class="nav-link" id="3_tab" data-toggle="tab" href="#Competition" role="tab" aria-controls="Competition" aria-selected="false">Competition</a>
                                 </li>
                             </ul>
                         </div>
@@ -139,21 +137,21 @@
         </section>
         <section class="pt-2">
             <div class="tab-content">
-                <div class="tab-pane fade show active" id="projects" role="tabpanel" aria-labelledby="projects-tab">
+                <div class="tab-pane show active" id="Guidance" role="tabpanel" aria-labelledby="1_tab">
                     <div class="container">
                         <ul class="row feature-list feature-list-sm" id="module_list_1"></ul>
                         <!--end of row-->
                     </div>
                     <!--end of container-->
                 </div>
-                <div class="tab-pane fade" id="followers" role="tabpanel" aria-labelledby="followers-tab">
+                <div class="tab-pane fade" id="Interaction" role="tabpanel" aria-labelledby="2_tab">
                     <div class="container">
                         <ul class="row feature-list feature-list-sm" id="module_list_2"></ul>
                         <!--end of row-->
                     </div>
                     <!--end of container-->
                 </div>
-                <div class="tab-pane fade" id="groups" role="tabpanel" aria-labelledby="groups-tab">
+                <div class="tab-pane fade" id="Competition" role="tabpanel" aria-labelledby="3_tab">
                     <div class="container">
                         <ul class="row feature-list feature-list-sm" id="module_list_3"></ul>
                         <!--end of row-->
