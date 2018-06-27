@@ -111,7 +111,7 @@ define(function(require, exports, module) {
         var type = $("#module_type").val();
         var d = '{' +
             '"name": "' + name + '",' +
-            '"type": "' + type + '"' +
+            '"part_code": "' + type + '"' +
             '}';
 
         $.ajax({

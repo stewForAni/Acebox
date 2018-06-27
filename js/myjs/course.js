@@ -255,7 +255,7 @@ define(function(require, exports, module) {
             '"parent_id":"' + pid + '",' +
             '"title":"' + lessonName + '",' +
             '"lesson": {' +
-            '"type_id":"' + lessonType + '",' +
+            '"part_code":"' + lessonType + '",' +
             '"lesson_id":"' + lessonID + '"' +
             '}' +
             '}';

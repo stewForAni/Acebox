@@ -369,7 +369,7 @@ define(function(require, exports, module) {
                     $("#content_list_animation").append(listani);
                     (function(d) {
                         $("#item_animation_" + i).click(function() {
-                            getAnimationResource(d);
+                            //getAnimationResource(d);
                             //showAniModal(containerId,d);
                             return false;
                         });
@@ -386,11 +386,25 @@ define(function(require, exports, module) {
             var listaud = '';
             $("#content_list_audio").empty();
             if (!result.data.items.length == 0) {
+
                 $("#audio_no_data").hide();
-                $.each(result.data.items, function(index, obj) {
-                    listaud += getListItem(obj, type_id, index + 1);
-                });
-                $("#content_list_audio").append(listaud);
+
+                var data = result.data.items;
+                var l = data.length;
+                for (var i = 0; i < l; i++) {
+                    var d = data[i];
+                    listaud = getListItem(d, type_id, i);
+                    $("#content_list_audio").append(listaud);
+                    (function(d) {
+                        $("#item_audio_" + i).click(function() {
+
+                            return false;
+                        });
+                    })(d);
+                }
+
+
+
             } else {
                 $("#audio_no_data").show();
             }
@@ -436,9 +450,14 @@ define(function(require, exports, module) {
             } else if (type_id == TYPE_ID_AUDIO) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
                     '<div class="card" style="background-color:#fefefe">' +
-                    '<a href="#">' +
-                    '<img class="my-card-img-top" src="images/audio.jpg" alt="Card image cap" style="object-fit:cover;">' +
-                    '</a>' +
+                    '<img class="my-audio-card-img-top" src="images/audio.jpg" alt="Card image cap" style="object-fit:cover;">' +
+
+                    '<span>' +
+                    '<audio src="' + ACE_BASE_AUDIO_URL + object.download_file + '" controls>' +
+                    'Sorry,your browser not support audio.' +
+                    '</audio>' +
+                    '</span>' +
+
                     '<div>' +
                     '<h6 style="margin-top:20px;margin-left:10px;margin-right:20px">' + "[ " + object.id + " ] " + object.title + '</h6>' +
                     '<p style="margin-left:10px;margin-right:20px;margin-bottom:10px;"><small>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:20px"></i><a href="' + ACE_BASE_IMG_URL + object.download_file + '?">Download</a></small></p>' +
@@ -448,9 +467,7 @@ define(function(require, exports, module) {
             } else if (type_id == TYPE_ID_VIDEO) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
                     '<div class="card" style="background-color:#fefefe">' +
-                    '<a href="#">' +
                     '<img class="my-card-img-top" src="images/video.jpg" alt="Card image cap" style="object-fit:cover;">' +
-                    '</a>' +
                     '<div>' +
                     '<h6 style="margin-top:20px;margin-left:10px;margin-right:20px">' + "[ " + object.id + " ] " + object.title + '</h6>' +
                     '<p style="margin-left:10px;margin-right:20px;margin-bottom:10px;"><small>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:20px"></i><a href="' + ACE_BASE_IMG_URL + object.download_file + '?">Download</a></small></p>' +

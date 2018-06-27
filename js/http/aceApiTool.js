@@ -12,6 +12,7 @@ var ACE_BASE_URL = "https://api.dev.landi.com/v1/";
 
 var ACE_BASE_IMG_URL = "https://api.dev.landi.com/";
 
+var ACE_BASE_AUDIO_URL = "https://api.dev.landi.com/";
 
 
 //ace login
