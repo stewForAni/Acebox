@@ -6,10 +6,10 @@ define(function(require, exports, module) {
     require('commoncontent');
 
     var containerId = "#module_container";
-    var currentType = 1;
-    var TYPE_GUIDANCE = 1;
-    var TYPE_INTERACTION = 2;
-    var TYPE_COMPETITION = 3;
+    var currentType = "Guidance";
+    var TYPE_GUIDANCE = "Guidance";
+    var TYPE_INTERACTION = "Interaction";
+    var TYPE_COMPETITION = "Competition";
 
     init();
 
@@ -18,9 +18,15 @@ define(function(require, exports, module) {
             logout();
             return false;
         });
-        
+
+        $("#add_module").click(function() {
+            addModule();
+            return false;
+        });
+
+
         tabEvents();
-        getModuleList();
+        getModuleList(currentType);
     }
 
     function tabEvents() {
@@ -36,13 +42,13 @@ define(function(require, exports, module) {
                 currentType = TYPE_COMPETITION;
             }
 
-            getDataList(currentType);
+            getModuleList(currentType);
         });
     }
 
-    function getModuleList() {
+    function getModuleList(currentType) {
         $.ajax({
-            url: ACE_BASE_URL + ACE_GET_MODULE_LIST + "?per-page=" + 100,
+            url: ACE_BASE_URL + ACE_GET_MODULE_LIST + "?per-page=" + 100 + "&type_id=" + currentType,
             contentType: "application/json; charset=UTF-8",
             type: "GET",
             success: function(result) {
@@ -55,6 +61,15 @@ define(function(require, exports, module) {
     function dealModuleListData(result) {
         var d = result.data.items;
         var l = result.data.items.length;
+        var currentID = '';
+
+        if (currentType == TYPE_GUIDANCE) {
+            currentID = '#module_list_1';
+        } else if (currentType == TYPE_INTERACTION) {
+            currentID = '#module_list_2';
+        } else if (currentType == TYPE_COMPETITION) {
+            currentID = '#module_list_3';
+        }
 
         for (var i = 0; i < l; i++) {
             var item = d[i];
@@ -69,7 +84,7 @@ define(function(require, exports, module) {
                 '<div class="text-small">' +
                 '<ul class="list-inline">' +
                 '<li class="list-inline-item"><i class="icon-heart mr-1"></i> 0</li>' +
-                '<li class="list-inline-item"><i class="icon-download mr-1"></i> 62</li>' +
+                '<li class="list-inline-item"><i class="icon-download mr-1"></i> 0</li>' +
                 '</ul>' +
                 '</div>' +
                 '<div class="dropup">' +
@@ -86,8 +101,29 @@ define(function(require, exports, module) {
                 '</div>' +
                 '</li>';
 
-            $('#module_list').append(module_list_item);
+            $(currentID).append(module_list_item);
         }
+    }
+
+    function addModule() {
+        showAddModuleModal(containerId, "Add Module");
+        var name = $("#module_name").val();
+        var type = $("#module_type").val();
+        var d = '{' +
+            '"name": "' + name + '",' +
+            '"type": "' + type + '"' +
+            '}';
+
+        $.ajax({
+            url: ACE_BASE_URL + ACE_ADD_MODULE,
+            contentType: "application/json; charset=UTF-8",
+            type: "POST",
+            data: d,
+            success: function(result) {
+                hideAddModuleModal();
+            },
+            error: function(e) { hideAddModuleModal(); }
+        });
     }
 
 });

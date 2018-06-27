@@ -237,8 +237,8 @@ function getAddLessonModalContent() {
 
         '<select class="custom-select mb-2" id="lesson_type">' +
         '<option selected>Select Lesson Type</option>' +
-        '<option value="2">Offline(单机)</option>' +
-        '<option value="3">Interaction(互动)</option>' +
+        '<option value="Offline">Offline(单机)</option>' +
+        '<option value="Interaction">Interaction(互动)</option>' +
         '</select>' +
 
 
@@ -494,6 +494,53 @@ function getPicModalContent(obj) {
 }
 
 
+function getAddModuleModalContent(content) {
+    var modalContent = '<div class="modal fade" id="addMuduleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+        ' <div class="modal-dialog modal-dialog-centered" role="document">' +
+        '  <div class="modal-content">' +
+        '   <div class="modal-header">' +
+        '    <h5 class="modal-title" id="exampleModalLongTitle">' + content + '</h5>' +
+        '   <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+        '    <span aria-hidden="true">&times;</span>' +
+        ' </button>' +
+        '</div>' +
+        '<div class="modal-body">' +
+
+        '<form>' +
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '<input class="form-control form-control-lg" type="text" id="module_name" placeholder="Module Name" />' +
+        '<small>Write the name of your module.</small>' +
+        '</div>' +
+        '</div>' +
+
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '<select class="custom-select mb-2" id="module_type">' +
+        ' <option selected>Select module type</option>' +
+        ' <option value="Guidance">1.Guidance</option>' +
+        ' <option value="Interaction">2.Interaction</option>' +
+        ' <option value="Competition">3.Competition</option>' +
+        '  </select>' +
+        '<small>Select a module type to create.</small>' +
+        '</div>' +
+        '</div>' +
+
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '      <button class="btn btn-block btn-success btn-lg" id="upload_course">Add Module</button>' +
+        ' </div>' +
+        '</div>' +
+        '</form>' +
+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
+
+
 
 
 
@@ -528,11 +575,6 @@ function hideProgressModal() {
 }
 
 
-
-
-
-
-
 //edit course
 function showEditCourseModal(id, content) {
     $('#editCourseModal').remove();
@@ -561,12 +603,6 @@ function hideDeleteCourseModal() {
     $('.modal-backdrop').remove();
 }
 
-
-
-
-
-
-
 //add stage dialog
 function showAddStageModal(id) {
     $('#addStageModal').remove();
@@ -593,10 +629,6 @@ function hideAddLessonModal() {
     $('.modal-backdrop').remove();
 }
 
-
-
-
-
 //add submit dialog
 function showSubmitModal(id, content) {
     $('#uploadCourseWareModal').remove();
@@ -609,9 +641,6 @@ function hideSubmitModal() {
     $('#uploadCourseWareModal').remove();
     $('.modal-backdrop').remove();
 }
-
-
-
 
 //add change status dialog
 function showChangeStatusModal(id, content) {
@@ -626,21 +655,11 @@ function hideChangeStatusModal() {
     $('.modal-backdrop').remove();
 }
 
-
-
 function showViewBugsModal(id, content) {
     $('#viewBugsModal').remove();
     $(id).append(getViewBugsModalContent(content));
     $("#viewBugsModal").modal();
 }
-
-
-
-
-
-
-
-
 
 function showPicModal(id, obj) {
     $('#picModal').remove();
@@ -649,10 +668,17 @@ function showPicModal(id, obj) {
 }
 
 
+function showAddModuleModal(id, obj) {
+    $('#addMuduleModal').remove();
+    $(id).append(getAddModuleModalContent(obj));
+    $("#addMuduleModal").modal();
+}
 
 
-
-
+function hideAddModuleModal() {
+    $('#addMuduleModal').remove();
+    $('.modal-backdrop').remove();
+}
 
 
 
