@@ -448,22 +448,56 @@ define(function(require, exports, module) {
                     '</div>' +
                     '</li>';
             } else if (type_id == TYPE_ID_AUDIO) {
-                item = ' <li class="col-12 col-md-4 col-lg-3">' +
-                    '<div class="card" style="background-color:#fefefe">' +
-                    '<img class="my-audio-card-img-top" src="images/audio.jpg" alt="Card image cap" style="object-fit:cover;">' +
+                // item = ' <li class="col-12 col-md-4 col-lg-3">' +
+                //     '<div class="card" style="background-color:#fefefe">' +
+                //     '<img class="my-audio-card-img-top" src="images/audio.jpg" alt="Card image cap" style="object-fit:cover;">' +
 
-                    '<span>' +
-                    '<audio src="' + ACE_BASE_AUDIO_URL + object.download_file + '" controls>' +
-                    'Sorry,your browser not support audio.' +
-                    '</audio>' +
-                    '</span>' +
+                //     '<span>' +
+                //     '<audio src="' + ACE_BASE_AUDIO_URL + object.download_file + '" controls>Sorry,your browser not support audio.</audio>' +
+                //     '</span>' +
 
-                    '<div>' +
-                    '<h6 style="margin-top:20px;margin-left:10px;margin-right:20px">' + "[ " + object.id + " ] " + object.title + '</h6>' +
-                    '<p style="margin-left:10px;margin-right:20px;margin-bottom:10px;"><small>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:20px"></i><a href="' + ACE_BASE_IMG_URL + object.download_file + '?">Download</a></small></p>' +
-                    '</div>' +
-                    '</div>' +
-                    '</li>';
+                //     '<div>' +
+                //     '<h6 style="margin-top:20px;margin-left:10px;margin-right:20px">' + "[ " + object.id + " ] " + object.title + '</h6>' +
+                //     '<p style="margin-left:10px;margin-right:20px;margin-bottom:10px;"><small>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:20px"></i><a href="' + ACE_BASE_IMG_URL + object.download_file + '?">Download</a></small></p>' +
+                //     '</div>' +
+                //     '</div>' +
+                //     '</li>';
+
+
+                item = '<li class="list-group-item" style="background: #FAFAFA;">' +
+                    '                <div class="media align-items-center">' +
+                    '                    <a href="#" class="mr-4">' +
+                    '                        <img alt="Image" src="images/audio.jpg" class="rounded avatar">' +
+                    '                    </a>' +
+                    '                    <div class="media-body row">' +
+                    '                        <div class="d-flex justify-content-between mb-2 col-sm-2">' +
+                    '                            <div>' +
+                    '                                <a href="#" class="mb-1">' +
+                    '                                    <h4>' + object.title + '</h4>' +
+                    '                                </a>' +
+                    '                            </div>' +
+                    '                        </div>' +
+                    '                        <div class="col-sm-5">' +
+                    '                    <span>' +
+                    '                        <audio src="' + ACE_BASE_AUDIO_URL + object.download_file + '" controls>' +
+                    '                            此浏览器不支持aideo标签' +
+                    '                        </audio>' +
+                    '                    </span>' +
+                    '                        </div>' +
+                    '                        <div class="col-sm-3">' +
+                    '                            <ul class="list-inline" style="margin-top: 3px;">' +
+                    '                                <a href="' + ACE_BASE_AUDIO_URL + object.download_file + '" download>' +
+                    '                                    <li class="list-inline-item">' +
+                    '                                        <i class="icon-download"></i> download' +
+                    '                                    </li>' +
+                    '                                </a>' +
+                    '                            </ul>' +
+                    '                        </div>' +
+                    '                    </div>' +
+                    '                </div>' +
+                    '            </li>';
+
+
             } else if (type_id == TYPE_ID_VIDEO) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
                     '<div class="card" style="background-color:#fefefe">' +
