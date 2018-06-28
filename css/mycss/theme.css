@@ -8150,6 +8150,13 @@ tr.table-divider {
   .video-cover .bg-image {
     z-index: 1;
     transition: opacity 0.35s ease; }
+    .card .video-play-icon {
+    position: absolute;
+    top: 64px;
+    left: 50%;
+    z-index: 2;
+    margin-left: -36px;
+    margin-bottom: 0 !important; }
   .video-cover .video-play-icon {
     position: absolute;
     top: 50%;
