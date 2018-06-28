@@ -540,7 +540,18 @@ function getAddModuleModalContent(content) {
     return modalContent;
 }
 
-
+function getVideoModalContent(obj) {
+    var modalContent = '<div class="modal fade" id="video-modal" tabindex="-1" aria-labelledby="video-modal-label" aria-hidden="true">' +
+        '<div class="modal-dialog modal-lg modal-center-viewport">' +
+        '<div class="modal-content">' +
+        '    <div class="embed-responsive embed-responsive-16by9">' +
+        '       <video class="embed-responsive-item" src="' + obj + '" controls id="video"></video>' +
+        '  </div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
 
 
 
@@ -684,7 +695,11 @@ function hideAddModuleModal() {
 
 
 
-
+function showVideoModuleModal(id, obj) {
+    $('#video-modal').remove();
+    $(id).append(getVideoModalContent(obj));
+    $("#video-modal").modal();
+}
 
 
 

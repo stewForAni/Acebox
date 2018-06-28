@@ -227,7 +227,7 @@ define(function(require, exports, module) {
 
     function initDownload() {
 
-        var video = $("#video").get(0);
+        var video;
         var currentElement = "#picture";
         var currentType = 5;
         tabEvents();
@@ -414,11 +414,29 @@ define(function(require, exports, module) {
             var listvid = '';
             $("#content_list_video").empty();
             if (!result.data.items.length == 0) {
+
                 $("#video_no_data").hide();
-                $.each(result.data.items, function(index, obj) {
-                    listvid += getListItem(obj, type_id, index + 1);
-                });
-                $("#content_list_video").append(listvid);
+
+                var data = result.data.items;
+                var l = data.length;
+                for (var i = 0; i < l; i++) {
+                    var d = data[i];
+                    listvid = getListItem(d, type_id, i);
+                    $("#content_list_video").append(listvid);
+                    (function(d) {
+                        $("#item_video_" + i).click(function() {
+                            var videoUrl = ACE_BASE_VIDEO_URL + d.download_file;
+                            showVideoModuleModal(containerId, videoUrl);
+                            video = $("#video").get(0);
+                            video.play();
+                            $('#video-modal').on('hidden.bs.modal', function() {
+                                video.pause();
+                            })
+                            return false;
+                        });
+                    })(d);
+                }
+
             } else {
                 $("#video_no_data").show();
             }
@@ -468,7 +486,7 @@ define(function(require, exports, module) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
                     '<div class="card" style="background-color:#fefefe">' +
                     '<img class="my-card-img-top" src="images/media3.png" alt="Card image cap" style="object-fit:cover;">' +
-                    '<div class="video-play-icon justify-content-center" style="position:absolute">' +
+                    '<div class="video-play-icon" style="position:absolute" id="item_video_' + i + '">' +
                     '     <i class="icon-controller-play"></i>' +
                     ' </div>' +
                     '<div>' +
@@ -497,7 +515,6 @@ define(function(require, exports, module) {
         }
         // 音量减
         function volumeDec() {
-            var video = $("#video").get(0);
             video.volume < 0.1 ? video.volume = 0 : video.volume -= 0.1;
         }
         // 前进10s
