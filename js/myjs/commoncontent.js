@@ -528,7 +528,7 @@ function getAddModuleModalContent(content) {
 
         '<div class="form-row form-group">' +
         '   <div class="col">' +
-        '      <button class="btn btn-block btn-success btn-lg" id="upload_course">Add Module</button>' +
+        '      <button class="btn btn-block btn-success btn-lg" id="confirm_add_module">Add Module</button>' +
         ' </div>' +
         '</div>' +
         '</form>' +

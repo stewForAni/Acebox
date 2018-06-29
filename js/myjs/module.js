@@ -71,11 +71,13 @@ define(function(require, exports, module) {
             currentID = '#module_list_3';
         }
 
+        $(currentID).html('');
+
         for (var i = 0; i < l; i++) {
             var item = d[i];
             var module_list_item = '<li class="col-12 col-md-6 col-lg-3">' +
                 '<div class="card">' +
-                '<img class="card-img-top" src="' + ACE_BASE_IMG_URL + item.sketch + '" alt="Card image cap">' +
+                '<img class="card-img-top" src="images/changelog_icon4.jpg"  alt="Card image cap">' +
                 '<div class="card-body">' +
                 '<h4 class="card-title">' + item.title + '</h4>' +
                 '<p class="card-text text-body">' + item.description + '</p>' +
@@ -107,22 +109,30 @@ define(function(require, exports, module) {
 
     function addModule() {
         showAddModuleModal(containerId, "Add Module");
-        var name = $("#module_name").val();
-        var type = $("#module_type").val();
-        var d = '{' +
-            '"name": "' + name + '",' +
-            '"part_code": "' + type + '"' +
-            '}';
+        $("#confirm_add_module").click(function() {
+            var name = $("#module_name").val();
+            var type = $("#module_type").val();
 
-        $.ajax({
-            url: ACE_BASE_URL + ACE_ADD_MODULE,
-            contentType: "application/json; charset=UTF-8",
-            type: "POST",
-            data: d,
-            success: function(result) {
-                hideAddModuleModal();
-            },
-            error: function(e) { hideAddModuleModal(); }
+            if (isEmpty(name) || isEmpty(type)) {
+                return false;
+            }
+
+            var d = '{' +
+                '"title": "' + name + '",' +
+                '"part_code": "' + type + '"' +
+                '}';
+
+            $.ajax({
+                url: ACE_BASE_URL + ACE_ADD_MODULE,
+                contentType: "application/json; charset=UTF-8",
+                type: "POST",
+                data: d,
+                success: function(result) {
+                    hideAddModuleModal();
+                },
+                error: function(e) { hideAddModuleModal(); }
+            });
+            return false;
         });
     }
 

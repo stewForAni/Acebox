@@ -16,6 +16,8 @@ var ACE_BASE_AUDIO_URL = "https://api.dev.landi.com/";
 
 var ACE_BASE_VIDEO_URL = "https://api.dev.landi.com/";
 
+var ACE_BASE_MODULE_URL = "https://api.dev.landi.com/";
+
 
 //ace login
 var ACE_LOGIN_API = "auth/logins";
