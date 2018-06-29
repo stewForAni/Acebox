@@ -231,7 +231,6 @@ define(function(require, exports, module) {
         var currentElement = "#picture";
         var currentType = 5;
         tabEvents();
-        keyEvents();
 
         function tabEvents() {
             $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
@@ -258,25 +257,6 @@ define(function(require, exports, module) {
                     get_resource_data(tags, TYPE_ID_ANIMATION);
                 }
 
-            });
-        }
-
-
-        function keyEvents() {
-            $(document).keydown(function() {
-                if (event.keyCode == 32) {
-                    videoSmart(); // 空格
-                } else if (event.keyCode == 37) {
-                    recede(); // 回退
-                } else if (event.keyCode == 38) {
-                    volumeInc(); // 上键
-                } else if (event.keyCode == 39) {
-                    onward(); // 右键
-                } else if (event.keyCode == 40) {
-                    volumeDec(); // 下键
-                } else if (event.keyCode == 13) {
-                    search(); // 回车
-                }
             });
         }
 
@@ -370,7 +350,7 @@ define(function(require, exports, module) {
                     (function(d) {
                         $("#item_animation_" + i).click(function() {
                             //getAnimationResource(d);
-                            //showAniModal(containerId,d);
+                            showAniModal(containerId, d);
                             return false;
                         });
                     })(d);
@@ -432,6 +412,8 @@ define(function(require, exports, module) {
                             $('#video-modal').on('hidden.bs.modal', function() {
                                 video.pause();
                             })
+                            keyEvents();
+
                             return false;
                         });
                     })(d);
@@ -441,6 +423,33 @@ define(function(require, exports, module) {
                 $("#video_no_data").show();
             }
         }
+
+
+        function keyEvents() {
+            $(document).keyup(function(event) {
+                console.log(event.keyCode);
+
+                if (isEmpty(video)) {
+                    return;
+                }
+
+                if (event.keyCode == 32) {
+                    videoSmart(); // 空格
+                } else if (event.keyCode == 37) {
+                    recede(); // 回退
+                } else if (event.keyCode == 38) {
+                    volumeInc(); // 上键
+                } else if (event.keyCode == 39) {
+                    onward(); // 右键
+                } else if (event.keyCode == 40) {
+                    volumeDec(); // 下键
+                } else if (event.keyCode == 13) {
+                    search(); // 回车
+                }
+            });
+        }
+
+
 
 
         function getListItem(object, type_id, i) {
@@ -503,11 +512,11 @@ define(function(require, exports, module) {
 
         // 暂停或播放
         function videoSmart() {
-            // if (video.paused) {
-            //     video.play();
-            // } else {
-            //     video.pause();
-            // }
+            if (video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
         }
         // 音量加
         function volumeInc() {
@@ -528,8 +537,6 @@ define(function(require, exports, module) {
 
 
     }
-
-
 
 
 

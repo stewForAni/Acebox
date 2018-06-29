@@ -99,10 +99,10 @@ var ACE_ADD_USER = "system/user-manage/defaults";
 var ACE_GET_USER_LIST = "system/user-manage/defaults";
 
 //ace_get_module_list
-var ACE_GET_MODULE_LIST = "material/module/lists";
+var ACE_GET_MODULE_LIST = "template/defaults";
 
 //ace_add_module
-var ACE_ADD_MODULE = "";
+var ACE_ADD_MODULE = "template/defaults";
 
 
 
