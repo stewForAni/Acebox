@@ -33,7 +33,6 @@ define(function(require, exports, module) {
                 setFileType(result);
                 initUpload();
                 initDownload();
-                //showAnimation();
             },
             error: function(e) {}
         });
@@ -61,6 +60,7 @@ define(function(require, exports, module) {
         var l = d.length;
         $('#select_file_type').empty();
         $('#select_file_type').append('<option value="0" selected>Select File Type</option>');
+
         for (var i = 0; i < l; i++) {
             $('#select_file_type').append('<option value="' + d[i].id + '">' + d[i].name + '</option>');
         }
@@ -279,8 +279,6 @@ define(function(require, exports, module) {
             return false;
         });
 
-
-
         function get_resource_data(tags, type_id) {
 
             $.ajax({
@@ -294,6 +292,7 @@ define(function(require, exports, module) {
             });
 
         }
+
 
         function dealData(result, type_id) {
             if (type_id == TYPE_ID_PICTRUE) {
@@ -350,7 +349,7 @@ define(function(require, exports, module) {
                     (function(d) {
                         $("#item_animation_" + i).click(function() {
                             //getAnimationResource(d);
-                            showAniModal(containerId, d);
+                            showAnimation();
                             return false;
                         });
                     })(d);
@@ -468,8 +467,8 @@ define(function(require, exports, module) {
             } else if (type_id == TYPE_ID_ANIMATION) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
                     '<div class="card" style="background-color:#fefefe">' +
-                    '<img  id="item_animation_' + i + '" class="my-card-img-top" src="images/media1.jpg" alt="Card image cap" style="object-fit:cover;">' +
-                    '<div class="video-play-icon justify-content-center" style="position:absolute">' +
+                    '<img class="my-card-img-top" src="images/media1.jpg" alt="Card image cap" style="object-fit:cover;">' +
+                    '<div class="video-play-icon justify-content-center" style="position:absolute" id="item_animation_' + i + '" >' +
                     '     <i class="icon-controller-play"></i>' +
                     ' </div>' +
                     '<div>' +
@@ -567,10 +566,19 @@ define(function(require, exports, module) {
 
 
 
-
     function showAnimation() {
-        var buddy, game, notificationLeft, notificationRight, tween;
-        game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, '', { init: init, preload: preload, create: create });
+        showAniModal(containerId);
+
+
+        $('#animationModal').on('hidden.bs.modal', function() {
+            $('#animationModal').remove();
+            $('.modal-backdrop').remove();
+        })
+
+        var width = 600;
+        var height = 450;
+
+        var game = new Phaser.Game(width, height, Phaser.AUTO, 'animation_content', { init: init, preload: preload, create: create });
 
         function init() {
             this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
@@ -580,20 +588,19 @@ define(function(require, exports, module) {
             game.plugins.add(PhaserSpine.SpinePlugin);
             game.stage.disableVisibilityChange = true;
             game.load.spine('spineboy', "assets/xiaodi.json");
+            game.load.image("background", "assets/bg.png");
+
         }
 
         function create() {
-            background = game.add.tileSprite(0, 0, window.innerWidth, window.innerHeight, 'background');
+            background = game.add.tileSprite(0, 0, width, height, 'background');
             background.smoothed = false;
-            spineboy = game.add.spine(window.innerWidth / 2, window.innerHeight / 2, "spineboy");
+            spineboy = game.add.spine(width / 2, height / 2, "spineboy");
             spineboy.scale.set(1);
-            spineboy.setAnimationByName(0, "开心的说话", true);
+            spineboy.setAnimationByName(0, "待机", true);
         }
+
+
     }
-
-
-
-
-
 
 });

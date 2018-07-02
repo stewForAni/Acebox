@@ -553,6 +553,18 @@ function getVideoModalContent(obj) {
     return modalContent;
 }
 
+function getAnimationModalContent() {
+    var modalContent = ' <div class="modal fade" id="animationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">' +
+        '<div class="modal-dialog modal-lg modal-center-viewport" role="document" >' +
+        '<div class="modal-content">' +
+        '<div class="modal-body d-flex justify-content-center" id="animation_content" >' +
+     
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
 
 
 //tip dialog
@@ -692,9 +704,6 @@ function hideAddModuleModal() {
 }
 
 
-
-
-
 function showVideoModuleModal(id, obj) {
     $('#video-modal').remove();
     $(id).append(getVideoModalContent(obj));
@@ -702,6 +711,11 @@ function showVideoModuleModal(id, obj) {
 }
 
 
+function showAniModal(id) {
+    $('#animationModal').remove();
+    $(id).append(getAnimationModalContent());
+    $("#animationModal").modal();
+}
 
 
 
