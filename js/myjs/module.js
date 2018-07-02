@@ -6,10 +6,16 @@ define(function(require, exports, module) {
     require('commoncontent');
 
     var containerId = "#module_container";
-    var currentType = "Guidance";
-    var TYPE_GUIDANCE = "Guidance";
-    var TYPE_INTERACTION = "Interaction";
-    var TYPE_COMPETITION = "Competition";
+    var currentType = "guidance";
+    var TYPE_GUIDANCE = "guidance";
+    var TYPE_INTERACTION = "interaction";
+    var TYPE_COMPETITION = "competition";
+
+    var coverName;
+    var coverFile;
+
+    var pics = new Array();
+    var picsName = new Array();
 
     init();
 
@@ -48,7 +54,7 @@ define(function(require, exports, module) {
 
     function getModuleList(currentType) {
         $.ajax({
-            url: ACE_BASE_URL + ACE_GET_MODULE_LIST + "?per-page=" + 100 + "&type_id=" + currentType,
+            url: ACE_BASE_URL + ACE_GET_MODULE_LIST + "?per-page=" + 100 + "&part_code=" + currentType,
             contentType: "application/json; charset=UTF-8",
             type: "GET",
             success: function(result) {
@@ -75,18 +81,35 @@ define(function(require, exports, module) {
 
         for (var i = 0; i < l; i++) {
             var item = d[i];
+            var pic = item.pic;
+            var title = item.title;
+            var description = item.description;
+
+            if (isEmpty(pic)) {
+                pic = "images/changelog_icon1.jpg";
+            }
+
+            if (isEmpty(title)) {
+                title = "N/A";
+            }
+
+
+            if (isEmpty(description)) {
+                description = "N/A";
+            }
+
             var module_list_item = '<li class="col-12 col-md-6 col-lg-3">' +
                 '<div class="card">' +
-                '<img class="card-img-top" src="images/changelog_icon4.jpg"  alt="Card image cap">' +
+                '<img class="my-card-img-top" src="' + pic + '"  alt="Card image cap" style="object-fit:cover;">' +
                 '<div class="card-body">' +
-                '<h4 class="card-title">' + item.title + '</h4>' +
-                '<p class="card-text text-body">' + item.description + '</p>' +
+                '<h4 class="card-title">' + title + '</h4>' +
+                '<p class="card-text text-body" style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">' + description + '</p>' +
                 '</div>' +
                 '<div class="card-footer card-footer-borderless d-flex justify-content-between">' +
                 '<div class="text-small">' +
                 '<ul class="list-inline">' +
-                '<li class="list-inline-item"><i class="icon-heart mr-1"></i> 0</li>' +
-                '<li class="list-inline-item"><i class="icon-download mr-1"></i> 0</li>' +
+                '<li class="list-inline-item"><i class="icon-heart mr-1" style="color:#d9534f"></i> 0</li>' +
+                '<li class="list-inline-item"><i class="icon-download mr-1" style="color:#4582EC"></i> 0</li>' +
                 '</ul>' +
                 '</div>' +
                 '<div class="dropup">' +
@@ -94,9 +117,9 @@ define(function(require, exports, module) {
                 '<i class="icon-dots-three-horizontal"></i>' +
                 '</button>' +
                 '<div class="dropdown-menu dropdown-menu-sm" aria-labelledby="BenchButton">' +
-                '<a class="dropdown-item" href="#">Edit</a>' +
+                '<a class="dropdown-item" id="module_edit_' + i + '" style="cursor:pointer;">Edit</a>' +
                 '<div class="dropdown-divider"></div>' +
-                '<a class="dropdown-item" href="#">Delete</a>' +
+                '<a class="dropdown-item" id="module_delete_' + i + '" style="cursor:pointer;">Delete</a>' +
                 '</div>' +
                 '</div>' +
                 '</div>' +
@@ -104,7 +127,66 @@ define(function(require, exports, module) {
                 '</li>';
 
             $(currentID).append(module_list_item);
+
+            (function(item) {
+                $("#module_edit_" + i).click(function() {
+                    editModule(item);
+                    return false;
+                });
+            })(item);
+
+            (function(item) {
+                $("#module_delete_" + i).click(function() {
+                    return false;
+                });
+            })(item);
         }
+    }
+
+    function editModule(item) {
+        showEditModuleModal(containerId, 'Module');
+
+        $('#module_cover_input').change(function() {
+            coverFile = this.files[0];
+            $('#cover_file_name').html(coverFile.name);
+        });
+
+
+        $('#module_pics_input').change(function() {
+            pics = this.files;
+            var picsText = "";
+            for (var i = 0; i < pics.length; i++) {
+                picsText = picsText + (i + 1) + ' . ' + pics[i].name + '<br/>';
+            }
+            $('#pics_file_name').html(picsText);
+        });
+
+
+        $("#edit_module").click(function() {
+            if (isEmpty(coverFile) || isEmpty(pics)) {
+                return false;
+            }
+
+            var formData = new FormData();
+            formData.append('file', file);
+            $.ajax({
+                url: ACE_BASE_URL + ACE_FILE_UPLOAD,
+                type: "POST",
+                contentType: "application/form-Data",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(result) {
+                    hideEditModuleModal();
+                },
+                error: function(e) {
+                    hideEditModuleModal();
+                }
+            });
+
+
+            return false;
+        });
     }
 
     function addModule() {

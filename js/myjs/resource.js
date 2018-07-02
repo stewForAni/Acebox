@@ -19,6 +19,7 @@ define(function(require, exports, module) {
     var TYPE_ID_VIDEO = 8;
 
     var containerId = "#resource_container";
+    var AnimationDefaultName = '待机';
 
     init();
 
@@ -348,7 +349,6 @@ define(function(require, exports, module) {
                     $("#content_list_animation").append(listani);
                     (function(d) {
                         $("#item_animation_" + i).click(function() {
-                            //getAnimationResource(d);
                             showAnimation();
                             return false;
                         });
@@ -493,7 +493,7 @@ define(function(require, exports, module) {
             } else if (type_id == TYPE_ID_VIDEO) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
                     '<div class="card" style="background-color:#fefefe">' +
-                    '<img class="my-card-img-top" src="images/media3.png" alt="Card image cap" style="object-fit:cover;">' +
+                    '<img class="my-card-img-top" src="images/media2.jpg" alt="Card image cap" style="object-fit:cover;">' +
                     '<div class="video-play-icon" style="position:absolute" id="item_video_' + i + '">' +
                     '     <i class="icon-controller-play"></i>' +
                     ' </div>' +
@@ -567,9 +567,8 @@ define(function(require, exports, module) {
 
 
     function showAnimation() {
+
         showAniModal(containerId);
-
-
         $('#animationModal').on('hidden.bs.modal', function() {
             $('#animationModal').remove();
             $('.modal-backdrop').remove();
@@ -587,7 +586,7 @@ define(function(require, exports, module) {
         function preload() {
             game.plugins.add(PhaserSpine.SpinePlugin);
             game.stage.disableVisibilityChange = true;
-            game.load.spine('spineboy', "assets/xiaodi.json");
+            game.load.spine('body', "assets/xiaodi.json");
             game.load.image("background", "assets/bg.png");
 
         }
@@ -595,9 +594,9 @@ define(function(require, exports, module) {
         function create() {
             background = game.add.tileSprite(0, 0, width, height, 'background');
             background.smoothed = false;
-            spineboy = game.add.spine(width / 2, height / 2, "spineboy");
-            spineboy.scale.set(1);
-            spineboy.setAnimationByName(0, "待机", true);
+            body = game.add.spine(width / 2, height / 2, "body");
+            body.scale.set(1);
+            body.setAnimationByName(0, AnimationDefaultName, true);
         }
 
 

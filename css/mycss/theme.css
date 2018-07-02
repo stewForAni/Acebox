@@ -8152,6 +8152,9 @@ tr.table-divider {
     transition: opacity 0.35s ease; }
     .card .video-play-icon {
     position: absolute;
+      border-style:solid;
+  border-width: 2px;
+  border-color: #aaaaaa;
     top: 64px;
     left: 50%;
     z-index: 2;

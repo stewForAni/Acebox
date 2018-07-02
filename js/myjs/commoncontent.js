@@ -558,7 +558,66 @@ function getAnimationModalContent() {
         '<div class="modal-dialog modal-lg modal-center-viewport" role="document" >' +
         '<div class="modal-content">' +
         '<div class="modal-body d-flex justify-content-center" id="animation_content" >' +
-     
+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
+
+
+function getEditModuleModalContent(content) {
+    var modalContent = '<div class="modal fade" id="editModuleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">' +
+        ' <div class="modal-dialog modal-dialog-centered" role="document">' +
+        '  <div class="modal-content">' +
+        '   <div class="modal-header">' +
+        '    <h5 class="modal-title" id="exampleModalLongTitle">Edit ' + content + '</h5>' +
+        '   <button type="button" class="close" data-dismiss="modal" aria-label="Close">' +
+        '    <span aria-hidden="true">&times;</span>' +
+        ' </button>' +
+        '</div>' +
+        '<div class="modal-body">' +
+        '<form>' +
+        ' <div class="form-row form-group">' +
+        '      <div class="col">' +
+        '       <input class="form-control form-control-lg" type="text" id="name" placeholder="' + content + ' Name" />' +
+        '      </div>' +
+        ' </div>' +
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '      <textarea class="form-control form-control-lg" name="profileBio" rows="2" id="intro" placeholder="Add Introduction"></textarea>' +
+        '<small>Briefly introduce to this ' + content + '.</small>' +
+        '</div>' +
+        '</div>' +
+
+        '<div class="form-row form-group">' +
+        '<div class="col">' +
+        '   <label class="custom-file mb-2" for="module_cover_input">' +
+        '         <input type="file" id="module_cover_input" class="custom-file-input height-xs" multiple="multiple" accept="image/png,image/jpeg,image/jpg">' +
+        '        <span class="btn btn-primary col-12" id="cover_name_span"><i class="icon-upload-to-cloud">&nbsp;</i>Upload a Cover</span>' +
+        '   </label>' +
+        '<p id="cover_file_name">No file has been selected yet.</p>' +
+        '</div>' +
+        '</div>' +
+
+        '<div class="form-row form-group">' +
+        '<div class="col">' +
+        '   <label class="custom-file mb-2" for="module_pics_input">' +
+        '         <input type="file" id="module_pics_input" class="custom-file-input height-xs" multiple="multiple" accept="image/png,image/jpeg,image/jpg">' +
+        '        <span class="btn btn-primary col-12" id="cover_name_span"><i class="icon-upload-to-cloud">&nbsp;</i>Upload screenshots</span>' +
+        '   </label>' +
+        '<p id="pics_file_name" style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;">No file has been selected yet.</p>' +
+        '</div>' +
+        '</div>' +
+
+        '<div class="form-row form-group">' +
+        '   <div class="col">' +
+        '      <button class="btn btn-block btn-success btn-lg" id="edit_module">Confirm Edit</button>' +
+        ' </div>' +
+        '</div>' +
+        '<small>Any question, please refer to the rules in the "Add Course Structure".</small>' +
+        '</form>' +
         '</div>' +
         '</div>' +
         '</div>' +
@@ -717,8 +776,16 @@ function showAniModal(id) {
     $("#animationModal").modal();
 }
 
+function showEditModuleModal(id, content) {
+    $('#editModuleModal').remove();
+    $(id).append(getEditModuleModalContent(content));
+    $("#editModuleModal").modal();
+}
 
-
+function hideEditModuleModal() {
+    $('#editModuleModal').remove();
+    $('.modal-backdrop').remove();
+}
 
 
 /*判断是否是空*/
