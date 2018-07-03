@@ -115,8 +115,8 @@ define(function(require, exports, module) {
                 '<div class="card-footer card-footer-borderless d-flex justify-content-between">' +
                 '<div class="text-small">' +
                 '<ul class="list-inline">' +
-                '<li class="list-inline-item"><i class="icon-heart mr-1"></i> 0</li>' +
-                '<li class="list-inline-item"><i class="icon-download mr-1"></i> 0</li>' +
+                '<li class="list-inline-item" style="color:#666666"><i class="icon-heart mr-1"></i>999+</li>' +
+                '<li class="list-inline-item" style="color:#666666"><i class="icon-download mr-1"></i>999+</li>' +
                 '</ul>' +
                 '</div>' +
                 '<div class="dropup">' +
