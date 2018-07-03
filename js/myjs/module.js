@@ -4,6 +4,7 @@ define(function(require, exports, module) {
     require('ajaxUtil');
     require('aceApiTool');
     require('commoncontent');
+    require('flickity');
 
     var containerId = "#module_container";
     var currentType = "guidance";
@@ -106,10 +107,10 @@ define(function(require, exports, module) {
 
             var module_list_item = '<li class="col-12 col-md-6 col-lg-3">' +
                 '<div class="card">' +
-                '<img class="my-module-card-img-top" src="' + pic + '"  alt="Card image cap" style="object-fit:cover;">' +
+                '<img class="my-module-card-img-top" src="' + pic + '"  alt="Card image cap" style="object-fit:cover;cursor:pointer" id="module_cover_' + i + '"> ' +
                 '<div class="card-body">' +
                 '<h5 class="card-title">' + title + '</h5>' +
-                '<small style="color:#4582EC">'+ time +'</small>' +
+                '<small style="color:#4582EC">' + time + '</small>' +
                 '<small class="card-text text-body" style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">' + description + '</small>' +
                 '</div>' +
                 '<div class="card-footer card-footer-borderless d-flex justify-content-between">' +
@@ -147,6 +148,22 @@ define(function(require, exports, module) {
                     return false;
                 });
             })(item);
+
+
+            (function(item) {
+                $("#module_cover_" + i).click(function() {
+                    showModuleDetailModal(containerId, item);
+                    // $('.main-carousel').flickity({
+                    //     // options
+                    //     cellAlign: 'left',
+                    //     contain: true
+                    // });
+                    return false;
+                });
+            })(item);
+
+
+
         }
     }
 

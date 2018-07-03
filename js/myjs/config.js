@@ -11,7 +11,8 @@ require.config({
         "commoncontent": "myjs/commoncontent",
         "multifileupload": "multifileupload",
         "phaser": "phaser",
-        "phaser-spine": "phaser-spine"
+        "phaser-spine": "phaser-spine",
+        "flickity": "flickity.pkgd.min"
     },
     shim: {
         "bootstrap": [
@@ -37,6 +38,9 @@ require.config({
         ],
         "phaser-spine": [
             "phaser"
+        ],
+        "flickity": [
+            "jquery"
         ],
     }
 });

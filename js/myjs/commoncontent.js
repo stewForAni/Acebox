@@ -594,7 +594,7 @@ function getEditModuleModalContent(content) {
         '<div class="form-row form-group">' +
         '<div class="col">' +
         '   <label class="custom-file mb-2" for="module_cover_input">' +
-        '         <input type="file" id="module_cover_input" class="custom-file-input height-xs" multiple="multiple" accept="image/png,image/jpeg,image/jpg">' +
+        '         <input type="file" id="module_cover_input" class="custom-file-input height-xs" accept="image/png,image/jpeg,image/jpg">' +
         '        <span class="btn btn-primary col-12" id="cover_name_span"><i class="icon-upload-to-cloud">&nbsp;</i>Upload a Cover</span>' +
         '   </label>' +
         '<p id="cover_file_name">No file has been selected yet.</p>' +
@@ -605,7 +605,7 @@ function getEditModuleModalContent(content) {
         '<div class="col">' +
         '   <label class="custom-file mb-2" for="module_pics_input">' +
         '         <input type="file" id="module_pics_input" class="custom-file-input height-xs" multiple="multiple" accept="image/png,image/jpeg,image/jpg">' +
-        '        <span class="btn btn-primary col-12" id="cover_name_span"><i class="icon-upload-to-cloud">&nbsp;</i>Upload screenshots</span>' +
+        '        <span class="btn btn-primary col-12" id="cover_name_span"><i class="icon-upload-to-cloud">&nbsp;</i>Upload screenshots(Up to 4 pictures)</span>' +
         '   </label>' +
         '<p id="pics_file_name" style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;">No file has been selected yet.</p>' +
         '</div>' +
@@ -618,6 +618,88 @@ function getEditModuleModalContent(content) {
         '</div>' +
         '<small>Any question, please refer to the rules in the "Add Course Structure".</small>' +
         '</form>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>';
+    return modalContent;
+}
+
+function getShowModuleDetailModalContent(item) {
+    var modalContent = ' <div class="modal fade" id="showModuleDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">' +
+        '<div class="modal-dialog modal-lg modal-center-viewport" role="document" >' +
+        '<div class="modal-content">' +
+        '<div class="modal-body" style="padding:30px">' +
+
+        '<div class="row">' +
+        '<div class="col">' +
+        '<div class="media align-items-center">' +
+        '<a href="#" class="mr-4">' +
+        '<img alt="Image" src="' + ACE_BASE_IMG_URL + item.cover + '" class="avatar avatar-lg avatar-square" style="box-shadow: 1px 1px 2px #888888;border-radius: 3px;" />' +
+        '</a>' +
+        '<div class="media-body">' +
+        '<div class="mb-3">' +
+        '<h1 class="h2 mb-2">' + item.title + '</h1>' +
+        '<span>' + getTime(item.created_at) + '</span>' +
+        '</div>' +
+        '<div>' +
+        '<ul class="list-inline text-small d-inline-block">' +
+        '<li class="list-inline-item" style="color:#666666"><i class="icon-heart mr-1"></i>999+</li>' +
+        '<li class="list-inline-item" style="color:#666666"><i class="icon-download mr-1"></i>999+</li>' +
+        '</ul>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '</div>' +
+        '<div class="col-auto">' +
+        '<button class="btn btn-primary" id="add_module"><i class="icon-download mr-2"></i>Download</button>' +
+        '</div>' +
+        '</div>' +
+
+
+        '<div class="row" style="margin-top:30px">' +
+        '<div class="col">' +
+        '<small>' + item.detail + '</small>' +
+        '</div>' +
+        '</div>' +
+
+
+        '<div class="row" style="margin-top:30px">' +
+
+        ' <div class="main-carousel mb-5" data-flickity="{ "cellAlign": "left", "contain": true }">' +
+        '                               <div class="carousel-cell col-12 text-center">' +
+        '                                   <div class="card height-30 bg-gradient text-white mb-0">' +
+        '                                      <div class="card-body d-flex align-items-center justify-content-center">' +
+        '                                          <span>Slide item</span>' +
+        '                                     </div>' +
+        '                                 </div>' +
+        '                             </div>' +
+        '                              <div class="carousel-cell col-12 text-center">' +
+        '                                 <div class="card height-30 bg-gradient text-white mb-0">' +
+        '                                     <div class="card-body d-flex align-items-center justify-content-center">' +
+        '                                         <span>Slide item</span>' +
+        '                                    </div>' +
+        '                               </div>' +
+        '                        </div>' +
+        '                                       <div class="carousel-cell col-12 text-center">' +
+        '                                          <div class="card height-30 bg-gradient text-white mb-0">' +
+        '                                             <div class="card-body d-flex align-items-center justify-content-center">' +
+        '                                                <span>Slide item</span>' +
+        '                                           </div>' +
+        '                                      </div>' +
+        '                                 </div>' +
+        '                                       <div class="carousel-cell col-12 text-center">' +
+        '                                          <div class="card height-30 bg-gradient text-white mb-0">' +
+        '                                             <div class="card-body d-flex align-items-center justify-content-center">' +
+        '                                                <span>Slide item</span>' +
+        '                                           </div>' +
+        '                                      </div>' +
+        '                                 </div>' +
+        '                                   </div>' +
+        '</div>' +
+
+
+
         '</div>' +
         '</div>' +
         '</div>' +
@@ -785,6 +867,13 @@ function showEditModuleModal(id, content) {
 function hideEditModuleModal() {
     $('#editModuleModal').remove();
     $('.modal-backdrop').remove();
+}
+
+
+function showModuleDetailModal(id, item) {
+    $('#showModuleDetailModal').remove();
+    $(id).append(getShowModuleDetailModalContent(item));
+    $("#showModuleDetailModal").modal();
 }
 
 
