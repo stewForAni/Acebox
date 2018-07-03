@@ -30,7 +30,6 @@ $.ajax = function(options) {
 
         },
         success: function(data, state, xhr) {
-            console.log("111111");
             /**
              * 统一处理的逻辑
              */
@@ -43,7 +42,6 @@ $.ajax = function(options) {
             func.success(data, state, xhr);
         },
         error: function(e) {
-            console.log("00000");
             func.error(e);
         }
     });

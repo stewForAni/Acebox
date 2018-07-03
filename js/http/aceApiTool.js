@@ -113,8 +113,8 @@ var ACE_GET_MODULE_LIST = "template/defaults";
 //ace_add_module
 var ACE_ADD_MODULE = "template/defaults";
 
-
-
+//ace_edit_module
+var ACE_EDIT_MODULE = "template/defaults";
 
 
 function logout() {

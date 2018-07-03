@@ -11,11 +11,14 @@ define(function(require, exports, module) {
     var TYPE_INTERACTION = "interaction";
     var TYPE_COMPETITION = "competition";
 
+
+    var title;
+    var description;
     var coverName;
     var coverFile;
-
     var pics = new Array();
     var picsName = new Array();
+    var picsTokens = new Array();
 
     init();
 
@@ -81,12 +84,15 @@ define(function(require, exports, module) {
 
         for (var i = 0; i < l; i++) {
             var item = d[i];
-            var pic = item.pic;
+            var pic = item.cover;
             var title = item.title;
-            var description = item.description;
+            var description = item.detail;
+            var time = getTime(item.created_at);
 
             if (isEmpty(pic)) {
                 pic = "images/changelog_icon1.jpg";
+            } else {
+                pic = ACE_BASE_IMG_URL + pic;
             }
 
             if (isEmpty(title)) {
@@ -100,16 +106,17 @@ define(function(require, exports, module) {
 
             var module_list_item = '<li class="col-12 col-md-6 col-lg-3">' +
                 '<div class="card">' +
-                '<img class="my-card-img-top" src="' + pic + '"  alt="Card image cap" style="object-fit:cover;">' +
+                '<img class="my-module-card-img-top" src="' + pic + '"  alt="Card image cap" style="object-fit:cover;">' +
                 '<div class="card-body">' +
-                '<h4 class="card-title">' + title + '</h4>' +
-                '<p class="card-text text-body" style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">' + description + '</p>' +
+                '<h5 class="card-title">' + title + '</h5>' +
+                '<small style="color:#4582EC">'+ time +'</small>' +
+                '<small class="card-text text-body" style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">' + description + '</small>' +
                 '</div>' +
                 '<div class="card-footer card-footer-borderless d-flex justify-content-between">' +
                 '<div class="text-small">' +
                 '<ul class="list-inline">' +
-                '<li class="list-inline-item"><i class="icon-heart mr-1" style="color:#d9534f"></i> 0</li>' +
-                '<li class="list-inline-item"><i class="icon-download mr-1" style="color:#4582EC"></i> 0</li>' +
+                '<li class="list-inline-item"><i class="icon-heart mr-1"></i> 0</li>' +
+                '<li class="list-inline-item"><i class="icon-download mr-1"></i> 0</li>' +
                 '</ul>' +
                 '</div>' +
                 '<div class="dropup">' +
@@ -151,7 +158,6 @@ define(function(require, exports, module) {
             $('#cover_file_name').html(coverFile.name);
         });
 
-
         $('#module_pics_input').change(function() {
             pics = this.files;
             var picsText = "";
@@ -161,33 +167,98 @@ define(function(require, exports, module) {
             $('#pics_file_name').html(picsText);
         });
 
-
         $("#edit_module").click(function() {
-            if (isEmpty(coverFile) || isEmpty(pics)) {
+            title = $('#module_name').val();
+            description = $('#module_des').val();
+            if (isEmpty(coverFile) || isEmpty(pics) || isEmpty(title) || isEmpty(description)) {
                 return false;
             }
-
-            var formData = new FormData();
-            formData.append('file', file);
-            $.ajax({
-                url: ACE_BASE_URL + ACE_FILE_UPLOAD,
-                type: "POST",
-                contentType: "application/form-Data",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(result) {
-                    hideEditModuleModal();
-                },
-                error: function(e) {
-                    hideEditModuleModal();
-                }
-            });
-
-
+            uploadCover(item);
             return false;
         });
     }
+
+
+    function uploadCover(item) {
+        var formData = new FormData();
+        formData.append('file', coverFile);
+        $.ajax({
+            url: ACE_BASE_URL + ACE_FILE_UPLOAD,
+            type: "POST",
+            contentType: "application/form-Data",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(result) {
+                uploadScreenShots(result.data.token, item);
+            },
+            error: function(e) {
+                hideEditModuleModal();
+            }
+        });
+    }
+
+
+    function uploadScreenShots(coverToken, item) {
+
+        for (var i = 0; i < pics.length; i++) {
+            var file = pics[i];
+            (function(file) {
+                var formData = new FormData();
+                formData.append('file', file);
+                $.ajax({
+                    url: ACE_BASE_URL + ACE_FILE_UPLOAD,
+                    type: "POST",
+                    contentType: "application/form-Data",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(result) {
+                        picsTokens.push(result.data.token);
+                        if (picsTokens.length == pics.length) {
+                            editModuleApi(coverToken, picsTokens, item);
+                        }
+                    },
+                    error: function(e) {
+                        hideEditModuleModal();
+                    }
+                });
+            })(file);
+        }
+    }
+
+
+    function editModuleApi(token, tokens, item) {
+        var screenshotTokens = '';
+        for (var i = 0; i < pics.length; i++) {
+            if (i == (pics.length - 1)) {
+                screenshotTokens = screenshotTokens + tokens[i];
+            } else {
+                screenshotTokens = screenshotTokens + tokens[i] + ',';
+            }
+        }
+
+        var d = '{' +
+            '"title": "' + title + '",' +
+            '"cover": "' + token + '",' +
+            '"detail": "' + description + '",' +
+            '"screenshots": "' + screenshotTokens + '"' +
+            '}';
+
+        $.ajax({
+            url: ACE_BASE_URL + ACE_EDIT_MODULE + '/' + item.id,
+            contentType: "application/json; charset=UTF-8",
+            type: "PUT",
+            data: d,
+            success: function(result) {
+                hideEditModuleModal();
+            },
+            error: function(e) {
+                hideEditModuleModal();
+            }
+        });
+    }
+
 
     function addModule() {
         showAddModuleModal(containerId, "Add Module");
