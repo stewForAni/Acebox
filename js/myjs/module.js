@@ -171,18 +171,43 @@ define(function(require, exports, module) {
 
     function showModuleDetail(item) {
         showModuleDetailModal(containerId, item);
+        var d = item.screenshots;
+        var l = d.length;
+
+        for (var i = 0; i < l; i++) {
+            var cell_content = '<div class="carousel-cell col-12 text-center">' +
+                '<div class="card text-white col-12"  style="height:300px">' +
+                '<div class="card-body d-flex align-items-center justify-content-center">' +
+                '<img alt="Image" src="' + ACE_BASE_IMG_URL + d[i] + '" class="bg-image"/>' +
+                '</div>' +
+                '</div>' +
+                '<div class="row" style="margin-top:30px">' +
+                '<div class="col">' +
+                '<small>' + item.detail + '</small>' +
+                '</div>' +
+                '</div>' +
+                '</div>';
+            $('.main-carousel').append(cell_content);
+        }
+
         var flkty = new Flickity('.main-carousel', {
             cellAlign: "center",
             contain: true,
             prevNextButtons: true,
             pageDots: true,
             wrapAround: true,
-            autoPlay: 2000,
+            autoPlay: 5000,
             imagesLoaded: true
         });
+
+
+
+
         $('#showModuleDetailModal').on('shown.bs.modal', function(event) {
             flkty.resize();
         });
+
+
     }
 
     function editModule(item) {

@@ -629,7 +629,7 @@ function getShowModuleDetailModalContent(item) {
     var modalContent = ' <div class="modal fade" id="showModuleDetailModal" tabindex="-1" role="dialog">' +
         '<div class="modal-dialog modal-lg modal-center-viewport" role="document" >' +
         '<div class="modal-content">' +
-        '<div class="modal-body" style="padding:30px">' +
+        '<div class="modal-body" style="padding:30px;max-height:650px; overflow-y: auto;">' +
 
         '<div class="row">' +
         '<div class="col">' +
@@ -667,10 +667,16 @@ function getShowModuleDetailModalContent(item) {
         '<div class="row" style="margin-top:30px">' +
         '<div class="col">' +
         '<div class="main-carousel mb-3">' +
+         // '<div class="carousel-cell col-12 text-center">' +
+         //        // '<img alt="Image" src="' + ACE_BASE_IMG_URL + d[i] + '" class="bg-image col-12" style="height:200px"/>' +
 
-        '<div class="carousel-cell col-12 text-center">' +
-        '</div>' +
+         //        '                                   <div class="card height-30 bg-gradient text-white mb-0">' +
+         //        '                                      <div class="card-body d-flex align-items-center justify-content-center">' +
+         //        '                                          <span>Slide item</span>' +
+         //        '                                     </div>' +
+         //        '                                 </div>' +
 
+         //        '</div>'+
         '</div>' +
         '</div>' +
         '</div>' +
