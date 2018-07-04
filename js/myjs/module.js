@@ -112,7 +112,7 @@ define(function(require, exports, module) {
 
 
                 '<div class="card">' +
-                '<img class="my-module-card-img-top" src="' + pic + '"  alt="Card image cap" style="object-fit:cover;cursor:pointer" id="module_cover_' + i + '"> ' +
+                '<img class="my-card-img-top" src="' + pic + '"  alt="Card image cap" style="object-fit:cover;cursor:pointer" id="module_cover_' + i + '"> ' +
                 '<div class="card-body">' +
                 '<h5 class="card-title">' + title + '</h5>' +
                 '<small style="color:#4582EC">' + time + '</small>' +
@@ -176,7 +176,7 @@ define(function(require, exports, module) {
 
         for (var i = 0; i < l; i++) {
             var cell_content = '<div class="carousel-cell col-12 text-center">' +
-                '<div class="card text-white col-12"  style="height:300px">' +
+                '<div class="card text-white col-12"  style="height:400px">' +
                 '<div class="card-body d-flex align-items-center justify-content-center">' +
                 '<img alt="Image" src="' + ACE_BASE_IMG_URL + d[i] + '" class="bg-image"/>' +
                 '</div>' +
