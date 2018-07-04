@@ -82,6 +82,7 @@ define(function(require, exports, module) {
             var item = d[i];
             var pic = item.cover;
             var title = item.title;
+            var name = item.author;
             var description = item.detail;
             var time = getTime(item.created_at);
 
@@ -95,9 +96,12 @@ define(function(require, exports, module) {
                 title = "N/A";
             }
 
-
             if (isEmpty(description)) {
                 description = "N/A";
+            }
+
+            if (isEmpty(name)) {
+                name = "最初版本";
             }
 
             var module_list_item = '<li class="col-12 col-md-6 col-lg-3">' +
@@ -106,7 +110,8 @@ define(function(require, exports, module) {
                 '<img class="my-card-img-top" src="' + pic + '"  alt="Card image cap" style="object-fit:cover;cursor:pointer" id="module_cover_' + i + '"> ' +
                 '<div class="card-body">' +
                 '<h5 class="card-title">' + title + '</h5>' +
-                '<small style="color:#4582EC">' + time + '</small>' +
+
+                '<small style="color:#4582EC">'+ '[' + name + ']' + time + '</small>' +
                 '<small class="card-text text-body" style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">' + description + '</small>' +
                 '</div>' +
                 '<div class="card-footer card-footer-borderless d-flex justify-content-between">' +

@@ -626,6 +626,12 @@ function getEditModuleModalContent(content) {
 }
 
 function getShowModuleDetailModalContent(item) {
+    var name = item.author;
+
+    if (isEmpty(name)) {
+        name = "最初版本";
+    }
+
     var modalContent = ' <div class="modal fade" id="showModuleDetailModal" tabindex="-1" role="dialog">' +
         '<div class="modal-dialog modal-lg modal-center-viewport" role="document" >' +
         '<div class="modal-content">' +
@@ -638,7 +644,7 @@ function getShowModuleDetailModalContent(item) {
         '<div class="media-body">' +
         '<div class="mb-3">' +
         '<h1 class="h2 mb-2">' + item.title + '</h1>' +
-        '<span>' + getTime(item.created_at) + '</span>' +
+        '<span>' + '[' + name + ']' + getTime(item.created_at) + '</span>' +
         '</div>' +
         '<div>' +
         '<ul class="list-inline text-small d-inline-block">' +
