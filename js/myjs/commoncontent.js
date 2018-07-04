@@ -664,7 +664,7 @@ function getShowModuleDetailModalContent(item) {
 
         '<div class="row" style="margin-top:30px">' +
         '<div class="col">' +
-        '<div class="main-carousel mb-3">' +
+        '<div class="main-carousel mb-5">' +
         '</div>' +
         '</div>' +
         '</div>' +

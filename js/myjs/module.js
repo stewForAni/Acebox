@@ -4,6 +4,7 @@ define(function(require, exports, module) {
     require('ajaxUtil');
     require('aceApiTool');
     require('commoncontent');
+    require('zoom');
     var Flickity = require('flickity');
 
     var containerId = "#module_container";
@@ -11,7 +12,6 @@ define(function(require, exports, module) {
     var TYPE_GUIDANCE = "guidance";
     var TYPE_INTERACTION = "interaction";
     var TYPE_COMPETITION = "competition";
-
 
     var title;
     var description;
@@ -28,24 +28,17 @@ define(function(require, exports, module) {
             logout();
             return false;
         });
-
         $("#add_module").click(function() {
             addModule();
             return false;
         });
-
-
         tabEvents();
         getModuleList(currentType);
-
-
     }
 
     function tabEvents() {
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-
             var currentElement = $(e.target).attr("href");
-
             if ("#Guidance" == currentElement) {
                 currentType = TYPE_GUIDANCE;
             } else if ("#Interaction" == currentElement) {
@@ -53,7 +46,6 @@ define(function(require, exports, module) {
             } else if ("#Competition" == currentElement) {
                 currentType = TYPE_COMPETITION;
             }
-
             getModuleList(currentType);
         });
     }
@@ -69,6 +61,7 @@ define(function(require, exports, module) {
             error: function(e) {}
         });
     }
+
 
     function dealModuleListData(result) {
         var d = result.data.items;
@@ -109,8 +102,6 @@ define(function(require, exports, module) {
 
             var module_list_item = '<li class="col-12 col-md-6 col-lg-3">' +
 
-
-
                 '<div class="card">' +
                 '<img class="my-card-img-top" src="' + pic + '"  alt="Card image cap" style="object-fit:cover;cursor:pointer" id="module_cover_' + i + '"> ' +
                 '<div class="card-body">' +
@@ -140,8 +131,6 @@ define(function(require, exports, module) {
                 '</li>';
 
             $(currentID).append(module_list_item);
-
-
 
 
             (function(item) {
@@ -175,10 +164,10 @@ define(function(require, exports, module) {
         var l = d.length;
 
         for (var i = 0; i < l; i++) {
-            var cell_content = '<div class="carousel-cell col-12 text-center">' +
-                '<div class="card text-white col-12"  style="height:400px">' +
-                '<div class="card-body d-flex align-items-center justify-content-center">' +
-                '<img alt="Image" src="' + ACE_BASE_IMG_URL + d[i] + '" class="bg-image"/>' +
+            var cell_content = '<div class="carousel-cell col-12" style="width:70%">' +
+                '<div class="card text-white col-12"  style="height:250px">' +
+                '<div class="card-body">' +
+                '<img data-action="zoom" alt="Image" src="' + ACE_BASE_IMG_URL + d[i] + '" class="bg-image" style="box-shadow: 1px 1px 2px #888888;border-radius:3px;cursor:pointer"/>' +
                 '</div>' +
                 '</div>' +
                 '<div class="row" style="margin-top:30px">' +

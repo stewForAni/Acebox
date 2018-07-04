@@ -12,7 +12,8 @@ require.config({
         "multifileupload": "multifileupload",
         "phaser": "phaser",
         "phaser-spine": "phaser-spine",
-        "flickity": "flickity.pkgd.min"
+        "flickity": "flickity.pkgd.min",
+        "zoom": "zoom-vanilla"
     },
     shim: {
         "bootstrap": [
