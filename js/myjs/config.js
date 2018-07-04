@@ -39,8 +39,6 @@ require.config({
         "phaser-spine": [
             "phaser"
         ],
-        "flickity": [
-            "jquery"
-        ],
+        
     }
 });

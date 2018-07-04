@@ -626,7 +626,7 @@ function getEditModuleModalContent(content) {
 }
 
 function getShowModuleDetailModalContent(item) {
-    var modalContent = ' <div class="modal fade" id="showModuleDetailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">' +
+    var modalContent = ' <div class="modal fade" id="showModuleDetailModal" tabindex="-1" role="dialog">' +
         '<div class="modal-dialog modal-lg modal-center-viewport" role="document" >' +
         '<div class="modal-content">' +
         '<div class="modal-body" style="padding:30px">' +
@@ -634,9 +634,7 @@ function getShowModuleDetailModalContent(item) {
         '<div class="row">' +
         '<div class="col">' +
         '<div class="media align-items-center">' +
-        '<a href="#" class="mr-4">' +
         '<img alt="Image" src="' + ACE_BASE_IMG_URL + item.cover + '" class="avatar avatar-lg avatar-square" style="box-shadow: 1px 1px 2px #888888;border-radius: 3px;" />' +
-        '</a>' +
         '<div class="media-body">' +
         '<div class="mb-3">' +
         '<h1 class="h2 mb-2">' + item.title + '</h1>' +
@@ -664,39 +662,20 @@ function getShowModuleDetailModalContent(item) {
         '</div>' +
 
 
-        '<div class="row" style="margin-top:30px">' +
 
-        ' <div class="main-carousel mb-5" data-flickity="{ "cellAlign": "left", "contain": true }">' +
-        '                               <div class="carousel-cell col-12 text-center">' +
-        '                                   <div class="card height-30 bg-gradient text-white mb-0">' +
-        '                                      <div class="card-body d-flex align-items-center justify-content-center">' +
-        '                                          <span>Slide item</span>' +
-        '                                     </div>' +
-        '                                 </div>' +
-        '                             </div>' +
-        '                              <div class="carousel-cell col-12 text-center">' +
-        '                                 <div class="card height-30 bg-gradient text-white mb-0">' +
-        '                                     <div class="card-body d-flex align-items-center justify-content-center">' +
-        '                                         <span>Slide item</span>' +
-        '                                    </div>' +
-        '                               </div>' +
-        '                        </div>' +
-        '                                       <div class="carousel-cell col-12 text-center">' +
-        '                                          <div class="card height-30 bg-gradient text-white mb-0">' +
-        '                                             <div class="card-body d-flex align-items-center justify-content-center">' +
-        '                                                <span>Slide item</span>' +
-        '                                           </div>' +
-        '                                      </div>' +
-        '                                 </div>' +
-        '                                       <div class="carousel-cell col-12 text-center">' +
-        '                                          <div class="card height-30 bg-gradient text-white mb-0">' +
-        '                                             <div class="card-body d-flex align-items-center justify-content-center">' +
-        '                                                <span>Slide item</span>' +
-        '                                           </div>' +
-        '                                      </div>' +
-        '                                 </div>' +
-        '                                   </div>' +
+
+        '<div class="row" style="margin-top:30px">' +
+        '<div class="col">' +
+        '<div class="main-carousel mb-3">' +
+
+        '<div class="carousel-cell col-12 text-center">' +
         '</div>' +
+
+        '</div>' +
+        '</div>' +
+        '</div>' +
+
+
 
 
 

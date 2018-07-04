@@ -4,7 +4,7 @@ define(function(require, exports, module) {
     require('ajaxUtil');
     require('aceApiTool');
     require('commoncontent');
-    require('flickity');
+    var Flickity = require('flickity');
 
     var containerId = "#module_container";
     var currentType = "guidance";
@@ -37,6 +37,8 @@ define(function(require, exports, module) {
 
         tabEvents();
         getModuleList(currentType);
+
+
     }
 
     function tabEvents() {
@@ -106,6 +108,9 @@ define(function(require, exports, module) {
             }
 
             var module_list_item = '<li class="col-12 col-md-6 col-lg-3">' +
+
+
+
                 '<div class="card">' +
                 '<img class="my-module-card-img-top" src="' + pic + '"  alt="Card image cap" style="object-fit:cover;cursor:pointer" id="module_cover_' + i + '"> ' +
                 '<div class="card-body">' +
@@ -136,6 +141,9 @@ define(function(require, exports, module) {
 
             $(currentID).append(module_list_item);
 
+
+
+
             (function(item) {
                 $("#module_edit_" + i).click(function() {
                     editModule(item);
@@ -152,19 +160,29 @@ define(function(require, exports, module) {
 
             (function(item) {
                 $("#module_cover_" + i).click(function() {
-                    showModuleDetailModal(containerId, item);
-                    // $('.main-carousel').flickity({
-                    //     // options
-                    //     cellAlign: 'left',
-                    //     contain: true
-                    // });
+                    showModuleDetail(item);
                     return false;
                 });
             })(item);
-
-
-
         }
+
+
+    }
+
+    function showModuleDetail(item) {
+        showModuleDetailModal(containerId, item);
+        var flkty = new Flickity('.main-carousel', {
+            cellAlign: "center",
+            contain: true,
+            prevNextButtons: true,
+            pageDots: true,
+            wrapAround: true,
+            autoPlay: 2000,
+            imagesLoaded: true
+        });
+        $('#showModuleDetailModal').on('shown.bs.modal', function(event) {
+            flkty.resize();
+        });
     }
 
     function editModule(item) {
