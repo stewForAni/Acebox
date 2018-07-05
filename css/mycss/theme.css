@@ -3789,7 +3789,7 @@ button.close {
   -webkit-appearance: none; }
 
 .modal-open {
-  overflow-y: scroll; }
+  overflow-y: hidden; }
 
 .modal {
   position: fixed;

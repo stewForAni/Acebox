@@ -635,7 +635,7 @@ function getShowModuleDetailModalContent(item) {
     var modalContent = ' <div class="modal fade" id="showModuleDetailModal" tabindex="-1" role="dialog">' +
         '<div class="modal-dialog modal-lg modal-center-viewport" role="document" >' +
         '<div class="modal-content">' +
-        '<div class="modal-body" style="padding:30px;max-height:600px; overflow-y: auto;">' +
+        '<div class="modal-body" style="padding:30px;max-height:650px; overflow-y: auto;">' +
 
         '<div class="row">' +
         '<div class="col">' +
