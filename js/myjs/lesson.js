@@ -156,14 +156,15 @@ define(function(require, exports, module) {
             return;
         }
 
-        var cartitle = ' <div>' +
-            '           <h5 id="lesson_title"></h5>' +
-            '       </div>' +
-            '      <button class="btn btn-primary" id="upload_btn"><i class="icon-retweet mr-1"></i>Submit Test</button>';
+        var cartitle = '<div>' +
+            '<h5 id="lesson_title"></h5>' +
+            '</div>' +
+            '<button class="btn btn-primary" id="upload_btn"><i class="icon-retweet mr-1"></i>Submit Test</button>';
+
         $('#card_self').show();
         $('#card_title').html(cartitle);
 
-        setCurrentPositionColor(position);
+        setCurrentPositionColor(item.title,position);
         currentId = item.id;
         $.ajax({
             url: ACE_BASE_URL + ACE_LESSON_VERSION_LOG + "?classify_id=" + currentId + "&per-page=" + 30,
@@ -182,8 +183,8 @@ define(function(require, exports, module) {
         });
     }
 
-    function setCurrentPositionColor(position) {
-        $('#lesson_title').html("Lesson" + (position + 1) + " Test Log");
+    function setCurrentPositionColor(title,position) {
+        $('#lesson_title').html(title + " Test Log");
         for (var i = 0; i < lessonArray.length; i++) {
             $(lessonArray[i]).attr("style", "cursor:pointer");
         }
