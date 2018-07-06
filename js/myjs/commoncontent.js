@@ -553,12 +553,12 @@ function getVideoModalContent(obj) {
     return modalContent;
 }
 
-function getAnimationModalContent() {
+function getAnimationModalContent(url) {
     var modalContent = ' <div class="modal fade" id="animationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">' +
         '<div class="modal-dialog modal-lg modal-center-viewport" role="document" >' +
         '<div class="modal-content">' +
         '<div class="modal-body d-flex justify-content-center" id="animation_content" >' +
-
+        '<img alt="Image" src="' + ACE_BASE_IMG_URL + url + '" style="box-shadow: 1px 1px 2px #888888;border-radius: 3px;" />' +
         '</div>' +
         '</div>' +
         '</div>' +
@@ -827,9 +827,9 @@ function showVideoModuleModal(id, obj) {
 }
 
 
-function showAniModal(id) {
+function showAniModal(id, url) {
     $('#animationModal').remove();
-    $(id).append(getAnimationModalContent());
+    $(id).append(getAnimationModalContent(url));
     $("#animationModal").modal();
 }
 
