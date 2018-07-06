@@ -569,6 +569,7 @@ define(function(require, exports, module) {
     function showAnimation() {
 
         showAniModal(containerId);
+
         $('#animationModal').on('hidden.bs.modal', function() {
             $('#animationModal').remove();
             $('.modal-backdrop').remove();
