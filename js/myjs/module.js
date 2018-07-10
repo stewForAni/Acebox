@@ -66,13 +66,17 @@ define(function(require, exports, module) {
         var d = result.data.items;
         var l = result.data.items.length;
         var currentID = '';
+        var coverID = '';
 
         if (currentType == TYPE_GUIDANCE) {
             currentID = '#module_list_1';
+            coverID = 'TYPE_GUIDANCE_';
         } else if (currentType == TYPE_INTERACTION) {
             currentID = '#module_list_2';
+            coverID = 'TYPE_INTERACTION';
         } else if (currentType == TYPE_COMPETITION) {
             currentID = '#module_list_3';
+            coverID = 'TYPE_COMPETITION';
         }
 
         $(currentID).html('');
@@ -84,6 +88,7 @@ define(function(require, exports, module) {
             var name = item.author;
             var description = item.detail;
             var time = getTime(item.created_at);
+            var id = coverID + i;
 
             if (isEmpty(pic)) {
                 pic = "images/changelog_icon1.jpg";
@@ -106,11 +111,11 @@ define(function(require, exports, module) {
             var module_list_item = '<li class="col-12 col-md-6 col-lg-3">' +
 
                 '<div class="card">' +
-                '<img class="my-card-img-top" src="' + pic + '"  alt="Card image cap" style="object-fit:cover;cursor:pointer" id="module_cover_' + i + '"> ' +
+                '<img class="my-card-img-top" src="' + pic + '"  alt="Card image cap" style="object-fit:cover;cursor:pointer" id="' + id + '"> ' +
                 '<div class="card-body">' +
                 '<h5 class="card-title">' + title + '</h5>' +
 
-                '<small style="color:#4582EC">'+ '[' + name + ']' + time + '</small>' +
+                '<small style="color:#4582EC">' + '[' + name + ']' + time + '</small>' +
                 '<small class="card-text text-body" style="overflow : hidden;text-overflow: ellipsis;display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">' + description + '</small>' +
                 '</div>' +
                 '<div class="card-footer card-footer-borderless d-flex justify-content-between">' +
@@ -152,7 +157,7 @@ define(function(require, exports, module) {
 
 
             (function(item) {
-                $("#module_cover_" + i).click(function() {
+                $("#" + id).click(function() {
                     showModuleDetail(item);
                     return false;
                 });
