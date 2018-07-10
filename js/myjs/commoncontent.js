@@ -579,11 +579,11 @@ function getEditModuleModalContent(content) {
         '</div>' +
         '<div class="modal-body">' +
         '<form>' +
-        ' <div class="form-row form-group">' +
-        '      <div class="col">' +
-        '       <input class="form-control form-control-lg" type="text" id="module_name" placeholder="' + content + ' Name" />' +
-        '      </div>' +
-        ' </div>' +
+        // ' <div class="form-row form-group">' +
+        // '      <div class="col">' +
+        // '       <input class="form-control form-control-lg" type="text" id="module_name" placeholder="' + content + ' Name" />' +
+        // '      </div>' +
+        // ' </div>' +
         '<div class="form-row form-group">' +
         '   <div class="col">' +
         '      <textarea class="form-control form-control-lg" name="profileBio" rows="1" id="module_des" placeholder="Add Introduction"></textarea>' +

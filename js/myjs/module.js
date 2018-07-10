@@ -13,7 +13,6 @@ define(function(require, exports, module) {
     var TYPE_INTERACTION = "interaction";
     var TYPE_COMPETITION = "competition";
 
-    var title;
     var description;
     var coverName;
     var coverFile;
@@ -222,9 +221,8 @@ define(function(require, exports, module) {
         });
 
         $("#edit_module").click(function() {
-            title = $('#module_name').val();
             description = $('#module_des').val();
-            if (isEmpty(coverFile) || isEmpty(pics) || isEmpty(title) || isEmpty(description)) {
+            if (isEmpty(coverFile) || isEmpty(pics) || isEmpty(description)) {
                 return false;
             }
             uploadCover(item);
@@ -293,7 +291,6 @@ define(function(require, exports, module) {
         }
 
         var d = '{' +
-            '"title": "' + title + '",' +
             '"cover": "' + token + '",' +
             '"detail": "' + description + '",' +
             '"screenshots": "' + screenshotTokens + '"' +

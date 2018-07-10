@@ -8,7 +8,6 @@ define(function(require, exports, module) {
     require('phaser');
     require('phaser-spine');
 
-
     var currentOperation = 0;
     var currentFileType = -1;
     var fileTokenArray = new Array();
@@ -347,12 +346,6 @@ define(function(require, exports, module) {
                     var d = data[i];
                     listani = getListItem(d, type_id, i);
                     $("#content_list_animation").append(listani);
-                    (function(d) {
-                        $("#item_animation_" + i).click(function() {
-                            //showAnimation(d);
-                            return false;
-                        });
-                    })(d);
                 }
 
 
@@ -467,10 +460,8 @@ define(function(require, exports, module) {
             } else if (type_id == TYPE_ID_ANIMATION) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
                     '<div class="card" style="background-color:#fefefe">' +
-                    '<img class="my-card-img-top" src="' + ACE_BASE_IMG_URL + object.extract_files_gif + '" alt="Card image cap">' +
-                    '<div class="video-play-icon justify-content-center" style="position:absolute" id="item_animation_' + i + '" >' +
-                    '     <i class="icon-controller-play"></i>' +
-                    ' </div>' +
+                    '<img class="my-card-img-top" src="' + ACE_BASE_IMG_URL + object.extract_files_gif + '" alt="Card image cap" style="object-fit:cover;">' +
+                   
                     '<div>' +
                     '<h6 style="margin-top:20px;margin-left:10px;margin-right:20px">' + "[ " + object.id + " ] " + object.title + '</h6>' +
                     '<p style="margin-left:10px;margin-right:20px;margin-bottom:10px;"><small>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:20px"></i><a href="' + ACE_BASE_IMG_URL + object.download_file + '?">Download</a></small></p>' +
