@@ -235,6 +235,13 @@ function getAddLessonModalContent() {
         '</div>' +
         '</div>' +
 
+        '<div class="form-row form-group">' +
+        '<div class="col">' +
+        '<input class="form-control form-control-lg" type="text" id="lesson_lock_num" placeholder="Lesson Lock Num" />' +
+        '<small style="margin-top:10px">Write your lesson lock num to release and submit lesson</small>' +
+        '</div>' +
+        '</div>' +
+
         '<select class="custom-select mb-2" id="lesson_type">' +
         '<option selected>Select Lesson Type</option>' +
         '<option value="Offline">Offline(单机)</option>' +
@@ -372,6 +379,15 @@ function getUploadCourseWareModalContent(content) {
         '<small>Write some remarks(must).</small>' +
         '</div>' +
         '</div>' +
+
+
+        '<div class="form-row form-group">' +
+        '<div class="col">' +
+        '<input class="form-control form-control-lg" type="text" id="lesson_lock_num" placeholder="Lesson Lock Num" />' +
+        '<small style="margin-top:10px">Write your lesson lock num to release and submit lesson</small>' +
+        '</div>' +
+        '</div>' +
+
 
         '<div class="form-row form-group">' +
         '   <div class="col">' +

@@ -63,36 +63,41 @@ define(function(require, exports, module) {
 
 
     function showUploadModal(data) {
-        showSubmitModal(containerId, "Submit courseware");
+        showSubmitModal(containerId, "Submit Courseware");
         var d = data.data.items;
         var l = d.length;
+
         for (var i = 0; i < l; i++) {
             var time = getTime(d[i].created_at);
             $('#coursewarelist').append('<option value="' + d[i].token + '">' + d[i].file_name + "(" + time + ")" + '</option>');
         }
+
         $('#upload_course').click(function() {
             var log = $('#log').val();
+            var lock = $('#lesson_lock_num').val();
             var token = $('#coursewarelist').val();
+
             if ("Select one to submit" == token) {
                 return false;
             }
             var myString = $("#coursewarelist option[value=" + token + "]").text();
-            if (isEmpty(log) || isEmpty(token) || isEmpty(myString)) {
+            if (isEmpty(log) || isEmpty(token) || isEmpty(myString) || isEmpty(lock)) {
                 return false;
             } else {
                 var arr = myString.split('(');
                 var name = arr[0];
-                doSubmitTestApi(log, token, name);
+                doSubmitTestApi(log, token, name, lock);
             }
             return false;
         });
     }
 
-    function doSubmitTestApi(log, token, name) {
+    function doSubmitTestApi(log, token, name, lock) {
         var d = '{' +
             '"classify_id":"' + currentId + '",' +
             '"remark":"' + log + '",' +
             '"name":"' + name + '",' +
+            '"lock":"' + lock + '",' +
             '"file":{' +
             '   "token":"' + token + '"' +
             '}' +
@@ -164,7 +169,7 @@ define(function(require, exports, module) {
         $('#card_self').show();
         $('#card_title').html(cartitle);
 
-        setCurrentPositionColor(item.title,position);
+        setCurrentPositionColor(item.title, position);
         currentId = item.id;
         $.ajax({
             url: ACE_BASE_URL + ACE_LESSON_VERSION_LOG + "?classify_id=" + currentId + "&per-page=" + 30,
@@ -183,7 +188,7 @@ define(function(require, exports, module) {
         });
     }
 
-    function setCurrentPositionColor(title,position) {
+    function setCurrentPositionColor(title, position) {
         $('#lesson_title').html(title + " Test Log");
         for (var i = 0; i < lessonArray.length; i++) {
             $(lessonArray[i]).attr("style", "cursor:pointer");

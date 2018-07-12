@@ -239,16 +239,17 @@ define(function(require, exports, module) {
         $('#create_lesson').click(function() {
             var lessonName = $('#lesson_name').val();
             var lessonID = $('#lesson_id').val();
+            var lessonLockNum = $('#lesson_lock_num').val();
             var lessonType = $('#lesson_type').val();
 
-            if (!isEmpty(lessonName) || !isEmpty(lessonID) || !isEmpty(lessonType)) {
-                doAddLessonApi(item, lessonName, lessonID, lessonType);
+            if (!isEmpty(lessonName) || !isEmpty(lessonID) || !isEmpty(lessonType) || !isEmpty(lessonLockNum)) {
+                doAddLessonApi(item, lessonName, lessonID, lessonType, lessonLockNum);
             }
             return false;
         });
     }
 
-    function doAddLessonApi(item, lessonName, lessonID, lessonType) {
+    function doAddLessonApi(item, lessonName, lessonID, lessonType, lessonLockNum) {
 
         var pid = item.id;
         var d = '{' +
@@ -256,6 +257,7 @@ define(function(require, exports, module) {
             '"title":"' + lessonName + '",' +
             '"lesson": {' +
             '"part_code":"' + lessonType + '",' +
+            '"lock":"' + lessonLockNum + '",' +
             '"lesson_id":"' + lessonID + '"' +
             '}' +
             '}';
