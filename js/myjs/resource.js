@@ -24,8 +24,6 @@ define(function(require, exports, module) {
 
     function init() {
 
-        $("#download_section").hide();
-
         $.ajax({
             url: ACE_BASE_URL + ACE_GET_FILE_TYPE,
             type: "GET",
@@ -33,11 +31,15 @@ define(function(require, exports, module) {
                 setFileType(result);
                 initUpload();
                 initDownload();
+                initSelect();
             },
             error: function(e) {}
         });
+    }
 
 
+
+    function initSelect() {
         $("#select_operation").change(function() {
             currentOperation = $(this).children('option:selected').val();
             if (currentOperation == 0) {
@@ -71,6 +73,7 @@ define(function(require, exports, module) {
             $("#uploadInf").empty();
         });
     }
+
 
 
     function initUpload() {
@@ -461,7 +464,7 @@ define(function(require, exports, module) {
                 item = ' <li class="col-12 col-md-4 col-lg-3">' +
                     '<div class="card" style="background-color:#fefefe">' +
                     '<img class="my-card-img-top" src="' + ACE_BASE_IMG_URL + object.extract_files_gif + '" alt="Card image cap" style="object-fit:cover;">' +
-                   
+
                     '<div>' +
                     '<h6 style="margin-top:20px;margin-left:10px;margin-right:20px">' + "[ " + object.id + " ] " + object.title + '</h6>' +
                     '<p style="margin-left:10px;margin-right:20px;margin-bottom:10px;"><small>' + getTime(object.created_at) + '<i class="icon-download" style="margin-right:5px;margin-left:20px"></i><a href="' + ACE_BASE_IMG_URL + object.download_file + '?">Download</a></small></p>' +
