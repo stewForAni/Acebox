@@ -5,8 +5,6 @@ define(function(require, exports, module) {
     require('aceApiTool');
     require('commoncontent');
     require('multifileupload');
-    require('phaser');
-    require('phaser-spine');
 
     var currentOperation = 0;
     var currentFileType = -1;

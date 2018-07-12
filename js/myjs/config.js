@@ -10,8 +10,6 @@ require.config({
         "aceApiTool": "http/aceApiTool",
         "commoncontent": "myjs/commoncontent",
         "multifileupload": "multifileupload",
-        "phaser": "phaser",
-        "phaser-spine": "phaser-spine",
         "flickity": "flickity.pkgd.min",
         "zoom": "zoom-vanilla"
     },
@@ -37,9 +35,5 @@ require.config({
         "aceApiTool": [
             "jquery"
         ],
-        "phaser-spine": [
-            "phaser"
-        ],
-        
     }
 });

@@ -152,7 +152,7 @@
 
             overlay = document.createElement('div')
             overlay.className = 'zoom-overlay'
-overlay.style.zIndex = '9998'
+            overlay.style.zIndex = '9998'
             document.body.appendChild(overlay)
 
             calculateZoom()
