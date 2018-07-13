@@ -22,8 +22,7 @@ define(function(require, exports, module) {
             success: function(result) {
                 dealMianContentData(result);
             },
-            error: function(e) {
-            }
+            error: function(e) {}
         });
     }
 
