@@ -320,14 +320,16 @@ define(function(require, exports, module) {
         showAddModuleModal(containerId, "Add Module");
         $("#confirm_add_module").click(function() {
             var name = $("#module_name").val();
+            var lock = $("#module_lock_num").val();
             var type = $("#module_type").val();
 
-            if (isEmpty(name) || isEmpty(type)) {
+            if (isEmpty(name) || isEmpty(type) || isEmpty(lock)) {
                 return false;
             }
 
             var d = '{' +
                 '"title": "' + name + '",' +
+                '"lock": "' + lock + '",' +
                 '"part_code": "' + type + '"' +
                 '}';
 

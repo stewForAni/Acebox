@@ -531,16 +531,26 @@ function getAddModuleModalContent(content) {
         '</div>' +
 
         '<div class="form-row form-group">' +
+        '<div class="col">' +
+        '<input class="form-control form-control-lg" type="text" id="module_lock_num" placeholder="Module Lock Num" />' +
+        '<small style="margin-top:10px">Write your module lock num to release module.</small>' +
+        '</div>' +
+        '</div>' +
+
+
+
+        '<div class="form-row form-group">' +
         '   <div class="col">' +
         '<select class="custom-select mb-2" id="module_type">' +
         ' <option selected>Select module type</option>' +
-        ' <option value="Guidance">1.Guidance</option>' +
-        ' <option value="Interaction">2.Interaction</option>' +
-        ' <option value="Competition">3.Competition</option>' +
+        ' <option value="Guidance">1.Guidance(引导式)</option>' +
+        ' <option value="Interaction">2.Interaction(互动式)</option>' +
+        ' <option value="Competition">3.Competition(竞争式)</option>' +
         '  </select>' +
         '<small>Select a module type to create.</small>' +
         '</div>' +
         '</div>' +
+
 
         '<div class="form-row form-group">' +
         '   <div class="col">' +
@@ -673,7 +683,7 @@ function getShowModuleDetailModalContent(item) {
         '</div>' +
 
         '<div class="col-auto">' +
-        '<button class="btn btn-primary" id="add_module"><i class="icon-download mr-2"></i>Download</button>' +
+        '<a class="btn btn-primary" id="add_module" style="color:#ffffff"   href="' + ACE_BASE_IMG_URL + item.download_file + '"><i class="icon-download mr-2"></i>Download</a>' +
         '</div>' +
         '</div>' +
 
