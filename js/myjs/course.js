@@ -235,7 +235,32 @@ define(function(require, exports, module) {
     }
 
     function dealAddLesson(item) {
+
+        $.ajax({
+            url: ACE_BASE_URL + ACE_MODULE_TYPE + '?belong=lesson',
+            type: "GET",
+            contentType: "application/json",
+            success: function(result) {
+                showAddLesson(result);
+            },
+            error: function(e) {
+
+            }
+        });
+    }
+
+    function showAddLesson(result) {
         showAddLessonModal(containerId);
+
+        $('#lesson_type').html('');
+        $('#lesson_type').append('<option selected>Select Lesson Type</option>');
+        var d = result.data.items;
+        var l = d.length;
+        for (var i = 0; i < l; i++) {
+            var item = '<option value="' + d[i].code + '">' + (i + 1) + '.' + d[i].code + '</option>';
+            $('#lesson_type').append(item);
+        }
+
         $('#create_lesson').click(function() {
             var lessonName = $('#lesson_name').val();
             var lessonID = $('#lesson_id').val();
@@ -245,6 +270,7 @@ define(function(require, exports, module) {
             if (!isEmpty(lessonName) || !isEmpty(lessonID) || !isEmpty(lessonType) || !isEmpty(lessonLockNum)) {
                 doAddLessonApi(item, lessonName, lessonID, lessonType, lessonLockNum);
             }
+
             return false;
         });
     }

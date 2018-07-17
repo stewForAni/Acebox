@@ -8,10 +8,9 @@ define(function(require, exports, module) {
     var Flickity = require('flickity');
 
     var containerId = "#module_container";
-    var currentType = "guidance";
-    var TYPE_GUIDANCE = "guidance";
+    var currentType = "offline";
+    var TYPE_OFFLINE = "offline";
     var TYPE_INTERACTION = "interaction";
-    var TYPE_COMPETITION = "competition";
 
     var description;
     var coverName;
@@ -38,12 +37,10 @@ define(function(require, exports, module) {
     function tabEvents() {
         $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
             var currentElement = $(e.target).attr("href");
-            if ("#Guidance" == currentElement) {
-                currentType = TYPE_GUIDANCE;
+            if ("#Offline" == currentElement) {
+                currentType = TYPE_OFFLINE;
             } else if ("#Interaction" == currentElement) {
                 currentType = TYPE_INTERACTION;
-            } else if ("#Competition" == currentElement) {
-                currentType = TYPE_COMPETITION;
             }
             getModuleList(currentType);
         });
@@ -68,15 +65,12 @@ define(function(require, exports, module) {
         var currentID = '';
         var coverID = '';
 
-        if (currentType == TYPE_GUIDANCE) {
+        if (currentType == TYPE_OFFLINE) {
             currentID = '#module_list_1';
-            coverID = 'TYPE_GUIDANCE_';
+            coverID = 'TYPE_OFFLINE_';
         } else if (currentType == TYPE_INTERACTION) {
             currentID = '#module_list_2';
-            coverID = 'TYPE_INTERACTION';
-        } else if (currentType == TYPE_COMPETITION) {
-            currentID = '#module_list_3';
-            coverID = 'TYPE_COMPETITION';
+            coverID = 'TYPE_INTERACTION_';
         }
 
         $(currentID).html('');
@@ -317,7 +311,28 @@ define(function(require, exports, module) {
 
 
     function addModule() {
+        $.ajax({
+            url: ACE_BASE_URL + ACE_MODULE_TYPE + '?belong=template',
+            contentType: "application/json; charset=UTF-8",
+            type: "GET",
+            success: function(result) {
+                showAddModule(result);
+            },
+            error: function(e) {}
+        });
+    }
+
+    function showAddModule(result) {
         showAddModuleModal(containerId, "Add Module");
+        $('#module_type').html('');
+        $('#module_type').append('<option selected>Select module type</option>');
+        var d = result.data.items;
+        var l = d.length;
+        for (var i = 0; i < l; i++) {
+            var item = ' <option value="' + d[i].code + '">' + (i + 1) + '.' + d[i].code + '</option>';
+            $('#module_type').append(item);
+        }
+
         $("#confirm_add_module").click(function() {
             var name = $("#module_name").val();
             var lock = $("#module_lock_num").val();
@@ -346,5 +361,6 @@ define(function(require, exports, module) {
             return false;
         });
     }
+
 
 });

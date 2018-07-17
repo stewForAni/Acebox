@@ -243,9 +243,6 @@ function getAddLessonModalContent() {
         '</div>' +
 
         '<select class="custom-select mb-2" id="lesson_type">' +
-        '<option selected>Select Lesson Type</option>' +
-        '<option value="Offline">Offline(单机)</option>' +
-        '<option value="Interaction">Interaction(互动)</option>' +
         '</select>' +
 
 
@@ -542,10 +539,7 @@ function getAddModuleModalContent(content) {
         '<div class="form-row form-group">' +
         '   <div class="col">' +
         '<select class="custom-select mb-2" id="module_type">' +
-        ' <option selected>Select module type</option>' +
-        ' <option value="Guidance">1.Guidance(引导式)</option>' +
-        ' <option value="Interaction">2.Interaction(互动式)</option>' +
-        ' <option value="Competition">3.Competition(竞争式)</option>' +
+     
         '  </select>' +
         '<small>Select a module type to create.</small>' +
         '</div>' +
@@ -683,7 +677,7 @@ function getShowModuleDetailModalContent(item) {
         '</div>' +
 
         '<div class="col-auto">' +
-        '<a class="btn btn-primary" id="add_module" style="color:#ffffff"   href="' + ACE_BASE_IMG_URL + item.download_file + '"><i class="icon-download mr-2"></i>Download</a>' +
+        '<a class="btn btn-primary" id="add_module" style="color:#ffffff"   href="' + item.download_file + '"><i class="icon-download mr-2"></i>Download</a>' +
         '</div>' +
         '</div>' +
 
