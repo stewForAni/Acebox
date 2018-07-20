@@ -1,7 +1,18 @@
 //ace-API-configuration
 
+//线上环境
+// var ACE_BASE_URL = "https://stew-api.dev.landi.com/v1/";
 
-//外网
+// var ACE_BASE_IMG_URL = "https://stew-api.dev.landi.com/";
+
+// var ACE_BASE_AUDIO_URL = "https://stew-api.dev.landi.com/";
+
+// var ACE_BASE_VIDEO_URL = "https://stew-api.dev.landi.com/";
+
+// var ACE_BASE_MODULE_URL = "https://stew-api.dev.landi.com/";
+
+
+//测试环境
 // var ACE_BASE_URL = "https://stew-api.dev.landi.com/v1/";
 
 // var ACE_BASE_IMG_URL = "https://stew-api.dev.landi.com/";
@@ -14,16 +25,16 @@
 
 
 
-//内网
-var ACE_BASE_URL = "https://api.dev.landi.com/v1/";
+//开发环境
+var ACE_BASE_URL = "https://api-dev.course.landi.com/v1/";
 
-var ACE_BASE_IMG_URL = "https://api.dev.landi.com/";
+var ACE_BASE_IMG_URL = "https://api-dev.course.landi.com/";
 
-var ACE_BASE_AUDIO_URL = "https://api.dev.landi.com/";
+var ACE_BASE_AUDIO_URL = "https://api-dev.course.landi.com/";
 
-var ACE_BASE_VIDEO_URL = "https://api.dev.landi.com/";
+var ACE_BASE_VIDEO_URL = "https://api-dev.course.landi.com/";
 
-var ACE_BASE_MODULE_URL = "https://api.dev.landi.com/";
+var ACE_BASE_MODULE_URL = "https://api-dev.course.landi.com/";
 
 
 //ace login
